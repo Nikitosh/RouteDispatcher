@@ -4,7 +4,7 @@
 # Качает через gh, если он установлен и авторизован (нужно, пока репозиторий приватный), иначе через curl.
 set -e
 cd "$(dirname "$0")"
-REPO=Nikitosh/lct-trdelnik
+REPO=Nikitosh/RouteDispatcher
 TAG=osrm-graphs-v1
 FILES="osrm-car.tar.gz osrm-bicycle.tar.gz osrm-foot.tar.gz SHA256SUMS"
 

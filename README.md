@@ -7,9 +7,9 @@
 Модель, алгоритм, точные методы и результаты — [docs/SOLUTION.md](docs/SOLUTION.md), допущения и ответы жюри —
 [docs/assumptions.md](docs/assumptions.md).
 
-**Демо без установки:** https://lct-trdelnik.vercel.app — та же страница диспетчера, что собирает `scripts/demo.sh`
-(папка `site/`). Обновить после пересборки: `cd site && vercel deploy --prod` (проект `lct-trdelnik`; если папка
-пересоздана, сначала `vercel link --project lct-trdelnik`).
+**Демо без установки:** https://route-dispatcher-trdelnik.vercel.app — та же страница диспетчера, что собирает
+`scripts/demo.sh` (папка `site/`). Обновить после пересборки: `cd site && vercel deploy --prod` (проект
+`route-dispatcher-trdelnik`; если папка пересоздана, сначала `vercel link --project route-dispatcher-trdelnik`).
 
 ## Запуск одной командой
 

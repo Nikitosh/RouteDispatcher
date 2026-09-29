@@ -9,27 +9,84 @@
  "lb_used": 11,
  "lp_used": 10.499999999999984,
  "used_conv": true,
- "lb_km": 369.0385,
+ "lb_km": 403.9529,
  "lp_km": 367.3233252478632,
  "km_conv": true,
  "km_K": 11,
  "lb_km_typebranch": 367.3233,
  "lb_km_typebranch_pool": 367.3233,
- "proven_optimal": false,
+ "proven_optimal": true,
  "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
- "seconds": 2535.8,
+ "seconds": 2573.9,
  "best_at_finalize": [
   0,
   11,
   403.953
  ],
  "cgc": {
-  "root": 364.848,
-  "nodes": 7,
-  "lb": 369.0386,
+  "root": 403.953,
+  "nodes": 0,
+  "lb": 403.953,
   "ub": 403.953,
-  "exhausted": false,
-  "seconds": 2512.9,
-  "fleet_cuts": []
+  "exhausted": true,
+  "seconds": 38.1,
+  "fleet_cuts": [
+   [
+    "f0c2[0,360)",
+    3
+   ],
+   [
+    "f2c48",
+    3
+   ],
+   [
+    "f1c0[240,360)",
+    2
+   ],
+   [
+    "f0c01sk45",
+    2
+   ],
+   [
+    "f1c3sk5",
+    1
+   ],
+   [
+    "f1c13sk45",
+    2
+   ],
+   [
+    "f0c2[120,240)",
+    2
+   ],
+   [
+    "f0c2[240,360)",
+    2
+   ],
+   [
+    "f0c2sk14",
+    2
+   ],
+   [
+    "f1c2sk01",
+    2
+   ],
+   [
+    "f1c2sk45",
+    2
+   ],
+   [
+    "f1c2[0,120)",
+    2
+   ],
+   [
+    "f2c1[240,360)+c4",
+    3
+   ],
+   [
+    "f2c2[240,360)+c4",
+    3
+   ]
+  ]
  }
 }
