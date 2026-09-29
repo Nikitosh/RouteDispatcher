@@ -9,7 +9,7 @@
  "lb_used": 12,
  "lp_used": 11.142857142857233,
  "used_conv": true,
- "lb_km": 209.6009,
+ "lb_km": 211.3659,
  "lp_km": 209.51764886731416,
  "km_conv": true,
  "km_K": 12,
@@ -20,12 +20,21 @@
  "pool_lp": 209.60098635097495,
  "lb_km_typebranch": 209.5176,
  "lb_km_typebranch_pool": 209.601,
- "proven_optimal": false,
- "method": "CG ng10 + enum/MIP",
- "seconds": 203.5,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 713.7,
  "best_at_finalize": [
   0,
   12,
   211.366
- ]
+ ],
+ "cgc": {
+  "root": 209.579,
+  "nodes": 223,
+  "lb": 211.366,
+  "ub": 211.366,
+  "exhausted": true,
+  "seconds": 510.2,
+  "fleet_cuts": []
+ }
 }

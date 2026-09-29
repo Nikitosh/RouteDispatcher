@@ -1,0 +1,8 @@
+# Сборка презентации (presentation/build/). Ещё нужен LibreOffice (soffice) для PDF; шрифты — в build/lo_profile.
+# Установка: python3 -m venv .pptx-venv && .pptx-venv/bin/pip install -r presentation/requirements.txt
+#            .pptx-venv/bin/playwright install chromium          # для shots.py
+python-pptx==1.0.2
+pypdf==6.19.0
+lxml==6.1.3
+pillow==12.3.0
+playwright==1.63.0

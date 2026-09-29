@@ -18,7 +18,8 @@ PORT = 8790
 RATIO = 9.1 / 5.35
 WIDTH = 1320
 COMPARE_WIDTH = 1400
-# Уже скачанный браузер: версия Playwright в .pptx-venv новее кэша ms-playwright.
+# Браузер из кэша ms-playwright, если он там есть (на машине автора версия пакета новее кэша); иначе — установленный
+# командой playwright install chromium.
 CHROME = os.path.expanduser('~/Library/Caches/ms-playwright/chromium_headless_shell-1224/'
                             'chrome-headless-shell-mac-arm64/chrome-headless-shell')
 EXPLAIN_ORDER = '74198'          # подключение на Востоке: объяснение с тремя группами других бригад
@@ -37,7 +38,7 @@ async def shot(pg, name, y0, width=WIDTH):
 
 async def main():
     async with async_playwright() as p:
-        b = await p.chromium.launch(executable_path=CHROME)
+        b = await p.chromium.launch(executable_path=CHROME if os.path.exists(CHROME) else None)
         pg = await b.new_page(viewport={'width': WIDTH, 'height': 900}, device_scale_factor=2)
         await pg.goto(f'http://127.0.0.1:{PORT}/#d=vostok&tab=plan', wait_until='networkidle')
         await shot(pg, 'plan.png', 0)

@@ -9,13 +9,13 @@
  "lb_used": 9,
  "lp_used": 8.162162162162163,
  "used_conv": true,
- "lb_km": 153.9274,
+ "lb_km": 154.4988,
  "lp_km": 151.55681513158015,
  "km_conv": true,
  "km_K": 9,
  "proven_optimal": false,
  "partial": true,
- "seconds": 1632.9,
+ "seconds": 5233.0,
  "best_at_finalize": [
   0,
   9,
@@ -24,11 +24,11 @@
  "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
  "cgc": {
   "root": 151.358,
-  "nodes": 1007,
-  "lb": 153.9275,
+  "nodes": 2623,
+  "lb": 154.4989,
   "ub": 155.182,
   "exhausted": false,
-  "seconds": 1620.1,
+  "seconds": 3600.1,
   "fleet_cuts": [
    [
     "f2c2[120,240)",

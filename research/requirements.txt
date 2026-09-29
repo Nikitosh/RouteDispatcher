@@ -1,0 +1,12 @@
+# Исследовательская часть (research/): точные методы, сравнение с библиотеками, картинки.
+# Установка: python3 -m venv research/.venv && research/.venv/bin/pip install -r research/requirements.txt
+numpy==2.2.6
+scipy==1.17.0
+highspy==1.15.1          # ЛП и MIP в генерации столбцов
+ortools==9.15.6755       # CP-SAT и сравнение с OR-Tools
+pyvrp==0.14.0            # сравнение
+pyvroom==1.15.2          # сравнение
+networkx==3.5
+matplotlib==3.10.8       # картинки, в том числе presentation/build/figures*.py
+pillow==11.3.0
+openpyxl>=3.1            # импорт dispatch в скриптах v2_*.py

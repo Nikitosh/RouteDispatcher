@@ -11,7 +11,7 @@ def main(path, tl=1.0, seed=1):
         pi.set_durations_matrix(profile=name,matrix_input=[[math.ceil(I['T'][m][i][j]*60) for j in range(M)] for i in range(M)])
         pi.set_distances_matrix(profile=name,matrix_input=[[int(round(I['D'][m][i][j]*1000)) for j in range(M)] for i in range(M)])
     for v,ve in enumerate(I['veh']):
-        pi.add_vehicle(vroom.Vehicle(id=v+1,start=ve['start'],profile=PROF[ve['mode']],skills={s for s in range(3) if (ve['mask']>>s)&1},
+        pi.add_vehicle(vroom.Vehicle(id=v+1,start=ve['start'],profile=PROF[ve['mode']],skills={s for s in range(32) if (ve['mask']>>s)&1},
                                      time_window=vroom.TimeWindow(0,720*60),costs=vroom.VehicleCosts(fixed=10_000_000,per_hour=0,per_km=1000)))
     for k,o in enumerate(I['ords']):
         pi.add_job(vroom.Job(id=k+1,location=S+k,default_service=o['svc']*60,skills={o['skill']},priority={1:100,2:50,3:20}[o['pri']],

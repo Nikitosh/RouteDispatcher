@@ -225,7 +225,25 @@ def gantt(reg='vostok', mode='pt'):
     save(fig, f'gantt_{reg}_{mode}.png')
 
 
+def generated_districts():
+    """Сгенерированные участки: заявки по типам и офис, реальные дома из OpenStreetMap."""
+    import json
+    col = {'Авария': '#141414', 'Подключение': '#FFC800', 'Ремонт': '#A1A1A1', 'Дозаказ': '#F47300'}
+    for reg in ['Север', 'Запад', 'Северо-восток']:
+        d = json.load(open(os.path.join(PROJECT, 'out', reg, 'plan.json')))
+        pts = [(o['lat'], o['lon']) for o in d['orders']] + [(d['office']['lat'], d['office']['lon'])]
+        fig = plt.figure(figsize=(4.0, 3.2)); ax = fig.add_axes([0, 0, 1, 1])
+        proj = basemap(ax, pts, 12, aspect=4.0 / 3.2)
+        for o in d['orders']:
+            x, y = proj(o['lat'], o['lon'])
+            ax.scatter([x], [y], s=34, color=col.get(o['type'], '#A1A1A1'), edgecolor='white', lw=.7, zorder=4)
+        x, y = proj(d['office']['lat'], d['office']['lon'])
+        ax.scatter([x], [y], s=120, marker='s', color=INK, edgecolor='white', lw=1.5, zorder=6)
+        save(fig, f'gen_{reg}.png')
+
+
 if __name__ == '__main__':
+    generated_districts()
     real_vs_ours('vostok', 'pt')
     three_regions('pt')
     gantt('vostok', 'mix2')

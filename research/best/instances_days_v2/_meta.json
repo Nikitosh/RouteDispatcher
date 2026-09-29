@@ -156,10 +156,10 @@
   "km": 267.926
  },
  "day_yugovostok_2809_mix1_all": {
-  "tag": "prod3_s3/day_yugovostok_2809_mix1_all.out",
+  "tag": "cgc/day_yugovostok_2809_mix1_all.out",
   "pen": 0,
   "used": 9,
-  "km": 251.309
+  "km": 251.068
  },
  "day_yugovostok_2809_mix1_inf": {
   "tag": "prod3_s2/day_yugovostok_2809_mix1_inf.out",

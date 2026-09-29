@@ -1,0 +1,18 @@
+[    0.8s] ЛП 8.944444 (колонок 3329, SRC 150); перебор маршрутов с запасом 0.055556
+enum type 0: backward labels 295 ok 1
+enum type 0: labels 1526822 routes 602168
+enum type 1: backward labels 162 ok 1
+enum type 1: labels 119928 routes 48024
+enum type 2: backward labels 87 ok 1
+enum type 2: labels 32457 routes 7514
+enum type 3: backward labels 65 ok 1
+enum type 3: labels 25269 routes 6033
+enum type 4: backward labels 284 ok 1
+enum type 4: labels 4659 routes 2592
+enum type 5: backward labels 88 ok 1
+enum type 5: labels 300 routes 111
+enum type 6: backward labels 94 ok 1
+enum type 6: labels 714 routes 329
+[    4.4s] перебор: маршрутов 666771, полный True
+[  931.5s] CP-SAT по полному перебору: Infeasible, маршрутов None
+[  931.5s] RESULT ДОКАЗАНО: на 9 бригадах нельзя
