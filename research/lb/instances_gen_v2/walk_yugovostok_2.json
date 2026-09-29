@@ -1,0 +1,44 @@
+{
+ "inst": "walk_yugovostok_2",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 12,
+ "best_km": 491.76,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 12,
+ "lp_used": 11.045454545454543,
+ "used_conv": true,
+ "lb_km": 446.7632,
+ "lp_km": 419.424793272786,
+ "km_conv": true,
+ "km_K": 12,
+ "lb_km_typebranch": 419.4248,
+ "lb_km_typebranch_pool": 419.4248,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 2313.3,
+ "best_at_finalize": [
+  0,
+  12,
+  491.7603
+ ],
+ "cgc": {
+  "root": 440.9579,
+  "nodes": 22,
+  "lb": 446.7633,
+  "ub": 491.7603,
+  "exhausted": false,
+  "seconds": 2213.6,
+  "fleet_cuts": [
+   [
+    "f0c01sk0145",
+    10
+   ],
+   [
+    "f0c1[0,360)+c0",
+    10
+   ]
+  ]
+ }
+}

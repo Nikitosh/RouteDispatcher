@@ -1,0 +1,24 @@
+{
+ "inst": "scarce_yugovostok_2",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 464.438,
+ "types": 11,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.545190510634335,
+ "used_conv": true,
+ "lb_km": 444.2427,
+ "lp_km": 444.2426982483646,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 72.3,
+ "best_at_finalize": [
+  0,
+  8,
+  464.4383
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "inst": "control_yugovostok_mix2_all",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 364.504,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.43627450980392,
+ "used_conv": true,
+ "lb_km": 363.8482,
+ "lp_km": 347.7946863860265,
+ "km_conv": true,
+ "km_K": 9,
+ "lb_km_typebranch": 354.659,
+ "lb_km_typebranch_pool": 363.8483,
+ "new_solution": [
+  0,
+  9,
+  363.8482999999999
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 179.6,
+ "best_at_finalize": [
+  0,
+  9,
+  363.8483
+ ]
+}

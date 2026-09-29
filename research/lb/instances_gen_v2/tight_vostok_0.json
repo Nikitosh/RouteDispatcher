@@ -1,0 +1,24 @@
+{
+ "inst": "tight_vostok_0",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 198.936,
+ "types": 4,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 5.000000000000139,
+ "used_conv": true,
+ "lb_km": 195.3033,
+ "lp_km": 195.3032836657845,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": false,
+ "partial": true,
+ "seconds": 243.3,
+ "best_at_finalize": [
+  0,
+  6,
+  198.9356
+ ]
+}

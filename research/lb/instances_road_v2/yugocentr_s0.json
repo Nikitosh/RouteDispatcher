@@ -1,0 +1,63 @@
+{
+ "inst": "yugocentr_s0",
+ "dir": "instances_road_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 188.678,
+ "types": 8,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.666666666666657,
+ "used_conv": true,
+ "lb_km": 188.5303,
+ "lp_km": 184.14453141914956,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 70204,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 230,
+ "pool_lp": 184.19255942640768,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1740.5,
+ "best_at_finalize": [
+  0,
+  6,
+  188.6779
+ ],
+ "cgc": {
+  "root": 183.9939,
+  "nodes": 530,
+  "lb": 188.5304,
+  "ub": 188.6779,
+  "exhausted": false,
+  "seconds": 1624.6,
+  "fleet_cuts": [
+   [
+    "f2c6[120,240)",
+    2
+   ],
+   [
+    "f2c6[120,240)+c4",
+    4
+   ],
+   [
+    "f1c1[600,1e+09)",
+    2
+   ],
+   [
+    "f1c0[600,1e+09)",
+    3
+   ],
+   [
+    "f2c6[0,120)",
+    2
+   ],
+   [
+    "f1c1[240,600)",
+    2
+   ]
+  ]
+ }
+}

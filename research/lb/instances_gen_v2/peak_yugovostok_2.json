@@ -1,0 +1,24 @@
+{
+ "inst": "peak_yugovostok_2",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 288.347,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.00893473528539,
+ "used_conv": true,
+ "lb_km": 259.8395,
+ "lp_km": 267.8641034776628,
+ "km_conv": false,
+ "km_K": 9,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 575.4,
+ "best_at_finalize": [
+  0,
+  9,
+  288.3472
+ ]
+}

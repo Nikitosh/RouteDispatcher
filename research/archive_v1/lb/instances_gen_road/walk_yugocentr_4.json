@@ -1,0 +1,29 @@
+{
+ "inst": "walk_yugocentr_4",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 172.51,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.428571428571438,
+ "used_conv": true,
+ "lb_km": 172.5096,
+ "lp_km": 171.59004472262703,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 2379,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 227,
+ "pool_lp": 171.6199076923082,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 8.1,
+ "best_at_finalize": [
+  0,
+  6,
+  172.5097
+ ]
+}

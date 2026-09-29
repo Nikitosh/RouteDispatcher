@@ -1,0 +1,38 @@
+{
+ "inst": "control_yugocentr_mix2_all",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 178.887,
+ "types": 2,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.5543960923623485,
+ "used_conv": true,
+ "lb_km": 178.8874,
+ "lp_km": 176.12657370614252,
+ "km_conv": true,
+ "km_K": 5,
+ "enum_routes": 184605,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 453,
+ "pool_lp": 176.49587145169042,
+ "lb_km_typebranch": 176.1266,
+ "lb_km_typebranch_pool": 176.4959,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P",
+ "seconds": 524.0,
+ "best_at_finalize": [
+  0,
+  5,
+  178.8875
+ ],
+ "bp": {
+  "nodes": 283,
+  "lb": 178.8875,
+  "ub": 178.8875,
+  "exhausted": true,
+  "seconds": 428.7
+ }
+}

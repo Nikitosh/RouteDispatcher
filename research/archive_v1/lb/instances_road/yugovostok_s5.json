@@ -1,0 +1,36 @@
+{
+ "inst": "yugovostok_s5",
+ "dir": "instances_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 744.623,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 9.000000000005103,
+ "used_conv": true,
+ "lb_km": 744.6232,
+ "lp_km": 740.0951396761119,
+ "km_conv": true,
+ "km_K": 9,
+ "enum_routes": 73090,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 257,
+ "pool_lp": 740.3675094577502,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 303.4,
+ "bp": {
+  "nodes": 101,
+  "lb": 744.6233,
+  "ub": 744.6233,
+  "exhausted": true,
+  "seconds": 163.2
+ },
+ "best_at_finalize": [
+  0,
+  9,
+  744.6233
+ ]
+}

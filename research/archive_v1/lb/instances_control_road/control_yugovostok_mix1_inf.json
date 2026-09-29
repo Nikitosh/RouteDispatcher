@@ -1,0 +1,89 @@
+{
+ "inst": "control_yugovostok_mix1_inf",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 579.457,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.656250000000081,
+ "used_conv": true,
+ "lb_km": 560.5806,
+ "lp_km": 369.5449164978086,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 130282.7,
+ "best_at_finalize": [
+  0,
+  8,
+  571.0662
+ ],
+ "bp": {
+  "nodes": 125,
+  "lb": 382.83216106681255,
+  "ub": 579.4572999999999,
+  "exhausted": false,
+  "seconds": 1216.5
+ },
+ "cgc": {
+  "root": 503.5643,
+  "nodes": 11,
+  "lb": 506.8754,
+  "ub": 575.2179,
+  "exhausted": false,
+  "seconds": 726.6,
+  "fleet_cuts": [
+   [
+    "f0c0[0,240)+c1",
+    7
+   ],
+   [
+    "f0c1[0,240)+c0",
+    7
+   ],
+   [
+    "f0c01sk01",
+    7
+   ],
+   [
+    "f0c2sk1",
+    2
+   ],
+   [
+    "f0c2[120,360)",
+    2
+   ],
+   [
+    "f2c3[0,240)",
+    2
+   ],
+   [
+    "f2c0[0,120)+c3",
+    3
+   ],
+   [
+    "f0c1[120,240)+c2",
+    3
+   ],
+   [
+    "f0c3[0,240)+c2",
+    3
+   ],
+   [
+    "f2c1[360,480)",
+    2
+   ]
+  ]
+ },
+ "cgm": {
+  "lb": 560.5806823394727,
+  "ub": 575.2178999999999,
+  "nodes": 267,
+  "exhausted": false,
+  "seconds": 11458.6,
+  "old_lb_km": 560.4887
+ }
+}

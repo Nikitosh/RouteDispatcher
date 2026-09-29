@@ -1,0 +1,182 @@
+{
+ "sever_s0": {
+  "tag": "s76_20s/sever_s0.out",
+  "pen": 0,
+  "used": 8,
+  "km": 186.415
+ },
+ "sever_s1": {
+  "tag": "s76_20s/sever_s1.out",
+  "pen": 0,
+  "used": 8,
+  "km": 165.593
+ },
+ "sever_s2": {
+  "tag": "s76_20s/sever_s2.out",
+  "pen": 0,
+  "used": 9,
+  "km": 159.481
+ },
+ "sever_s3": {
+  "tag": "prod3_s2/sever_s3.out",
+  "pen": 0,
+  "used": 8,
+  "km": 192.994
+ },
+ "sever_s4": {
+  "tag": "s76_20s/sever_s4.out",
+  "pen": 0,
+  "used": 8,
+  "km": 239.928
+ },
+ "sever_s5": {
+  "tag": "prod3_s2/sever_s5.out",
+  "pen": 0,
+  "used": 8,
+  "km": 182.54
+ },
+ "sever_s6": {
+  "tag": "prod3_s3/sever_s6.out",
+  "pen": 0,
+  "used": 8,
+  "km": 163.217
+ },
+ "sever_s7": {
+  "tag": "s76_20s/sever_s7.out",
+  "pen": 0,
+  "used": 8,
+  "km": 167.228
+ },
+ "sever_s8": {
+  "tag": "prod3_s2/sever_s8.out",
+  "pen": 0,
+  "used": 8,
+  "km": 186.632
+ },
+ "sever_s9": {
+  "tag": "s76_20s/sever_s9.out",
+  "pen": 0,
+  "used": 8,
+  "km": 176.086
+ },
+ "severovostok_s0": {
+  "tag": "prod3_s3/severovostok_s0.out",
+  "pen": 0,
+  "used": 11,
+  "km": 212.881
+ },
+ "severovostok_s1": {
+  "tag": "prod3_s3/severovostok_s1.out",
+  "pen": 150,
+  "used": 9,
+  "km": 234.233
+ },
+ "severovostok_s2": {
+  "tag": "prod3_s3/severovostok_s2.out",
+  "pen": 100,
+  "used": 9,
+  "km": 250.777
+ },
+ "severovostok_s3": {
+  "tag": "prod3_s3/severovostok_s3.out",
+  "pen": 50,
+  "used": 11,
+  "km": 214.768
+ },
+ "severovostok_s4": {
+  "tag": "prod3_s2/severovostok_s4.out",
+  "pen": 0,
+  "used": 11,
+  "km": 207.529
+ },
+ "severovostok_s5": {
+  "tag": "s76_20s/severovostok_s5.out",
+  "pen": 100,
+  "used": 9,
+  "km": 238.429
+ },
+ "severovostok_s6": {
+  "tag": "prod3_s3/severovostok_s6.out",
+  "pen": 50,
+  "used": 10,
+  "km": 222.885
+ },
+ "severovostok_s7": {
+  "tag": "s76_20s/severovostok_s7.out",
+  "pen": 250,
+  "used": 9,
+  "km": 291.916
+ },
+ "severovostok_s8": {
+  "tag": "prod3_s3/severovostok_s8.out",
+  "pen": 100,
+  "used": 9,
+  "km": 257.019
+ },
+ "severovostok_s9": {
+  "tag": "prod3_s3/severovostok_s9.out",
+  "pen": 150,
+  "used": 9,
+  "km": 231.786
+ },
+ "zapad_s0": {
+  "tag": "prod3_s3/zapad_s0.out",
+  "pen": 0,
+  "used": 7,
+  "km": 219.471
+ },
+ "zapad_s1": {
+  "tag": "prod3_s3/zapad_s1.out",
+  "pen": 0,
+  "used": 8,
+  "km": 277.062
+ },
+ "zapad_s2": {
+  "tag": "prod3_s3/zapad_s2.out",
+  "pen": 0,
+  "used": 7,
+  "km": 225.643
+ },
+ "zapad_s3": {
+  "tag": "prod3_s2/zapad_s3.out",
+  "pen": 0,
+  "used": 7,
+  "km": 226.114
+ },
+ "zapad_s4": {
+  "tag": "s76_20s/zapad_s4.out",
+  "pen": 0,
+  "used": 7,
+  "km": 233.303
+ },
+ "zapad_s5": {
+  "tag": "prod3_s3/zapad_s5.out",
+  "pen": 100,
+  "used": 7,
+  "km": 224.461
+ },
+ "zapad_s6": {
+  "tag": "prod3_s3/zapad_s6.out",
+  "pen": 0,
+  "used": 7,
+  "km": 215.85
+ },
+ "zapad_s7": {
+  "tag": "prod3_s3/zapad_s7.out",
+  "pen": 0,
+  "used": 7,
+  "km": 238.572
+ },
+ "zapad_s8": {
+  "tag": "s76_20s/zapad_s8.out",
+  "pen": 0,
+  "used": 7,
+  "km": 216.235
+ },
+ "zapad_s9": {
+  "tag": "prod3_s3/zapad_s9.out",
+  "pen": 50,
+  "used": 8,
+  "km": 255.579
+ }
+}

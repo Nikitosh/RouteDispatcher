@@ -1,0 +1,6 @@
+SOLVER best:s33_sasisr@bench_instances_gen_road_tl30.0_s33_sasisr.json
+ROUTE 0 35 28 8 10 46 27 2 4 13 34
+ROUTE 1 36 40 45 30 37 31 3 5 47 17
+ROUTE 2 7 20 9 26 0 48 39 25 43 38
+ROUTE 3 15 21 6 24 33 44 14 32 22
+ROUTE 4 1 23 19 41 12 16 18 42 29 11

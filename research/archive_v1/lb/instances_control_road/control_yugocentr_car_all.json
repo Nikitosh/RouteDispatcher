@@ -1,0 +1,29 @@
+{
+ "inst": "control_yugocentr_car_all",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 179.174,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.466879122433105,
+ "used_conv": true,
+ "lb_km": 179.1743,
+ "lp_km": 177.74205999543716,
+ "km_conv": true,
+ "km_K": 5,
+ "enum_routes": 54049,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 495,
+ "pool_lp": 178.20155830701844,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 401.9,
+ "best_at_finalize": [
+  0,
+  5,
+  179.1744
+ ]
+}

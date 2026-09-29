@@ -1,0 +1,212 @@
+{
+ "vostok_s0": {
+  "lb_used_load": 6,
+  "lb_used_clique": 6,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 92.129
+ },
+ "vostok_s1": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 91.778
+ },
+ "vostok_s2": {
+  "lb_used_load": 6,
+  "lb_used_clique": 6,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 92.128
+ },
+ "vostok_s3": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 91.778
+ },
+ "vostok_s4": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 91.778
+ },
+ "vostok_s5": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 95.483
+ },
+ "vostok_s6": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 91.778
+ },
+ "vostok_s7": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 98.436
+ },
+ "vostok_s8": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 94.422
+ },
+ "vostok_s9": {
+  "lb_used_load": 6,
+  "lb_used_clique": 5,
+  "lb_used_cheap": 6,
+  "K": 7,
+  "lb_km_assign": 94.422
+ },
+ "yugocentr_s0": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 6,
+  "lb_km_assign": 105.256
+ },
+ "yugocentr_s1": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s2": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s3": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s4": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s5": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.596
+ },
+ "yugocentr_s6": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s7": {
+  "lb_used_load": 4,
+  "lb_used_clique": 4,
+  "lb_used_cheap": 4,
+  "K": 6,
+  "lb_km_assign": 111.325
+ },
+ "yugocentr_s8": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugocentr_s9": {
+  "lb_used_load": 4,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 4,
+  "K": 5,
+  "lb_km_assign": 107.124
+ },
+ "yugovostok_s0": {
+  "lb_used_load": 7,
+  "lb_used_clique": 6,
+  "lb_used_cheap": 7,
+  "K": 10,
+  "lb_km_assign": 153.144
+ },
+ "yugovostok_s1": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 157.317
+ },
+ "yugovostok_s2": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 157.327
+ },
+ "yugovostok_s3": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 144.334
+ },
+ "yugovostok_s4": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 157.327
+ },
+ "yugovostok_s5": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 163.489
+ },
+ "yugovostok_s6": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 144.281
+ },
+ "yugovostok_s7": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 8,
+  "lb_km_assign": 168.506
+ },
+ "yugovostok_s8": {
+  "lb_used_load": 7,
+  "lb_used_clique": 6,
+  "lb_used_cheap": 7,
+  "K": 10,
+  "lb_km_assign": 158.626
+ },
+ "yugovostok_s9": {
+  "lb_used_load": 7,
+  "lb_used_clique": 3,
+  "lb_used_cheap": 7,
+  "K": 9,
+  "lb_km_assign": 154.972
+ }
+}

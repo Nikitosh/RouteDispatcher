@@ -1,0 +1,31 @@
+{
+ "inst": "tight_yugocentr_1",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 203.908,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.778894472361807,
+ "used_conv": true,
+ "lb_km": 197.9756,
+ "lp_km": 197.8853345918848,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 117719,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 284,
+ "pool_lp": 197.97565387523485,
+ "lb_km_typebranch": 197.8853,
+ "lb_km_typebranch_pool": 197.9757,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 592.2,
+ "best_at_finalize": [
+  0,
+  7,
+  203.9079
+ ]
+}

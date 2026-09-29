@@ -1,0 +1,29 @@
+{
+ "inst": "allday_yugocentr_1",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 150.624,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.488662923783862,
+ "used_conv": true,
+ "lb_km": 150.6234,
+ "lp_km": 150.57043452566091,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 216,
+ "enum_complete": true,
+ "pool_status": "lp_closed",
+ "pool_cuts": 210,
+ "pool_lp": 150.6235,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 12.3,
+ "best_at_finalize": [
+  0,
+  6,
+  150.6235
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "inst": "tight_yugocentr_1",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 170.014,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.237511781338361,
+ "used_conv": true,
+ "lb_km": 170.014,
+ "lp_km": 168.72021008072412,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 2662,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 419,
+ "pool_lp": 169.0066833333332,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 13.9,
+ "best_at_finalize": [
+  0,
+  7,
+  170.0141
+ ]
+}

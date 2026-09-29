@@ -1,0 +1,36 @@
+{
+ "inst": "real_vostok_6",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 216.314,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.7605068456683455,
+ "used_conv": true,
+ "lb_km": 216.314,
+ "lp_km": 212.23580137247217,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 351044,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 393,
+ "pool_lp": 212.97476227425463,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 808.5,
+ "best_at_finalize": [
+  0,
+  6,
+  216.3141
+ ],
+ "bp": {
+  "nodes": 53,
+  "lb": 216.31410000000014,
+  "ub": 216.31410000000014,
+  "exhausted": true,
+  "seconds": 98.5
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "inst": "large_yugovostok_2",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 12,
+ "best_km": 572.539,
+ "types": 11,
+ "lb_pen": 0,
+ "lb_used": 12,
+ "lp_used": 11.733333333333308,
+ "used_conv": true,
+ "lb_km": 455.5143,
+ "lp_km": 452.5771849105636,
+ "km_conv": false,
+ "km_K": 12,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 2583.9,
+ "best_at_finalize": [
+  0,
+  12,
+  572.5388
+ ],
+ "cgc": {
+  "root": 455.5144,
+  "nodes": 2,
+  "lb": 455.5144,
+  "ub": 572.5388,
+  "exhausted": false,
+  "seconds": 2213.9,
+  "fleet_cuts": []
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "inst": "day_vostok_2909_pt_inf",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 193.179,
+ "types": 4,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.9999999999999964,
+ "used_conv": true,
+ "lb_km": 191.3268,
+ "lp_km": 184.93586146462175,
+ "km_conv": true,
+ "km_K": 8,
+ "lb_km_typebranch": 188.1055,
+ "lb_km_typebranch_pool": 191.3269,
+ "new_solution": [
+  0,
+  8,
+  191.32689999999994
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 125.3,
+ "best_at_finalize": [
+  0,
+  8,
+  191.3269
+ ]
+}

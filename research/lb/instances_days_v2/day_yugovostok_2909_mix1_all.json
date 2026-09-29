@@ -1,0 +1,34 @@
+{
+ "inst": "day_yugovostok_2909_mix1_all",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 303.974,
+ "types": 8,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.361904761904757,
+ "used_conv": true,
+ "lb_km": 303.7841,
+ "lp_km": 300.24854087774304,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 40866,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 380,
+ "pool_lp": 300.6440315699709,
+ "new_solution": [
+  0,
+  8,
+  303.78420000000006
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 338.9,
+ "best_at_finalize": [
+  0,
+  8,
+  303.7842
+ ]
+}

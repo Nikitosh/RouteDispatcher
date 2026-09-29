@@ -1,0 +1,43 @@
+{
+ "inst": "control_vostok_mix2_inf",
+ "dir": "instances_control_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 185.786,
+ "types": 8,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.57142857142868,
+ "used_conv": true,
+ "lb_km": 185.786,
+ "lp_km": 183.2395325491634,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 35424,
+ "enum_complete": true,
+ "pool_status": "feasible",
+ "pool_cuts": 327,
+ "pool_lp": 183.6316028012197,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1092.6,
+ "best_at_finalize": [
+  0,
+  7,
+  185.7861
+ ],
+ "cgc": {
+  "root": 182.9442,
+  "nodes": 243,
+  "lb": 185.7861,
+  "ub": 185.7861,
+  "exhausted": true,
+  "seconds": 640.6,
+  "fleet_cuts": [
+   [
+    "f2c0[120,240)",
+    3
+   ]
+  ]
+ }
+}

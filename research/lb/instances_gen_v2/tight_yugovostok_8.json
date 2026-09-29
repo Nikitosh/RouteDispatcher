@@ -1,0 +1,31 @@
+{
+ "inst": "tight_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 160,
+ "best_used": 10,
+ "best_km": 377.661,
+ "types": 9,
+ "lb_pen": 140,
+ "lp_pen": 138.34782608695636,
+ "pen_conv": true,
+ "lb_used": 10,
+ "lp_used": 9.820216606498208,
+ "used_conv": true,
+ "lb_km": 377.6608,
+ "lp_km": 375.2559089010571,
+ "km_conv": true,
+ "km_K": 10,
+ "enum_routes": 20253,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 354,
+ "pool_lp": 376.1037138952962,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 285.6,
+ "best_at_finalize": [
+  160,
+  10,
+  377.6609
+ ]
+}

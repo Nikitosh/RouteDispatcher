@@ -1,0 +1,24 @@
+{
+ "inst": "control_yugovostok_car_all",
+ "dir": "instances_control",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 317.768,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.5,
+ "used_conv": true,
+ "lb_km": 317.768,
+ "lp_km": 317.76800000000003,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 21.3,
+ "best_at_finalize": [
+  0,
+  8,
+  317.768
+ ]
+}

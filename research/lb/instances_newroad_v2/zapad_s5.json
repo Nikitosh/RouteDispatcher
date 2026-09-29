@@ -1,0 +1,31 @@
+{
+ "inst": "zapad_s5",
+ "dir": "instances_newroad_v2",
+ "best_pen": 100,
+ "best_used": 7,
+ "best_km": 224.461,
+ "types": 7,
+ "lb_pen": 100,
+ "lp_pen": 100.0,
+ "pen_conv": true,
+ "lb_used": 7,
+ "lp_used": 6.5340718059558105,
+ "used_conv": true,
+ "lb_km": 224.4607,
+ "lp_km": 221.80037354323304,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 11279,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 242,
+ "pool_lp": 221.95297392549597,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 162.6,
+ "best_at_finalize": [
+  100,
+  7,
+  224.4608
+ ]
+}

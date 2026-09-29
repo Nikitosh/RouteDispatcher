@@ -1,0 +1,26 @@
+{
+ "inst": "control_yugovostok_pt_all",
+ "dir": "instances_control",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 332.285,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.52380952380954,
+ "used_conv": true,
+ "lb_km": 308.1764,
+ "lp_km": 308.1764052364348,
+ "km_conv": true,
+ "km_K": 10,
+ "lb_km_typebranch": 308.1764,
+ "lb_km_typebranch_pool": 308.1764,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 72.0,
+ "best_at_finalize": [
+  0,
+  10,
+  332.2855
+ ]
+}

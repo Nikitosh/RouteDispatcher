@@ -1,0 +1,41 @@
+{
+ "inst": "yugocentr_s5",
+ "dir": "instances_road",
+ "best_pen": 50,
+ "best_used": 5,
+ "best_km": 231.705,
+ "types": 9,
+ "lb_pen": 50,
+ "lp_pen": 24.999999999999993,
+ "pen_conv": true,
+ "lb_used": 5,
+ "lp_used": 4.902808854083428,
+ "used_conv": true,
+ "lb_km": 226.4383,
+ "lp_km": 217.39686591747335,
+ "km_conv": true,
+ "km_K": 5,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + B&P + cgp:lb_pen(penalty B&P+3SRC, 3 nodes)",
+ "seconds": 45.9,
+ "best_at_finalize": [
+  50,
+  5,
+  231.7051
+ ],
+ "bp": {
+  "nodes": 675,
+  "lb": 226.43844284553165,
+  "ub": 231.7051,
+  "exhausted": false,
+  "seconds": 900.9
+ },
+ "cgp": {
+  "lb_pen": {
+   "old": 30,
+   "new": 50,
+   "method": "penalty B&P+3SRC, 3 nodes",
+   "seconds": 6.4
+  }
+ }
+}

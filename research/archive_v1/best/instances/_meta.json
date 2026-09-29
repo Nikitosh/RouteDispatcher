@@ -1,0 +1,182 @@
+{
+ "vostok_s0": {
+  "tag": "lns/vostok_s0.out",
+  "pen": 0,
+  "used": 7,
+  "km": 151.233
+ },
+ "vostok_s1": {
+  "tag": "lns/vostok_s1.out",
+  "pen": 0,
+  "used": 7,
+  "km": 145.532
+ },
+ "vostok_s2": {
+  "tag": "hy/vostok_s2.out",
+  "pen": 0,
+  "used": 7,
+  "km": 158.644
+ },
+ "vostok_s3": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 7,
+  "km": 146.962
+ },
+ "vostok_s4": {
+  "tag": "s10_sa@bench_tl1.0_all.json",
+  "pen": 0,
+  "used": 7,
+  "km": 142.796
+ },
+ "vostok_s5": {
+  "tag": "s13_sisr@bench_tl3.0_s13_sisr.json",
+  "pen": 0,
+  "used": 7,
+  "km": 174.517
+ },
+ "vostok_s6": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 7,
+  "km": 145.615
+ },
+ "vostok_s7": {
+  "tag": "lns/vostok_s7.out",
+  "pen": 150,
+  "used": 7,
+  "km": 182.109
+ },
+ "vostok_s8": {
+  "tag": "hy/vostok_s8.out",
+  "pen": 0,
+  "used": 7,
+  "km": 156.972
+ },
+ "vostok_s9": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 6,
+  "km": 178.959
+ },
+ "yugocentr_s0": {
+  "tag": "s14_hgs_lite@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 6,
+  "km": 138.679
+ },
+ "yugocentr_s1": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 5,
+  "km": 155.106
+ },
+ "yugocentr_s2": {
+  "tag": "sa/yugocentr_s2.out",
+  "pen": 0,
+  "used": 5,
+  "km": 209.022
+ },
+ "yugocentr_s3": {
+  "tag": "lns/yugocentr_s3.out",
+  "pen": 0,
+  "used": 5,
+  "km": 161.749
+ },
+ "yugocentr_s4": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 5,
+  "km": 209.022
+ },
+ "yugocentr_s5": {
+  "tag": "hy/yugocentr_s5.out",
+  "pen": 50,
+  "used": 5,
+  "km": 206.772
+ },
+ "yugocentr_s6": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 5,
+  "km": 155.106
+ },
+ "yugocentr_s7": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 50,
+  "used": 6,
+  "km": 198.167
+ },
+ "yugocentr_s8": {
+  "tag": "s10_sa@bench_tl3.0_s10.json",
+  "pen": 0,
+  "used": 5,
+  "km": 161.786
+ },
+ "yugocentr_s9": {
+  "tag": "lns/yugocentr_s9.out",
+  "pen": 0,
+  "used": 5,
+  "km": 161.588
+ },
+ "yugovostok_s0": {
+  "tag": "s10_sa@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 10,
+  "km": 384.839
+ },
+ "yugovostok_s1": {
+  "tag": "s12_alns@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 9,
+  "km": 467.583
+ },
+ "yugovostok_s2": {
+  "tag": "s12_alns@bench_tl3.0_all.json",
+  "pen": 0,
+  "used": 9,
+  "km": 580.782
+ },
+ "yugovostok_s3": {
+  "tag": "hy/yugovostok_s3.out",
+  "pen": 0,
+  "used": 9,
+  "km": 476.658
+ },
+ "yugovostok_s4": {
+  "tag": "lns/yugovostok_s4.out",
+  "pen": 0,
+  "used": 9,
+  "km": 523.412
+ },
+ "yugovostok_s5": {
+  "tag": "lns/yugovostok_s5.out",
+  "pen": 0,
+  "used": 9,
+  "km": 703.737
+ },
+ "yugovostok_s6": {
+  "tag": "s10_sa@bench_tl1.0_s10.json",
+  "pen": 0,
+  "used": 9,
+  "km": 516.351
+ },
+ "yugovostok_s7": {
+  "tag": "lns/yugovostok_s7.out",
+  "pen": 400,
+  "used": 8,
+  "km": 624.277
+ },
+ "yugovostok_s8": {
+  "tag": "lns/yugovostok_s8.out",
+  "pen": 0,
+  "used": 9,
+  "km": 679.884
+ },
+ "yugovostok_s9": {
+  "tag": "s10_sa@bench_tl1.0_s10.json",
+  "pen": 0,
+  "used": 9,
+  "km": 519.287
+ }
+}

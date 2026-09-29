@@ -1,0 +1,36 @@
+{
+ "inst": "scarce_yugocentr_7",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 185.325,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.07149747699614,
+ "used_conv": true,
+ "lb_km": 185.2365,
+ "lp_km": 180.2568685805263,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 713334,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 401,
+ "pool_lp": 180.46908898172603,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 141.6,
+ "best_at_finalize": [
+  0,
+  6,
+  185.3247
+ ],
+ "bp": {
+  "nodes": 682,
+  "lb": 185.23659386959483,
+  "ub": 185.3247,
+  "exhausted": false,
+  "seconds": 901.2
+ }
+}

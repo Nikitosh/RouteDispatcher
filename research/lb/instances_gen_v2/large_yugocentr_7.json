@@ -1,0 +1,26 @@
+{
+ "inst": "large_yugocentr_7",
+ "dir": "instances_gen_v2",
+ "best_pen": 100,
+ "best_used": 13,
+ "best_km": 274.526,
+ "types": 9,
+ "lb_pen": 100,
+ "lp_pen": 99.99999999999997,
+ "pen_conv": true,
+ "lb_used": 13,
+ "lp_used": 12.500000000000083,
+ "used_conv": true,
+ "lb_km": 268.6263,
+ "lp_km": 268.6263153158456,
+ "km_conv": true,
+ "km_K": 13,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 116.3,
+ "best_at_finalize": [
+  100,
+  13,
+  273.8859
+ ]
+}

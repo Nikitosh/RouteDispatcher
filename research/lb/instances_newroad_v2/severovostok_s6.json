@@ -1,0 +1,26 @@
+{
+ "inst": "severovostok_s6",
+ "dir": "instances_newroad_v2",
+ "best_pen": 50,
+ "best_used": 10,
+ "best_km": 222.885,
+ "types": 9,
+ "lb_pen": 50,
+ "lp_pen": 49.999999999999986,
+ "pen_conv": true,
+ "lb_used": 10,
+ "lp_used": 10.000000000000044,
+ "used_conv": true,
+ "lb_km": 222.8849,
+ "lp_km": 222.88489999999996,
+ "km_conv": true,
+ "km_K": 10,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 13.6,
+ "best_at_finalize": [
+  50,
+  10,
+  222.8849
+ ]
+}

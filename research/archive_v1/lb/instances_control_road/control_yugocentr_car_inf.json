@@ -1,0 +1,32 @@
+{
+ "inst": "control_yugocentr_car_inf",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 179.174,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.466879122433118,
+ "used_conv": true,
+ "lb_km": 179.1743,
+ "lp_km": 177.7336695444091,
+ "km_conv": true,
+ "km_K": 5,
+ "enum_routes": 69174,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 483,
+ "pool_lp": 178.1990413884763,
+ "lb_km_typebranch": 177.7337,
+ "lb_km_typebranch_pool": 178.199,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + fleet dominance",
+ "seconds": 436.7,
+ "dominance": "from control_yugocentr_car_all: lb_km<-179.1743",
+ "best_at_finalize": [
+  0,
+  5,
+  179.1745
+ ]
+}

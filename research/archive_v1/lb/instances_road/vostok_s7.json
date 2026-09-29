@@ -1,0 +1,41 @@
+{
+ "inst": "vostok_s7",
+ "dir": "instances_road",
+ "best_pen": 150,
+ "best_used": 7,
+ "best_km": 197.558,
+ "types": 11,
+ "lb_pen": 150,
+ "lp_pen": 135.00000000000003,
+ "pen_conv": true,
+ "lb_used": 7,
+ "lp_used": 6.333333333333334,
+ "used_conv": true,
+ "lb_km": 189.3538,
+ "lp_km": 184.91946774862296,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + B&P + cgp:lb_pen(penalty B&P+3SRC, 321 nodes)",
+ "seconds": 12.7,
+ "best_at_finalize": [
+  150,
+  7,
+  196.7752
+ ],
+ "bp": {
+  "nodes": 717,
+  "lb": 189.35386455695746,
+  "ub": 196.77519999999996,
+  "exhausted": false,
+  "seconds": 900.5
+ },
+ "cgp": {
+  "lb_pen": {
+   "old": 140,
+   "new": 150,
+   "method": "penalty B&P+3SRC, 321 nodes",
+   "seconds": 57.3
+  }
+ }
+}

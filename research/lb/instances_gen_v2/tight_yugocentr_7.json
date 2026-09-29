@@ -1,0 +1,47 @@
+{
+ "inst": "tight_yugocentr_7",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 176.446,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.613055353241077,
+ "used_conv": true,
+ "lb_km": 176.4461,
+ "lp_km": 172.26685254498415,
+ "km_conv": true,
+ "km_K": 5,
+ "proven_optimal": true,
+ "partial": true,
+ "seconds": 1120.5,
+ "best_at_finalize": [
+  0,
+  5,
+  176.4462
+ ],
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "cgc": {
+  "root": 172.1472,
+  "nodes": 469,
+  "lb": 176.4462,
+  "ub": 176.4462,
+  "exhausted": true,
+  "seconds": 1108.2,
+  "fleet_cuts": [
+   [
+    "f2c4[480,600)",
+    2
+   ],
+   [
+    "f2c3[600,1e+09)",
+    2
+   ],
+   [
+    "f2c3[120,240)",
+    2
+   ]
+  ]
+ }
+}

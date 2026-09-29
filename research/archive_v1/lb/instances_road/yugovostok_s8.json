@@ -1,0 +1,72 @@
+{
+ "inst": "yugovostok_s8",
+ "dir": "instances_road",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 630.501,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.04999999999997,
+ "used_conv": true,
+ "lb_km": 578.6584,
+ "lp_km": 535.3340991037576,
+ "km_conv": true,
+ "km_K": 10,
+ "lb_km_typebranch": 536.1619,
+ "lb_km_typebranch_pool": 536.1619,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 68546.9,
+ "best_at_finalize": [
+  0,
+  10,
+  623.8626
+ ],
+ "cgc": {
+  "root": 564.8918,
+  "nodes": 142,
+  "lb": 573.9616,
+  "ub": 623.8626,
+  "exhausted": false,
+  "seconds": 720.3,
+  "fleet_cuts": [
+   [
+    "f0c1sk1",
+    2
+   ],
+   [
+    "f1c1sk1",
+    6
+   ],
+   [
+    "f0c0sk1",
+    7
+   ],
+   [
+    "f0c1[0,240)",
+    2
+   ],
+   [
+    "f2c3[0,240)+c04",
+    4
+   ],
+   [
+    "f1c0[0,480)+c2",
+    4
+   ],
+   [
+    "f1c2[0,360)+c0",
+    4
+   ]
+  ]
+ },
+ "cgm": {
+  "lb": 578.658541149803,
+  "ub": 623.8625999999996,
+  "nodes": 504,
+  "exhausted": false,
+  "seconds": 8083.6,
+  "old_lb_km": 578.6019
+ }
+}

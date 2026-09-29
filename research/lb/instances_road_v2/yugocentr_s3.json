@@ -1,0 +1,24 @@
+{
+ "inst": "yugocentr_s3",
+ "dir": "instances_road_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 160.287,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.2161907104735965,
+ "used_conv": true,
+ "lb_km": 160.2869,
+ "lp_km": 160.28690000000162,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 6.9,
+ "best_at_finalize": [
+  0,
+  6,
+  160.2869
+ ]
+}

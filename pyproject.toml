@@ -1,0 +1,5 @@
+# Запуск: python -m dispatch <команда> из корня проекта; зависимости — requirements.txt.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["e2e: сквозные тесты — нужны собранные решатели (make -C solver) и кэши в cache/"]

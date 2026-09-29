@@ -1,0 +1,31 @@
+{
+ "inst": "vostok_s3",
+ "dir": "instances_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 163.943,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.4370460048426175,
+ "used_conv": true,
+ "lb_km": 158.7648,
+ "lp_km": 157.28180947863603,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P",
+ "seconds": 56.2,
+ "best_at_finalize": [
+  0,
+  7,
+  158.7649
+ ],
+ "bp": {
+  "nodes": 133,
+  "lb": 158.7649,
+  "ub": 158.7649,
+  "exhausted": true,
+  "seconds": 75.9
+ }
+}

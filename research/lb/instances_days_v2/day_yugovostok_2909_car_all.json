@@ -1,0 +1,36 @@
+{
+ "inst": "day_yugovostok_2909_car_all",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 318.315,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.361904761904759,
+ "used_conv": true,
+ "lb_km": 315.6309,
+ "lp_km": 312.5878909864652,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 224315,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 325,
+ "pool_lp": 312.6961378675794,
+ "lb_km_typebranch": 312.5879,
+ "lb_km_typebranch_pool": 315.631,
+ "new_solution": [
+  0,
+  8,
+  315.6310000000001
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 1307.4,
+ "best_at_finalize": [
+  0,
+  8,
+  315.631
+ ]
+}

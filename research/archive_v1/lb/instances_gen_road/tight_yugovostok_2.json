@@ -1,0 +1,136 @@
+{
+ "inst": "tight_yugovostok_2",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 380.713,
+ "types": 8,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.07452204447912,
+ "used_conv": true,
+ "lb_km": 371.5284,
+ "lp_km": 310.64251472152705,
+ "km_conv": true,
+ "km_K": 10,
+ "lb_km_typebranch": 310.6425,
+ "lb_km_typebranch_pool": 310.6425,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 2263.4,
+ "best_at_finalize": [
+  0,
+  10,
+  371.5285
+ ],
+ "cgc": {
+  "root": 347.5733,
+  "nodes": 99,
+  "lb": 362.7349,
+  "ub": 380.7126,
+  "exhausted": false,
+  "seconds": 723.8,
+  "fleet_cuts": [
+   [
+    "f0c0[0,240)+c2",
+    8
+   ],
+   [
+    "f2c2[0,240)+c03",
+    8
+   ],
+   [
+    "f2c0[0,240)+c23",
+    8
+   ],
+   [
+    "f0c02sk01",
+    8
+   ],
+   [
+    "f0c2[0,240)+c0",
+    8
+   ],
+   [
+    "f0c0[0,240)",
+    7
+   ],
+   [
+    "f0c0sk01",
+    7
+   ],
+   [
+    "f0c3[0,240)+c0",
+    8
+   ],
+   [
+    "f0c1[0,120)",
+    2
+   ],
+   [
+    "f0c1[240,360)",
+    2
+   ],
+   [
+    "f0c1[360,600)",
+    2
+   ],
+   [
+    "f0c1sk1",
+    2
+   ],
+   [
+    "f0c2[240,360)+c1",
+    3
+   ],
+   [
+    "f2c0[0,120)",
+    3
+   ],
+   [
+    "f2c0[0,120)+c4",
+    4
+   ],
+   [
+    "f0c2[0,600)",
+    2
+   ],
+   [
+    "f2c2[0,120)",
+    4
+   ],
+   [
+    "f2c2[0,120)+c4",
+    5
+   ],
+   [
+    "f2c2[0,120)+c1",
+    6
+   ],
+   [
+    "f2c4[0,120)+c2",
+    5
+   ],
+   [
+    "f2c4[120,240)+c2",
+    5
+   ],
+   [
+    "f0c2[0,600)+c13",
+    4
+   ],
+   [
+    "f2c1[0,120)+c2",
+    6
+   ]
+  ]
+ },
+ "cgm": {
+  "lb": 371.5284999999999,
+  "ub": 371.5284999999999,
+  "nodes": 63,
+  "exhausted": true,
+  "seconds": 437.9,
+  "old_lb_km": 368.8636
+ }
+}

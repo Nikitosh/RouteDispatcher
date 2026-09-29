@@ -1,0 +1,26 @@
+{
+ "inst": "scarce_vostok_0",
+ "dir": "instances_gen_v2",
+ "best_pen": 50,
+ "best_used": 8,
+ "best_km": 208.256,
+ "types": 10,
+ "lb_pen": 50,
+ "lp_pen": 50.0,
+ "pen_conv": true,
+ "lb_used": 8,
+ "lp_used": 7.833333333333332,
+ "used_conv": true,
+ "lb_km": 208.2555,
+ "lp_km": 208.25549999999433,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 10.3,
+ "best_at_finalize": [
+  50,
+  8,
+  208.2555
+ ]
+}

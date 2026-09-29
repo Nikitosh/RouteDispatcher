@@ -1,0 +1,66 @@
+{
+ "inst": "walk_yugovostok_8",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 380.452,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.33333333333333,
+ "used_conv": true,
+ "lb_km": 380.4521,
+ "lp_km": 316.465155360591,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 20809.5,
+ "best_at_finalize": [
+  0,
+  9,
+  380.4522
+ ],
+ "cgc": {
+  "root": 333.4463,
+  "nodes": 1961,
+  "lb": 380.4522,
+  "ub": 380.4522,
+  "exhausted": true,
+  "seconds": 11646.0,
+  "fleet_cuts": [
+   [
+    "f0c3[0,240)",
+    2
+   ],
+   [
+    "f1c1[120,240)",
+    3
+   ],
+   [
+    "f0c1[0,240)",
+    2
+   ],
+   [
+    "f0c13sk1",
+    3
+   ],
+   [
+    "f0c1sk01",
+    2
+   ],
+   [
+    "f0c2[0,240)",
+    2
+   ],
+   [
+    "f0c2[120,240)+c3",
+    3
+   ],
+   [
+    "f0c23sk1",
+    3
+   ]
+  ]
+ }
+}

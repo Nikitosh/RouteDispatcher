@@ -1,0 +1,47 @@
+{
+ "inst": "tight_vostok_3",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 143.783,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.5000000000003,
+ "used_conv": true,
+ "lb_km": 143.1106,
+ "lp_km": 139.99462782285232,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": false,
+ "partial": true,
+ "seconds": 1927.9,
+ "best_at_finalize": [
+  0,
+  7,
+  143.7827
+ ],
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "cgc": {
+  "root": 140.6044,
+  "nodes": 452,
+  "lb": 143.1107,
+  "ub": 143.7827,
+  "exhausted": false,
+  "seconds": 1918.3,
+  "fleet_cuts": [
+   [
+    "f2c2[360,600)+c0",
+    3
+   ],
+   [
+    "f2c1[0,120)+c0",
+    2
+   ],
+   [
+    "f2c2[360,600)+c04",
+    5
+   ]
+  ]
+ }
+}

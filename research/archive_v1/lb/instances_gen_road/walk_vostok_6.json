@@ -1,0 +1,36 @@
+{
+ "inst": "walk_vostok_6",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 163.233,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.254385964912263,
+ "used_conv": true,
+ "lb_km": 163.0631,
+ "lp_km": 159.76239545255993,
+ "km_conv": true,
+ "km_K": 9,
+ "enum_routes": 90119,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 316,
+ "pool_lp": 159.90688751214984,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 126.5,
+ "best_at_finalize": [
+  0,
+  9,
+  163.0632
+ ],
+ "bp": {
+  "nodes": 769,
+  "lb": 163.06319999999997,
+  "ub": 163.06319999999997,
+  "exhausted": true,
+  "seconds": 532.2
+ }
+}

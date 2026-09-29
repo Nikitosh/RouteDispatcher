@@ -1,0 +1,29 @@
+{
+ "inst": "ctl_severovostok_mix2_inf",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 197.934,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 11.000000000000076,
+ "used_conv": true,
+ "lb_km": 197.9343,
+ "lp_km": 197.09547499999996,
+ "km_conv": true,
+ "km_K": 11,
+ "enum_routes": 2042,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 98,
+ "pool_lp": 197.09547500000002,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 11.4,
+ "best_at_finalize": [
+  0,
+  11,
+  197.9344
+ ]
+}

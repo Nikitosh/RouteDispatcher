@@ -1,0 +1,29 @@
+{
+ "inst": "severovostok_s0",
+ "dir": "instances_newroad_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 212.881,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 11.000000000000403,
+ "used_conv": true,
+ "lb_km": 212.8811,
+ "lp_km": 211.24376296296344,
+ "km_conv": true,
+ "km_K": 11,
+ "enum_routes": 19808,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 171,
+ "pool_lp": 211.24503333333337,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 239.6,
+ "best_at_finalize": [
+  0,
+  11,
+  212.8812
+ ]
+}

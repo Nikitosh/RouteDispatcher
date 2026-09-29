@@ -1,0 +1,29 @@
+{
+ "inst": "real_vostok_9",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 166.874,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.124110570850243,
+ "used_conv": true,
+ "lb_km": 166.8742,
+ "lp_km": 165.37570812502207,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 2748,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 210,
+ "pool_lp": 165.37626111111138,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 23.5,
+ "best_at_finalize": [
+  0,
+  6,
+  166.8743
+ ]
+}

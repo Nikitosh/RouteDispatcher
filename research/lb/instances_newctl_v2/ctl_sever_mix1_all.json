@@ -1,0 +1,34 @@
+{
+ "inst": "ctl_sever_mix1_all",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 155.718,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.363636363636362,
+ "used_conv": true,
+ "lb_km": 155.7176,
+ "lp_km": 153.88660582029797,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": true,
+ "partial": true,
+ "seconds": 1364.9,
+ "best_at_finalize": [
+  0,
+  8,
+  155.7177
+ ],
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "cgc": {
+  "root": 153.8571,
+  "nodes": 673,
+  "lb": 155.7177,
+  "ub": 155.7177,
+  "exhausted": true,
+  "seconds": 1349.1,
+  "fleet_cuts": []
+ }
+}

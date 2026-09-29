@@ -1,0 +1,26 @@
+{
+ "inst": "tight_yugovostok_5",
+ "dir": "instances_gen_v2",
+ "best_pen": 60,
+ "best_used": 8,
+ "best_km": 362.821,
+ "types": 6,
+ "lb_pen": 50,
+ "lp_pen": 49.99999999999966,
+ "pen_conv": true,
+ "lb_used": 8,
+ "lp_used": 7.909090909090891,
+ "used_conv": true,
+ "lb_km": 362.8206,
+ "lp_km": 362.820599999995,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 49.2,
+ "best_at_finalize": [
+  60,
+  8,
+  362.8206
+ ]
+}

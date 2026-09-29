@@ -1,0 +1,9 @@
+*
+!solver/src
+!solver/Makefile
+!requirements.txt
+!dispatch
+!cache
+!data/demo
+!scripts
+**/__pycache__

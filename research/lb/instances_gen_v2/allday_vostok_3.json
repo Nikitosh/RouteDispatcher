@@ -1,0 +1,24 @@
+{
+ "inst": "allday_vostok_3",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 175.766,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.993341105684629,
+ "used_conv": true,
+ "lb_km": 165.5424,
+ "lp_km": 165.54244405919655,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 210.6,
+ "best_at_finalize": [
+  0,
+  7,
+  175.7655
+ ]
+}

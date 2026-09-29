@@ -1,0 +1,41 @@
+{
+ "inst": "yugovostok_s7",
+ "dir": "instances_road",
+ "best_pen": 400,
+ "best_used": 8,
+ "best_km": 634.477,
+ "types": 10,
+ "lb_pen": 400,
+ "lp_pen": 389.9999999999997,
+ "pen_conv": true,
+ "lb_used": 8,
+ "lp_used": 7.092388384980079,
+ "used_conv": true,
+ "lb_km": 619.929,
+ "lp_km": 609.7853665297199,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + B&P + B&P + cgp:lb_pen(penalty B&P+3SRC, 1 nodes)",
+ "seconds": 45.5,
+ "bp": {
+  "nodes": 843,
+  "lb": 619.9291010434911,
+  "ub": 634.477,
+  "exhausted": false,
+  "seconds": 900.2
+ },
+ "best_at_finalize": [
+  400,
+  8,
+  634.477
+ ],
+ "cgp": {
+  "lb_pen": {
+   "old": 390,
+   "new": 400,
+   "method": "penalty B&P+3SRC, 1 nodes",
+   "seconds": 0.5
+  }
+ }
+}

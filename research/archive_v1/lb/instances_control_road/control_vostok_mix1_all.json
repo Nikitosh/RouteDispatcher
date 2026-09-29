@@ -1,0 +1,34 @@
+{
+ "inst": "control_vostok_mix1_all",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 184.553,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 6.000000000000005,
+ "used_conv": true,
+ "lb_km": 184.1476,
+ "lp_km": 184.147700000009,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 568,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 30,
+ "pool_lp": 184.14769999999996,
+ "new_solution": [
+  0,
+  6,
+  184.14770000000001
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 68.5,
+ "best_at_finalize": [
+  0,
+  6,
+  184.1477
+ ]
+}

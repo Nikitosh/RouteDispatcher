@@ -1,0 +1,31 @@
+{
+ "inst": "tight_vostok_6",
+ "dir": "instances_gen_v2",
+ "best_pen": 90,
+ "best_used": 7,
+ "best_km": 148.657,
+ "types": 3,
+ "lb_pen": 90,
+ "lp_pen": 86.66666666666927,
+ "pen_conv": true,
+ "lb_used": 7,
+ "lp_used": 6.933333333333336,
+ "used_conv": true,
+ "lb_km": 148.657,
+ "lp_km": 148.32266875000002,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 3526,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 148,
+ "pool_lp": 148.32266875000002,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 40.4,
+ "best_at_finalize": [
+  90,
+  7,
+  148.6571
+ ]
+}

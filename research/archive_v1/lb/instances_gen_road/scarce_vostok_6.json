@@ -1,0 +1,36 @@
+{
+ "inst": "scarce_vostok_6",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 149.524,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.115819084875386,
+ "used_conv": true,
+ "lb_km": 149.524,
+ "lp_km": 146.1129221435829,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 97670,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 269,
+ "pool_lp": 146.19685164319662,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 237.3,
+ "best_at_finalize": [
+  0,
+  7,
+  149.5241
+ ],
+ "bp": {
+  "nodes": 205,
+  "lb": 149.5241,
+  "ub": 149.5241,
+  "exhausted": true,
+  "seconds": 224.5
+ }
+}

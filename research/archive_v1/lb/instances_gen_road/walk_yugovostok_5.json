@@ -1,0 +1,28 @@
+{
+ "inst": "walk_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 7.9,
+ "used_conv": true,
+ "lb_km": 98.5599,
+ "proven_optimal": false,
+ "method": "CG ng10 + 3SRC (stage 2 only; vehicle-proof enumeration killed for time) + cgp:lb_used(fleet CG root LP 8.0616 with 150 3SRC, exact pricing (converged))",
+ "seconds": 1300,
+ "lb_km_source": "assignment bound (CG weaker)",
+ "best_at_finalize": [
+  0,
+  9,
+  398.3212
+ ],
+ "cgp": {
+  "lb_used": {
+   "old": 8,
+   "new": 9,
+   "method": "fleet CG root LP 8.0616 with 150 3SRC, exact pricing (converged)",
+   "seconds": 568.9
+  }
+ }
+}

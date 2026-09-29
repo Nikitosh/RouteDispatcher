@@ -1,0 +1,29 @@
+{
+ "inst": "scarce_vostok_3",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 186.869,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.624999999999958,
+ "used_conv": true,
+ "lb_km": 186.8685,
+ "lp_km": 184.13952499039536,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 13519,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 217,
+ "pool_lp": 184.22652901505634,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 243.9,
+ "best_at_finalize": [
+  0,
+  7,
+  186.8686
+ ]
+}

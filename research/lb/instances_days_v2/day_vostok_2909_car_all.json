@@ -1,0 +1,29 @@
+{
+ "inst": "day_vostok_2909_car_all",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 163.108,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 8.0,
+ "used_conv": true,
+ "lb_km": 163.1084,
+ "lp_km": 162.93724999999998,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 773,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 68,
+ "pool_lp": 162.93725,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 3.2,
+ "best_at_finalize": [
+  0,
+  8,
+  163.1085
+ ]
+}

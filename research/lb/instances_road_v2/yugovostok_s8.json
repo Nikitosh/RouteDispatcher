@@ -1,0 +1,26 @@
+{
+ "inst": "yugovostok_s8",
+ "dir": "instances_road_v2",
+ "best_pen": 100,
+ "best_used": 11,
+ "best_km": 648.575,
+ "types": 9,
+ "lb_pen": 70,
+ "lp_pen": 66.6666666666667,
+ "pen_conv": true,
+ "lb_used": 10,
+ "lp_used": 9.650793650793624,
+ "used_conv": true,
+ "lb_km": 523.5919,
+ "lp_km": 523.5919100788288,
+ "km_conv": true,
+ "km_K": 11,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 256.2,
+ "best_at_finalize": [
+  100,
+  11,
+  647.8921
+ ]
+}

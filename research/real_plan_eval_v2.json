@@ -1,0 +1,50 @@
+{
+ "vostok_pt": {
+  "km": 228.9,
+  "late": 3,
+  "late_min": 99.3,
+  "after22": 2,
+  "used": 12,
+  "unassigned": 2
+ },
+ "vostok_car": {
+  "km": 252.3,
+  "late": 2,
+  "late_min": 40.9,
+  "after22": 2,
+  "used": 12,
+  "unassigned": 2
+ },
+ "yugocentr_pt": {
+  "km": 227.9,
+  "late": 4,
+  "late_min": 237.5,
+  "after22": 1,
+  "used": 11,
+  "unassigned": 0
+ },
+ "yugocentr_car": {
+  "km": 228.3,
+  "late": 2,
+  "late_min": 75.6,
+  "after22": 1,
+  "used": 11,
+  "unassigned": 0
+ },
+ "yugovostok_pt": {
+  "km": 367.3,
+  "late": 35,
+  "late_min": 6606.9,
+  "after22": 4,
+  "used": 12,
+  "unassigned": 0
+ },
+ "yugovostok_car": {
+  "km": 380.0,
+  "late": 24,
+  "late_min": 3557.0,
+  "after22": 3,
+  "used": 12,
+  "unassigned": 0
+ }
+}

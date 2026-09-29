@@ -1,0 +1,24 @@
+{
+ "inst": "control_yugovostok_mix2_inf",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 268.725,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.897914647034481,
+ "used_conv": true,
+ "lb_km": 251.582,
+ "lp_km": 254.86293426791272,
+ "km_conv": false,
+ "km_K": 10,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 408.4,
+ "best_at_finalize": [
+  0,
+  10,
+  268.7251
+ ]
+}

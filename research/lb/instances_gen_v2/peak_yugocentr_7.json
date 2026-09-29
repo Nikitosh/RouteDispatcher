@@ -1,0 +1,29 @@
+{
+ "inst": "peak_yugocentr_7",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 176.716,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.642857142857087,
+ "used_conv": true,
+ "lb_km": 176.7163,
+ "lp_km": 174.8947,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 9154,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 131,
+ "pool_lp": 174.8947,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 339.7,
+ "best_at_finalize": [
+  0,
+  7,
+  176.7164
+ ]
+}

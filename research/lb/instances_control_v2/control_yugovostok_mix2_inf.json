@@ -1,0 +1,26 @@
+{
+ "inst": "control_yugovostok_mix2_inf",
+ "dir": "instances_control_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 523.997,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 10.73133725625938,
+ "used_conv": true,
+ "lb_km": 501.3206,
+ "lp_km": 501.3206369193394,
+ "km_conv": true,
+ "km_K": 11,
+ "lb_km_typebranch": 501.3206,
+ "lb_km_typebranch_pool": 501.3206,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 51.4,
+ "best_at_finalize": [
+  0,
+  11,
+  523.9975
+ ]
+}

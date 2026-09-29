@@ -1,0 +1,182 @@
+{
+ "vostok_s0": {
+  "tag": "long/s21_multi_21_300/vostok_s0.out",
+  "pen": 0,
+  "used": 7,
+  "km": 187.36
+ },
+ "vostok_s1": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 7,
+  "km": 156.793
+ },
+ "vostok_s2": {
+  "tag": "cfg_fin_s60_8t_3/vostok_s2.out",
+  "pen": 0,
+  "used": 7,
+  "km": 170.235
+ },
+ "vostok_s3": {
+  "tag": "s21_multi@bench_instances_road_tl30.0_s21_multi.json",
+  "pen": 0,
+  "used": 7,
+  "km": 158.765
+ },
+ "vostok_s4": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 7,
+  "km": 152.445
+ },
+ "vostok_s5": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 7,
+  "km": 185.3
+ },
+ "vostok_s6": {
+  "tag": "s23_sa3@bench_instances_road_tl1.0_s23.json",
+  "pen": 0,
+  "used": 7,
+  "km": 155.36
+ },
+ "vostok_s7": {
+  "tag": "cfg_coop_v8_mig0/vostok_s7.out",
+  "pen": 150,
+  "used": 7,
+  "km": 196.775
+ },
+ "vostok_s8": {
+  "tag": "s21_multi@bench_instances_road_tl30.0_s21_multi.json",
+  "pen": 0,
+  "used": 7,
+  "km": 168.92
+ },
+ "vostok_s9": {
+  "tag": "s23_sa3@bench_instances_road_tl1.0_s23.json",
+  "pen": 0,
+  "used": 7,
+  "km": 152.835
+ },
+ "yugocentr_s0": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 6,
+  "km": 158.601
+ },
+ "yugocentr_s1": {
+  "tag": "s21_multi@bench_instances_road_tl30.0_s21_multi.json",
+  "pen": 0,
+  "used": 5,
+  "km": 176.574
+ },
+ "yugocentr_s2": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 5,
+  "km": 219.786
+ },
+ "yugocentr_s3": {
+  "tag": "cg/yugocentr_s3.out",
+  "pen": 0,
+  "used": 5,
+  "km": 182.254
+ },
+ "yugocentr_s4": {
+  "tag": "s23_sa3@bench_instances_road_tl1.0_s23.json",
+  "pen": 0,
+  "used": 5,
+  "km": 219.786
+ },
+ "yugocentr_s5": {
+  "tag": "lns/yugocentr_s5.out",
+  "pen": 50,
+  "used": 5,
+  "km": 231.705
+ },
+ "yugocentr_s6": {
+  "tag": "cfg_r6_arkh_p2/yugocentr_s6.out",
+  "pen": 0,
+  "used": 5,
+  "km": 176.574
+ },
+ "yugocentr_s7": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 100,
+  "used": 6,
+  "km": 213.114
+ },
+ "yugocentr_s8": {
+  "tag": "s21_multi@bench_instances_road_tl30.0_s21_multi.json",
+  "pen": 0,
+  "used": 5,
+  "km": 180.3
+ },
+ "yugocentr_s9": {
+  "tag": "hy/yugocentr_s9.out",
+  "pen": 0,
+  "used": 5,
+  "km": 182.254
+ },
+ "yugovostok_s0": {
+  "tag": "lns/yugovostok_s0.out",
+  "pen": 0,
+  "used": 10,
+  "km": 395.126
+ },
+ "yugovostok_s1": {
+  "tag": "hy/yugovostok_s1.out",
+  "pen": 0,
+  "used": 9,
+  "km": 537.465
+ },
+ "yugovostok_s2": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 9,
+  "km": 609.078
+ },
+ "yugovostok_s3": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 9,
+  "km": 535.747
+ },
+ "yugovostok_s4": {
+  "tag": "cfg_fin_s60_8t_3/yugovostok_s4.out",
+  "pen": 0,
+  "used": 9,
+  "km": 557.92
+ },
+ "yugovostok_s5": {
+  "tag": "lns/yugovostok_s5.out",
+  "pen": 0,
+  "used": 9,
+  "km": 744.623
+ },
+ "yugovostok_s6": {
+  "tag": "s21_multi@bench_instances_road_tl30.0_s21_multi.json",
+  "pen": 0,
+  "used": 9,
+  "km": 537.153
+ },
+ "yugovostok_s7": {
+  "tag": "lns/yugovostok_s7.out",
+  "pen": 400,
+  "used": 8,
+  "km": 634.477
+ },
+ "yugovostok_s8": {
+  "tag": "cfg_r6_8t_H3/yugovostok_s8.out",
+  "pen": 0,
+  "used": 10,
+  "km": 623.863
+ },
+ "yugovostok_s9": {
+  "tag": "s33_sasisr@bench_instances_road_tl30.0_s33_sasisr.json",
+  "pen": 0,
+  "used": 9,
+  "km": 541.964
+ }
+}

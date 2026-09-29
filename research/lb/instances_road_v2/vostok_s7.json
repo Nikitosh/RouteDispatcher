@@ -1,0 +1,26 @@
+{
+ "inst": "vostok_s7",
+ "dir": "instances_road_v2",
+ "best_pen": 390,
+ "best_used": 7,
+ "best_km": 192.747,
+ "types": 11,
+ "lb_pen": 390,
+ "lp_pen": 382.1428571428572,
+ "pen_conv": true,
+ "lb_used": 7,
+ "lp_used": 6.134920634920632,
+ "used_conv": true,
+ "lb_km": 192.7472,
+ "lp_km": 192.74719999999996,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 2.3,
+ "best_at_finalize": [
+  390,
+  7,
+  192.7472
+ ]
+}

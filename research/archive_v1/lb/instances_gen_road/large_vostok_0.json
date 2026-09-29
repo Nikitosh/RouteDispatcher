@@ -1,0 +1,32 @@
+{
+ "inst": "large_vostok_0",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 247.52,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.999999999999744,
+ "used_conv": true,
+ "lb_km": 239.6617,
+ "lp_km": 236.40430283987263,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + cgx B&P + cgx B&P + cgx B&P + cgx B&P + cgx B&P + cgx B&P",
+ "seconds": 7998.7,
+ "best_at_finalize": [
+  0,
+  9,
+  240.1181
+ ],
+ "cgx": {
+  "lb": 239.66177271695113,
+  "ub": 240.1789,
+  "nodes": 437,
+  "exhausted": false,
+  "seconds": 1730.9,
+  "old_lb_km": 239.6391
+ }
+}

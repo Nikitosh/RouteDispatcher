@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>План выездов инженеров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">Маршруты</div>
+  <label class="sel"><span class="vh">Участок</span><select id="district" aria-label="Участок"></select></label>
+  <span id="date" class="muted"></span>
+  <nav class="tabs" id="tabs">
+    <button data-tab="plan" class="on">План</button>
+    <button data-tab="play">Проигрывание</button>
+    <button data-tab="event" id="tab-event">Изменения</button>
+  </nav>
+  <label class="sel evsel hidden" id="event-sel-wrap"><span class="muted">Событие</span><select id="event" aria-label="Событие"></select></label>
+  <div class="grow"></div>
+</header>
+<main>
+  <section class="kpis" id="kpis"></section>
+  <section class="mid">
+    <div class="card mapcard"><div id="map"></div>
+      <div id="play-panel" class="over hidden"></div>
+      <div id="play-bar" class="over card hidden">
+        <button class="btn primary" id="play-btn">Пуск</button>
+        <label for="play-range" class="muted">Время</label>
+        <input id="play-range" type="range" min="0" max="720" step="2" value="240">
+        <span id="play-time" class="mono"></span>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="card" id="panel"></div>
+    </aside>
+  </section>
+  <section class="card" id="gantt-card"><div id="gantt"></div></section>
+  <section class="bottom">
+    <div class="card" id="unassigned"></div>
+    <div class="card" id="compare"></div>
+  </section>
+  <footer class="muted">Время в пути: OSRM по дорогам OpenStreetMap, для машины × коэффициент пробок, плюс подход к двери.
+    Смена 10:00–22:00. Базовый вариант — жадное распределение из раздела 2.3 ТЗ.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

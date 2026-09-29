@@ -1,0 +1,24 @@
+{
+ "inst": "real_yugocentr_7",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 167.052,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.590090090090089,
+ "used_conv": true,
+ "lb_km": 167.0523,
+ "lp_km": 167.05230000000014,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 11.3,
+ "best_at_finalize": [
+  0,
+  6,
+  167.0523
+ ]
+}

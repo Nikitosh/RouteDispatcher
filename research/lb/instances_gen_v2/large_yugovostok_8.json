@@ -1,0 +1,24 @@
+{
+ "inst": "large_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 12,
+ "best_km": 415.765,
+ "types": 14,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 10.79026610128782,
+ "used_conv": true,
+ "lb_km": 377.7975,
+ "lp_km": 377.797464980763,
+ "km_conv": true,
+ "km_K": 12,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 258.8,
+ "best_at_finalize": [
+  0,
+  12,
+  415.7648
+ ]
+}

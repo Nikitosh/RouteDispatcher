@@ -1,0 +1,24 @@
+{
+ "inst": "ctl_severovostok_car_all",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 196.056,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 11.000000000001615,
+ "used_conv": true,
+ "lb_km": 196.0559,
+ "lp_km": 196.0559,
+ "km_conv": true,
+ "km_K": 11,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 7.1,
+ "best_at_finalize": [
+  0,
+  11,
+  196.0559
+ ]
+}

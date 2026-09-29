@@ -1,0 +1,32 @@
+{
+ "inst": "allday_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 297.924,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.145981506002343,
+ "used_conv": true,
+ "lb_km": 256.8999,
+ "lp_km": 231.9535319364501,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 2111.4,
+ "best_at_finalize": [
+  0,
+  7,
+  295.0261
+ ],
+ "cgm": {
+  "lb": 256.9000082640315,
+  "ub": 295.02609999999993,
+  "nodes": 94,
+  "exhausted": false,
+  "seconds": 935.5,
+  "old_lb_km": 255.6921
+ }
+}

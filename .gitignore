@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.egg-info/
+solver/bin/
+out/
+osrm/*/
+osrm/*.pbf
+data/osm/
+.playwright-mcp/
+.pptx-venv/
+.pytest_cache/
+.DS_Store
+# исследование: выходы прогонов и логи, собранные решатели, локальный кэш линий
+research/runs/
+research/bin/
+research/roads_cache_local/
+# презентация: промежуточные файлы сборки
+presentation/build/out/
+presentation/build/preview/

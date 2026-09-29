@@ -1,0 +1,100 @@
+{
+ "inst": "tight_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 351.008,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.52083333333339,
+ "used_conv": true,
+ "lb_km": 351.0079,
+ "lp_km": 322.9888926090796,
+ "km_conv": true,
+ "km_K": 8,
+ "lb_km_typebranch": 322.9889,
+ "lb_km_typebranch_pool": 322.9889,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 54.0,
+ "best_at_finalize": [
+  0,
+  8,
+  351.008
+ ],
+ "cgc": {
+  "root": 351.008,
+  "nodes": 0,
+  "lb": 351.008,
+  "ub": 351.008,
+  "exhausted": true,
+  "seconds": 12.2,
+  "fleet_cuts": [
+   [
+    "f0c1[480,1e+09)",
+    2
+   ],
+   [
+    "f0c0[0,240)",
+    5
+   ],
+   [
+    "f0c0[0,240)+c2",
+    6
+   ],
+   [
+    "f0c0[0,240)+c23",
+    7
+   ],
+   [
+    "f0c0sk01",
+    5
+   ],
+   [
+    "f2c0[0,240)+c23",
+    6
+   ],
+   [
+    "f2c3[0,240)+c02",
+    6
+   ],
+   [
+    "f2c0[0,240)+c235",
+    7
+   ],
+   [
+    "f2c0[120,240)",
+    3
+   ],
+   [
+    "f2c0[120,240)+c4",
+    4
+   ],
+   [
+    "f2c4[120,240)+c0",
+    4
+   ],
+   [
+    "f2c5[120,240)+c0",
+    4
+   ],
+   [
+    "f2c1[120,240)+c0",
+    4
+   ],
+   [
+    "f2c2[120,240)+c0",
+    4
+   ],
+   [
+    "f2c0[120,240)+c14",
+    5
+   ],
+   [
+    "f2c2[120,240)+c05",
+    5
+   ]
+  ]
+ }
+}

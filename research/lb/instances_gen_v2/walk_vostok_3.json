@@ -1,0 +1,69 @@
+{
+ "inst": "walk_vostok_3",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 191.358,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.333333333333343,
+ "used_conv": true,
+ "lb_km": 189.8182,
+ "lp_km": 188.5123359267734,
+ "km_conv": true,
+ "km_K": 9,
+ "enum_routes": 84117,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 258,
+ "pool_lp": 188.57837393018022,
+ "lb_km_typebranch": 188.5123,
+ "lb_km_typebranch_pool": 188.5784,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1907.8,
+ "best_at_finalize": [
+  0,
+  9,
+  191.3581
+ ],
+ "cgc": {
+  "root": 188.1851,
+  "nodes": 720,
+  "lb": 189.8183,
+  "ub": 191.3581,
+  "exhausted": false,
+  "seconds": 1620.7,
+  "fleet_cuts": [
+   [
+    "f2c4[360,600)",
+    2
+   ],
+   [
+    "f2c3[120,240)",
+    2
+   ],
+   [
+    "f2c0[120,240)+c35",
+    5
+   ],
+   [
+    "f2c5[120,240)+c03",
+    5
+   ],
+   [
+    "f2c2[120,240)",
+    3
+   ],
+   [
+    "f2c1[240,360)",
+    2
+   ],
+   [
+    "f2c5[120,240)+c3",
+    3
+   ]
+  ]
+ }
+}

@@ -1,0 +1,24 @@
+{
+ "inst": "real_yugovostok_5",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 229.241,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.99125212786079,
+ "used_conv": true,
+ "lb_km": 213.6529,
+ "lp_km": 213.65292182320434,
+ "km_conv": true,
+ "km_K": 11,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 223.0,
+ "best_at_finalize": [
+  0,
+  11,
+  229.2407
+ ]
+}

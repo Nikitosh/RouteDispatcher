@@ -1,0 +1,43 @@
+{
+ "inst": "walk_vostok_6",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 180.711,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.704301075268814,
+ "used_conv": true,
+ "lb_km": 180.711,
+ "lp_km": 177.64894957505902,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": true,
+ "partial": true,
+ "seconds": 374.3,
+ "best_at_finalize": [
+  0,
+  9,
+  180.7111
+ ],
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "cgc": {
+  "root": 177.6612,
+  "nodes": 223,
+  "lb": 180.7111,
+  "ub": 180.7111,
+  "exhausted": true,
+  "seconds": 358.3,
+  "fleet_cuts": [
+   [
+    "f2c5[0,360)",
+    2
+   ],
+   [
+    "f1c0[120,240)",
+    4
+   ]
+  ]
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "inst": "real_vostok_3",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 172.348,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.285714285714283,
+ "used_conv": true,
+ "lb_km": 172.3476,
+ "lp_km": 172.16366899080063,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 729,
+ "enum_complete": true,
+ "pool_status": "lp_closed",
+ "pool_cuts": 210,
+ "pool_lp": 172.34769999999992,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 20.4,
+ "best_at_finalize": [
+  0,
+  8,
+  172.3477
+ ]
+}

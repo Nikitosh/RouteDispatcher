@@ -1,0 +1,29 @@
+{
+ "inst": "day_yugocentr_2809_car_all",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 182.977,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.577804761165435,
+ "used_conv": true,
+ "lb_km": 181.5215,
+ "lp_km": 181.12507747806782,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 90464,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 483,
+ "pool_lp": 181.50726243525435,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 169.5,
+ "best_at_finalize": [
+  0,
+  6,
+  182.9774
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "inst": "yugocentr_s4",
+ "dir": "instances_road",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 219.786,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.867346938775453,
+ "used_conv": true,
+ "lb_km": 219.7863,
+ "lp_km": 207.50002561453198,
+ "km_conv": true,
+ "km_K": 5,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + cgx B&P",
+ "seconds": 104.2,
+ "best_at_finalize": [
+  0,
+  5,
+  219.7864
+ ],
+ "bp": {
+  "nodes": 2,
+  "lb": 207.61450571143828,
+  "ub": 219.7864,
+  "exhausted": false,
+  "seconds": 3215.5
+ },
+ "cgx": {
+  "lb": 219.7864,
+  "ub": 219.7864,
+  "nodes": 3,
+  "exhausted": true,
+  "seconds": 46.3,
+  "old_lb_km": 207.6144
+ }
+}

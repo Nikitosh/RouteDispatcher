@@ -1,0 +1,422 @@
+{
+ "allday_vostok_0": {
+  "tag": "s14_hgs_lite@bench_instances_gen_tl1.0_all.json",
+  "pen": 100,
+  "used": 7,
+  "km": 141.8
+ },
+ "allday_vostok_3": {
+  "tag": "s13_sisr@bench_instances_gen_tl3.0_s13.json",
+  "pen": 0,
+  "used": 6,
+  "km": 186.415
+ },
+ "allday_vostok_6": {
+  "tag": "lns/allday_vostok_6.out",
+  "pen": 0,
+  "used": 6,
+  "km": 201.382
+ },
+ "allday_vostok_9": {
+  "tag": "lns/allday_vostok_9.out",
+  "pen": 0,
+  "used": 6,
+  "km": 132.455
+ },
+ "allday_yugocentr_1": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 6,
+  "km": 120.292
+ },
+ "allday_yugocentr_4": {
+  "tag": "hy/allday_yugocentr_4.out",
+  "pen": 0,
+  "used": 6,
+  "km": 139.422
+ },
+ "allday_yugocentr_7": {
+  "tag": "lns/allday_yugocentr_7.out",
+  "pen": 0,
+  "used": 5,
+  "km": 166.093
+ },
+ "allday_yugovostok_2": {
+  "tag": "sa/allday_yugovostok_2.out",
+  "pen": 0,
+  "used": 8,
+  "km": 455.129
+ },
+ "allday_yugovostok_5": {
+  "tag": "lns/allday_yugovostok_5.out",
+  "pen": 0,
+  "used": 7,
+  "km": 282.479
+ },
+ "allday_yugovostok_8": {
+  "tag": "lns/allday_yugovostok_8.out",
+  "pen": 0,
+  "used": 8,
+  "km": 406.416
+ },
+ "large_vostok_0": {
+  "tag": "lns/large_vostok_0.out",
+  "pen": 0,
+  "used": 9,
+  "km": 237.982
+ },
+ "large_vostok_3": {
+  "tag": "lns/large_vostok_3.out",
+  "pen": 0,
+  "used": 9,
+  "km": 234.334
+ },
+ "large_vostok_6": {
+  "tag": "s12_alns@bench_instances_gen_tl3.0_s12.json",
+  "pen": 0,
+  "used": 11,
+  "km": 288.965
+ },
+ "large_vostok_9": {
+  "tag": "hy/large_vostok_9.out",
+  "pen": 0,
+  "used": 13,
+  "km": 210.128
+ },
+ "large_yugocentr_1": {
+  "tag": "lns/large_yugocentr_1.out",
+  "pen": 0,
+  "used": 12,
+  "km": 236.362
+ },
+ "large_yugocentr_4": {
+  "tag": "lns/large_yugocentr_4.out",
+  "pen": 0,
+  "used": 12,
+  "km": 260.408
+ },
+ "large_yugocentr_7": {
+  "tag": "sa/large_yugocentr_7.out",
+  "pen": 0,
+  "used": 12,
+  "km": 300.792
+ },
+ "large_yugovostok_2": {
+  "tag": "lns/large_yugovostok_2.out",
+  "pen": 0,
+  "used": 11,
+  "km": 470.386
+ },
+ "large_yugovostok_5": {
+  "tag": "lns/large_yugovostok_5.out",
+  "pen": 0,
+  "used": 11,
+  "km": 384.707
+ },
+ "large_yugovostok_8": {
+  "tag": "hy/large_yugovostok_8.out",
+  "pen": 0,
+  "used": 10,
+  "km": 498.672
+ },
+ "peak_vostok_0": {
+  "tag": "lns/peak_vostok_0.out",
+  "pen": 0,
+  "used": 6,
+  "km": 176.18
+ },
+ "peak_vostok_3": {
+  "tag": "hy/peak_vostok_3.out",
+  "pen": 0,
+  "used": 6,
+  "km": 230.492
+ },
+ "peak_vostok_6": {
+  "tag": "lns/peak_vostok_6.out",
+  "pen": 0,
+  "used": 8,
+  "km": 117.945
+ },
+ "peak_vostok_9": {
+  "tag": "lns/peak_vostok_9.out",
+  "pen": 0,
+  "used": 6,
+  "km": 221.396
+ },
+ "peak_yugocentr_1": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 5,
+  "km": 113.03
+ },
+ "peak_yugocentr_4": {
+  "tag": "s13_sisr@bench_instances_gen_tl3.0_s13.json",
+  "pen": 0,
+  "used": 5,
+  "km": 141.043
+ },
+ "peak_yugocentr_7": {
+  "tag": "hy/peak_yugocentr_7.out",
+  "pen": 0,
+  "used": 7,
+  "km": 155.478
+ },
+ "peak_yugovostok_2": {
+  "tag": "lns/peak_yugovostok_2.out",
+  "pen": 0,
+  "used": 8,
+  "km": 312.392
+ },
+ "peak_yugovostok_5": {
+  "tag": "lns/peak_yugovostok_5.out",
+  "pen": 0,
+  "used": 8,
+  "km": 184.6
+ },
+ "peak_yugovostok_8": {
+  "tag": "hy/peak_yugovostok_8.out",
+  "pen": 0,
+  "used": 9,
+  "km": 223.924
+ },
+ "real_vostok_0": {
+  "tag": "lns/real_vostok_0.out",
+  "pen": 0,
+  "used": 7,
+  "km": 169.845
+ },
+ "real_vostok_3": {
+  "tag": "s10_sa@bench_instances_gen_tl1.0_all.json",
+  "pen": 0,
+  "used": 8,
+  "km": 169.835
+ },
+ "real_vostok_6": {
+  "tag": "hy/real_vostok_6.out",
+  "pen": 0,
+  "used": 6,
+  "km": 201.201
+ },
+ "real_vostok_9": {
+  "tag": "lns/real_vostok_9.out",
+  "pen": 0,
+  "used": 5,
+  "km": 187.796
+ },
+ "real_yugocentr_1": {
+  "tag": "s10_sa@bench_instances_gen_tl1.0_all.json",
+  "pen": 0,
+  "used": 6,
+  "km": 178.956
+ },
+ "real_yugocentr_4": {
+  "tag": "lns/real_yugocentr_4.out",
+  "pen": 0,
+  "used": 5,
+  "km": 151.887
+ },
+ "real_yugocentr_7": {
+  "tag": "lns/real_yugocentr_7.out",
+  "pen": 0,
+  "used": 5,
+  "km": 191.789
+ },
+ "real_yugovostok_2": {
+  "tag": "hy/real_yugovostok_2.out",
+  "pen": 0,
+  "used": 9,
+  "km": 250.195
+ },
+ "real_yugovostok_5": {
+  "tag": "s12_alns@bench_instances_gen_tl3.0_s12.json",
+  "pen": 0,
+  "used": 9,
+  "km": 349.465
+ },
+ "real_yugovostok_8": {
+  "tag": "hy/real_yugovostok_8.out",
+  "pen": 0,
+  "used": 9,
+  "km": 487.514
+ },
+ "scarce_vostok_0": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 8,
+  "km": 141.284
+ },
+ "scarce_vostok_3": {
+  "tag": "s12_alns@bench_instances_gen_tl1.0_all.json",
+  "pen": 0,
+  "used": 6,
+  "km": 178.292
+ },
+ "scarce_vostok_6": {
+  "tag": "lns/scarce_vostok_6.out",
+  "pen": 0,
+  "used": 7,
+  "km": 134.261
+ },
+ "scarce_vostok_9": {
+  "tag": "s13_sisr@bench_instances_gen_tl0.2_all.json",
+  "pen": 100,
+  "used": 7,
+  "km": 225.058
+ },
+ "scarce_yugocentr_1": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 5,
+  "km": 181.222
+ },
+ "scarce_yugocentr_4": {
+  "tag": "s10_sa@bench_instances_gen_tl0.2_all.json",
+  "pen": 50,
+  "used": 7,
+  "km": 132.838
+ },
+ "scarce_yugocentr_7": {
+  "tag": "lns/scarce_yugocentr_7.out",
+  "pen": 0,
+  "used": 6,
+  "km": 161.933
+ },
+ "scarce_yugovostok_2": {
+  "tag": "s10_sa@bench_instances_gen_tl1.0_all.json",
+  "pen": 0,
+  "used": 7,
+  "km": 555.877
+ },
+ "scarce_yugovostok_5": {
+  "tag": "hy/scarce_yugovostok_5.out",
+  "pen": 0,
+  "used": 7,
+  "km": 292.266
+ },
+ "scarce_yugovostok_8": {
+  "tag": "lns/scarce_yugovostok_8.out",
+  "pen": 0,
+  "used": 10,
+  "km": 323.839
+ },
+ "tight_vostok_0": {
+  "tag": "s11_tabu@bench_instances_gen_tl3.0_s11.json",
+  "pen": 0,
+  "used": 5,
+  "km": 206.285
+ },
+ "tight_vostok_3": {
+  "tag": "lns/tight_vostok_3.out",
+  "pen": 0,
+  "used": 6,
+  "km": 158.37
+ },
+ "tight_vostok_6": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 50,
+  "used": 7,
+  "km": 128.354
+ },
+ "tight_vostok_9": {
+  "tag": "lns/tight_vostok_9.out",
+  "pen": 0,
+  "used": 6,
+  "km": 145.33
+ },
+ "tight_yugocentr_1": {
+  "tag": "hy/tight_yugocentr_1.out",
+  "pen": 0,
+  "used": 7,
+  "km": 147.857
+ },
+ "tight_yugocentr_4": {
+  "tag": "s14_hgs_lite@bench_instances_gen_tl3.0_s14.json",
+  "pen": 0,
+  "used": 5,
+  "km": 135.61
+ },
+ "tight_yugocentr_7": {
+  "tag": "pyvrp@bench_instances_gen_tl3.0_pyvrp.json",
+  "pen": 0,
+  "used": 5,
+  "km": 118.771
+ },
+ "tight_yugovostok_2": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 10,
+  "km": 370.037
+ },
+ "tight_yugovostok_5": {
+  "tag": "s14_hgs_lite@bench_instances_gen_tl3.0_s14.json",
+  "pen": 0,
+  "used": 8,
+  "km": 322.44
+ },
+ "tight_yugovostok_8": {
+  "tag": "lns/tight_yugovostok_8.out",
+  "pen": 40,
+  "used": 10,
+  "km": 400.252
+ },
+ "walk_vostok_0": {
+  "tag": "lns/walk_vostok_0.out",
+  "pen": 100,
+  "used": 7,
+  "km": 201.827
+ },
+ "walk_vostok_3": {
+  "tag": "hy/walk_vostok_3.out",
+  "pen": 0,
+  "used": 8,
+  "km": 168.869
+ },
+ "walk_vostok_6": {
+  "tag": "hy/walk_vostok_6.out",
+  "pen": 0,
+  "used": 9,
+  "km": 147.673
+ },
+ "walk_vostok_9": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 7,
+  "km": 136.893
+ },
+ "walk_yugocentr_1": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 7,
+  "km": 117.337
+ },
+ "walk_yugocentr_4": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 6,
+  "km": 132.955
+ },
+ "walk_yugocentr_7": {
+  "tag": "s10_sa@bench_instances_gen_tl3.0_s10.json",
+  "pen": 0,
+  "used": 6,
+  "km": 126.596
+ },
+ "walk_yugovostok_2": {
+  "tag": "hy/walk_yugovostok_2.out",
+  "pen": 0,
+  "used": 10,
+  "km": 435.05
+ },
+ "walk_yugovostok_5": {
+  "tag": "lns/walk_yugovostok_5.out",
+  "pen": 0,
+  "used": 8,
+  "km": 532.348
+ },
+ "walk_yugovostok_8": {
+  "tag": "lns/walk_yugovostok_8.out",
+  "pen": 0,
+  "used": 9,
+  "km": 384.179
+ }
+}

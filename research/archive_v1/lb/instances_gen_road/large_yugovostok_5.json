@@ -1,0 +1,32 @@
+{
+ "inst": "large_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 392.284,
+ "types": 11,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 10.018053538078442,
+ "used_conv": false,
+ "lb_km": 349.0371,
+ "lp_km": 349.0370695614041,
+ "km_conv": true,
+ "km_K": 11,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + cgp:lb_used(fleet CG root LP 10.0145 with 30 3SRC, exact pricing)",
+ "seconds": 169.1,
+ "best_at_finalize": [
+  0,
+  11,
+  391.421
+ ],
+ "cgp": {
+  "lb_used": {
+   "old": 10,
+   "new": 11,
+   "method": "fleet CG root LP 10.0145 with 30 3SRC, exact pricing",
+   "seconds": 42.3
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "inst": "sever_s0",
+ "dir": "instances_newroad_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 186.415,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.599999999999992,
+ "used_conv": true,
+ "lb_km": 180.5849,
+ "lp_km": 178.29772163710857,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 2591.3,
+ "best_at_finalize": [
+  0,
+  8,
+  186.4146
+ ],
+ "cgc": {
+  "root": 177.8789,
+  "nodes": 34,
+  "lb": 180.585,
+  "ub": 186.4146,
+  "exhausted": false,
+  "seconds": 2506.9,
+  "fleet_cuts": []
+ }
+}

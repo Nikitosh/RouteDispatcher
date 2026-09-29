@@ -1,0 +1,29 @@
+{
+ "inst": "walk_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 511.081,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.800000000000031,
+ "used_conv": true,
+ "lb_km": 511.0806,
+ "lp_km": 508.11843888888956,
+ "km_conv": true,
+ "km_K": 10,
+ "enum_routes": 6652,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 150,
+ "pool_lp": 508.8403500000001,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 41.1,
+ "best_at_finalize": [
+  0,
+  10,
+  511.0807
+ ]
+}

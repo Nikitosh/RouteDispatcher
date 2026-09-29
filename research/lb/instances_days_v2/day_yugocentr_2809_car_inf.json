@@ -1,0 +1,24 @@
+{
+ "inst": "day_yugocentr_2809_car_inf",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 183.517,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.60816827391307,
+ "used_conv": true,
+ "lb_km": 183.5166,
+ "lp_km": 183.51659999999995,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 5.3,
+ "best_at_finalize": [
+  0,
+  6,
+  183.5166
+ ]
+}

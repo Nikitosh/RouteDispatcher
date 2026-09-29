@@ -1,0 +1,33 @@
+{
+ "inst": "tight_vostok_9",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 153.417,
+ "types": 6,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.621995926680246,
+ "used_conv": true,
+ "lb_km": 148.0703,
+ "lp_km": 145.72951841579066,
+ "km_conv": true,
+ "km_K": 6,
+ "lb_km_typebranch": 147.085,
+ "lb_km_typebranch_pool": 147.085,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P",
+ "seconds": 66.4,
+ "best_at_finalize": [
+  0,
+  6,
+  148.0704
+ ],
+ "bp": {
+  "nodes": 33,
+  "lb": 148.07040000000003,
+  "ub": 148.07040000000003,
+  "exhausted": true,
+  "seconds": 55.4
+ }
+}

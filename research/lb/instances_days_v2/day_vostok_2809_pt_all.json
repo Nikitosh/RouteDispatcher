@@ -1,0 +1,24 @@
+{
+ "inst": "day_vostok_2809_pt_all",
+ "dir": "instances_days_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 129.833,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.500000000000007,
+ "used_conv": true,
+ "lb_km": 129.8333,
+ "lp_km": 129.8333,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 0.8,
+ "best_at_finalize": [
+  0,
+  9,
+  129.8333
+ ]
+}

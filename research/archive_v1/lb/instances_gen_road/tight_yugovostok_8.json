@@ -1,0 +1,43 @@
+{
+ "inst": "tight_yugovostok_8",
+ "dir": "instances_gen_road",
+ "best_pen": 20,
+ "best_used": 10,
+ "best_km": 421.499,
+ "types": 9,
+ "lb_pen": 20,
+ "lp_pen": 0.0,
+ "pen_conv": true,
+ "lb_used": 10,
+ "lp_used": 9.768962308050263,
+ "used_conv": true,
+ "lb_km": 413.3366,
+ "lp_km": 408.43140640797355,
+ "km_conv": true,
+ "km_K": 10,
+ "lb_km_typebranch": 408.4314,
+ "lb_km_typebranch_pool": 408.4314,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + B&P + B&P + B&P + B&P + cgp:lb_pen(penalty B&P+3SRC, 9 nodes, converged LPs)",
+ "seconds": 46.7,
+ "best_at_finalize": [
+  20,
+  10,
+  414.1958
+ ],
+ "bp": {
+  "nodes": 1680,
+  "lb": 413.3366744219076,
+  "ub": 414.19579999999996,
+  "exhausted": false,
+  "seconds": 3611.0
+ },
+ "cgp": {
+  "lb_pen": {
+   "old": 0,
+   "new": 20,
+   "method": "penalty B&P+3SRC, 9 nodes, converged LPs",
+   "seconds": 66.1
+  }
+ }
+}

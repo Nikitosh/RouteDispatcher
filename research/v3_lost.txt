@@ -1,0 +1,4 @@
+instances_gen_v2/large_vostok_9.txt
+instances_gen_v2/large_yugocentr_1.txt
+instances_gen_v2/large_yugocentr_4.txt
+instances_gen_v2/large_yugocentr_7.txt

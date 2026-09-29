@@ -1,0 +1,29 @@
+{
+ "inst": "ctl_zapad_pt_inf",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 226.064,
+ "types": 4,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.031703665125969,
+ "used_conv": true,
+ "lb_km": 226.0638,
+ "lp_km": 224.86855999999992,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 2251,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 140,
+ "pool_lp": 224.86856000000006,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 13.6,
+ "best_at_finalize": [
+  0,
+  8,
+  226.0639
+ ]
+}

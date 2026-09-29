@@ -1,0 +1,24 @@
+{
+ "inst": "walk_yugovostok_5",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 10,
+ "best_km": 399.136,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 10,
+ "lp_used": 9.031249999999986,
+ "used_conv": true,
+ "lb_km": 382.5947,
+ "lp_km": 382.5946536828762,
+ "km_conv": true,
+ "km_K": 10,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 87.4,
+ "best_at_finalize": [
+  0,
+  10,
+  399.1362
+ ]
+}

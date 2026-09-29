@@ -1,0 +1,29 @@
+{
+ "inst": "real_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 334.995,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 10.038415939695295,
+ "used_conv": true,
+ "lb_km": 334.9951,
+ "lp_km": 332.5954545741326,
+ "km_conv": true,
+ "km_K": 11,
+ "enum_routes": 11313,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 310,
+ "pool_lp": 332.6857438073057,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 382.3,
+ "best_at_finalize": [
+  0,
+  11,
+  334.9952
+ ]
+}

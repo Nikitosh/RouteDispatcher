@@ -1,0 +1,27 @@
+{
+ "inst": "control_yugocentr_car_inf",
+ "dir": "instances_control",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 179.404,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.467659217042995,
+ "used_conv": true,
+ "lb_km": 179.4042,
+ "lp_km": 171.19502001488104,
+ "km_conv": true,
+ "km_K": 5,
+ "enum_routes": 3000001,
+ "enum_complete": false,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + fleet dominance + fleet dominance",
+ "seconds": 59.3,
+ "best_at_finalize": [
+  0,
+  5,
+  179.4043
+ ],
+ "dominance": "from control_yugocentr_car_all: lb_km<-179.4042"
+}

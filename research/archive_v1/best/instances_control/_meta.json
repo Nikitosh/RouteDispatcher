@@ -1,0 +1,74 @@
+{
+ "control_vostok_car_all": {
+  "tag": "s10_sa@bench_instances_control_tl1.0_all.json",
+  "pen": 0,
+  "used": 6,
+  "km": 187.955
+ },
+ "control_vostok_car_inf": {
+  "tag": "s10_sa@bench_instances_control_tl1.0_s10.json",
+  "pen": 0,
+  "used": 6,
+  "km": 194.878
+ },
+ "control_vostok_pt_all": {
+  "tag": "s31_sisr2@bench_instances_control_tl1.0_s31.json",
+  "pen": 0,
+  "used": 8,
+  "km": 131.937
+ },
+ "control_vostok_pt_inf": {
+  "tag": "s31_sisr2@bench_instances_control_tl1.0_s31.json",
+  "pen": 0,
+  "used": 8,
+  "km": 140.69
+ },
+ "control_yugocentr_car_all": {
+  "tag": "s31_sisr2@bench_instances_control_tl1.0_s31.json",
+  "pen": 0,
+  "used": 5,
+  "km": 179.404
+ },
+ "control_yugocentr_car_inf": {
+  "tag": "s31_sisr2@bench_instances_control_tl1.0_s31.json",
+  "pen": 0,
+  "used": 5,
+  "km": 179.404
+ },
+ "control_yugocentr_pt_all": {
+  "tag": "s31_sisr2@bench_instances_control_tl1.0_s31.json",
+  "pen": 0,
+  "used": 6,
+  "km": 145.048
+ },
+ "control_yugocentr_pt_inf": {
+  "tag": "s33_sasisr@bench_instances_control_tl1.0_s33.json",
+  "pen": 0,
+  "used": 6,
+  "km": 145.048
+ },
+ "control_yugovostok_car_all": {
+  "tag": "hy/control_yugovostok_car_all.out",
+  "pen": 0,
+  "used": 8,
+  "km": 317.768
+ },
+ "control_yugovostok_car_inf": {
+  "tag": "hy/control_yugovostok_car_inf.out",
+  "pen": 0,
+  "used": 8,
+  "km": 323.408
+ },
+ "control_yugovostok_pt_all": {
+  "tag": "lns/control_yugovostok_pt_all.out",
+  "pen": 0,
+  "used": 10,
+  "km": 332.285
+ },
+ "control_yugovostok_pt_inf": {
+  "tag": "hy/control_yugovostok_pt_inf.out",
+  "pen": 0,
+  "used": 10,
+  "km": 400.094
+ }
+}

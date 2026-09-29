@@ -1,0 +1,29 @@
+{
+ "inst": "walk_vostok_9",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 183.814,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.9999999999999725,
+ "used_conv": true,
+ "lb_km": 183.8135,
+ "lp_km": 183.0045520000532,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 3787,
+ "enum_complete": true,
+ "pool_status": "lp_closed",
+ "pool_cuts": 271,
+ "pool_lp": 183.8136,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 37.7,
+ "best_at_finalize": [
+  0,
+  7,
+  183.8136
+ ]
+}

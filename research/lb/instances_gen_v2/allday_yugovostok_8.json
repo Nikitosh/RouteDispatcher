@@ -1,0 +1,24 @@
+{
+ "inst": "allday_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 377.918,
+ "types": 12,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.338612368024133,
+ "used_conv": true,
+ "lb_km": 358.5024,
+ "lp_km": 358.5023708976775,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 113.5,
+ "best_at_finalize": [
+  0,
+  9,
+  377.9176
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "inst": "ctl_zapad_mix2_all",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 259.022,
+ "types": 3,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 6.000000000000001,
+ "used_conv": true,
+ "lb_km": 259.0221,
+ "lp_km": 254.71527618571736,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 14107,
+ "enum_complete": true,
+ "pool_status": "feasible",
+ "pool_cuts": 214,
+ "pool_lp": 254.7998850262847,
+ "lb_km_typebranch": 254.7153,
+ "lb_km_typebranch_pool": 255.3131,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 2431.7,
+ "best_at_finalize": [
+  0,
+  6,
+  259.0222
+ ],
+ "cgc": {
+  "root": 254.4325,
+  "nodes": 657,
+  "lb": 259.0222,
+  "ub": 259.0222,
+  "exhausted": true,
+  "seconds": 1536.1,
+  "fleet_cuts": [
+   [
+    "f2c3[0,120)",
+    2
+   ],
+   [
+    "f2c3[240,600)",
+    2
+   ],
+   [
+    "f2c1[120,480)",
+    2
+   ]
+  ]
+ }
+}

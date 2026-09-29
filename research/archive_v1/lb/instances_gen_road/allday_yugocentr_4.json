@@ -1,0 +1,34 @@
+{
+ "inst": "allday_yugocentr_4",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 129.624,
+ "types": 8,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.917368262140455,
+ "used_conv": true,
+ "lb_km": 160.5913,
+ "lp_km": 129.6236999999986,
+ "km_conv": false,
+ "km_K": 6,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + cgx B&P",
+ "seconds": 1147.7,
+ "lb_km_cg_raw": -333.3666,
+ "best_at_finalize": [
+  0,
+  6,
+  160.5914
+ ],
+ "lb_km_source": "assignment bound (CG weaker)",
+ "cgx": {
+  "lb": 160.59140000000005,
+  "ub": 160.59140000000005,
+  "nodes": 131,
+  "exhausted": true,
+  "seconds": 486.9,
+  "old_lb_km": null
+ }
+}

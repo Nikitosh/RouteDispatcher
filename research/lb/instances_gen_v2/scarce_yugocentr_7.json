@@ -1,0 +1,33 @@
+{
+ "inst": "scarce_yugocentr_7",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 216.635,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.657743785850859,
+ "used_conv": true,
+ "lb_km": 211.4395,
+ "lp_km": 207.93747643852356,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1988.9,
+ "best_at_finalize": [
+  0,
+  6,
+  216.6354
+ ],
+ "cgc": {
+  "root": 207.0775,
+  "nodes": 5,
+  "lb": 211.4396,
+  "ub": 216.6354,
+  "exhausted": false,
+  "seconds": 1913.4,
+  "fleet_cuts": []
+ }
+}

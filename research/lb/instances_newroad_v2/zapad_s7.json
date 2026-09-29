@@ -1,0 +1,43 @@
+{
+ "inst": "zapad_s7",
+ "dir": "instances_newroad_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 238.572,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.497847699087831,
+ "used_conv": true,
+ "lb_km": 236.7134,
+ "lp_km": 233.33220867768577,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 46957,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 230,
+ "pool_lp": 233.41699936935834,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1753.5,
+ "best_at_finalize": [
+  0,
+  7,
+  238.5716
+ ],
+ "cgc": {
+  "root": 233.3267,
+  "nodes": 813,
+  "lb": 236.7135,
+  "ub": 238.5716,
+  "exhausted": false,
+  "seconds": 1621.0,
+  "fleet_cuts": [
+   [
+    "f2c3[240,600)",
+    2
+   ]
+  ]
+ }
+}

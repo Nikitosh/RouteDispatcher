@@ -1,0 +1,32 @@
+{
+ "inst": "peak_yugovostok_2",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 410.802,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.814934844793438,
+ "used_conv": true,
+ "lb_km": 390.2117,
+ "lp_km": 333.56245320571537,
+ "km_conv": false,
+ "km_K": 7,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 1229.2,
+ "best_at_finalize": [
+  0,
+  7,
+  390.2118
+ ],
+ "cgm": {
+  "lb": 390.21180000000015,
+  "ub": 390.21180000000015,
+  "nodes": 1,
+  "exhausted": true,
+  "seconds": 549.5,
+  "old_lb_km": 389.255
+ }
+}

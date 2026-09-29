@@ -1,0 +1,26 @@
+{
+ "inst": "tight_vostok_6",
+ "dir": "instances_gen_road",
+ "best_pen": 70,
+ "best_used": 7,
+ "best_km": 138.115,
+ "types": 3,
+ "lb_pen": 70,
+ "lp_pen": 66.66666666666038,
+ "pen_conv": true,
+ "lb_used": 7,
+ "lp_used": 6.933333333334199,
+ "used_conv": true,
+ "lb_km": 138.1151,
+ "lp_km": 138.1151,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 7.5,
+ "best_at_finalize": [
+  70,
+  7,
+  138.1151
+ ]
+}

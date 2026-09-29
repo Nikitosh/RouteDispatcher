@@ -1,0 +1,29 @@
+{
+ "inst": "peak_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 221.927,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.250000000000005,
+ "used_conv": true,
+ "lb_km": 221.9266,
+ "lp_km": 221.50410776650097,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 1181,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 281,
+ "pool_lp": 221.696125616365,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 14.1,
+ "best_at_finalize": [
+  0,
+  8,
+  221.9267
+ ]
+}

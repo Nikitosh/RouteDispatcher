@@ -1,0 +1,134 @@
+{
+ "inst": "real_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 403.081,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.5833673053404,
+ "used_conv": true,
+ "lb_km": 399.8588,
+ "lp_km": 359.79976030355704,
+ "km_conv": true,
+ "km_K": 9,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 265306.9,
+ "best_at_finalize": [
+  0,
+  9,
+  401.9799
+ ],
+ "cgc": {
+  "root": 361.4175,
+  "nodes": 807,
+  "lb": 395.7388,
+  "ub": 401.9799,
+  "exhausted": false,
+  "seconds": 7205.1,
+  "fleet_cuts": [
+   [
+    "f0c1[0,120)",
+    2
+   ],
+   [
+    "f1c2[0,360)+c1",
+    4
+   ],
+   [
+    "f1c12sk01",
+    4
+   ],
+   [
+    "f1c1[0,360)+c2",
+    4
+   ],
+   [
+    "f2c1[0,120)+c4",
+    3
+   ],
+   [
+    "f0c1[240,360)",
+    2
+   ],
+   [
+    "f1c2[480,1e+09)",
+    2
+   ],
+   [
+    "f1c2[240,360)+c1",
+    3
+   ],
+   [
+    "f2c0[120,240)",
+    3
+   ],
+   [
+    "f1c0[120,240)",
+    6
+   ],
+   [
+    "f2c1[240,360)+c0",
+    4
+   ],
+   [
+    "f2c4[120,240)+c0",
+    4
+   ],
+   [
+    "f2c3[120,240)+c04",
+    5
+   ],
+   [
+    "f0c0[0,240)+c2",
+    8
+   ],
+   [
+    "f2c4[120,240)+c02",
+    7
+   ],
+   [
+    "f2c3[120,240)+c024",
+    8
+   ],
+   [
+    "f2c0[120,240)+c24",
+    7
+   ],
+   [
+    "f2c2[120,240)+c04",
+    7
+   ],
+   [
+    "f0c1[120,240)+c02",
+    9
+   ],
+   [
+    "f2c1[120,240)+c024",
+    8
+   ],
+   [
+    "f0c2[120,240)",
+    2
+   ],
+   [
+    "f2c2[0,240)",
+    4
+   ],
+   [
+    "f2c3[0,120)+c1",
+    3
+   ]
+  ]
+ },
+ "cgm": {
+  "lb": 399.8589291663102,
+  "ub": 401.9799,
+  "nodes": 1148,
+  "exhausted": false,
+  "seconds": 14432.0,
+  "old_lb_km": 399.8551
+ }
+}

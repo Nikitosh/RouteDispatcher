@@ -1,0 +1,29 @@
+{
+ "inst": "ctl_sever_car_all",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 160.322,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.28571428571428,
+ "used_conv": true,
+ "lb_km": 160.3223,
+ "lp_km": 160.2976,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 990,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 25,
+ "pool_lp": 160.2976,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 12.8,
+ "best_at_finalize": [
+  0,
+  8,
+  160.3224
+ ]
+}

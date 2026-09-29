@@ -1,0 +1,29 @@
+{
+ "inst": "sever_s9",
+ "dir": "instances_newroad_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 176.086,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.749999999999985,
+ "used_conv": true,
+ "lb_km": 176.0855,
+ "lp_km": 176.0233489444776,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 419,
+ "enum_complete": true,
+ "pool_status": "lp_closed",
+ "pool_cuts": 210,
+ "pool_lp": 176.0856,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 28.7,
+ "best_at_finalize": [
+  0,
+  8,
+  176.0856
+ ]
+}

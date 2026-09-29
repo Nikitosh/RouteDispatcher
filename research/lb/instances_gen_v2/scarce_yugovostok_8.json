@@ -1,0 +1,35 @@
+{
+ "inst": "scarce_yugovostok_8",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 11,
+ "best_km": 371.048,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 11,
+ "lp_used": 10.077305570662736,
+ "used_conv": true,
+ "lb_km": 348.9417,
+ "lp_km": 346.43475131893825,
+ "km_conv": true,
+ "km_K": 11,
+ "lb_km_typebranch": 346.4348,
+ "lb_km_typebranch_pool": 346.4348,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 2736.3,
+ "best_at_finalize": [
+  0,
+  11,
+  371.0479
+ ],
+ "cgc": {
+  "root": 347.1548,
+  "nodes": 15,
+  "lb": 348.9418,
+  "ub": 371.0479,
+  "exhausted": false,
+  "seconds": 2598.8,
+  "fleet_cuts": []
+ }
+}

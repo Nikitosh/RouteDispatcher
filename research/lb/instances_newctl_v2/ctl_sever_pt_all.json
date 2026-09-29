@@ -1,0 +1,47 @@
+{
+ "inst": "ctl_sever_pt_all",
+ "dir": "instances_newctl_v2",
+ "best_pen": 0,
+ "best_used": 9,
+ "best_km": 149.58,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 9,
+ "lp_used": 8.162162162162154,
+ "used_conv": true,
+ "lb_km": 149.5795,
+ "lp_km": 147.53770160427817,
+ "km_conv": true,
+ "km_K": 9,
+ "enum_routes": 57609,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 218,
+ "pool_lp": 147.54297328767126,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 319.3,
+ "best_at_finalize": [
+  0,
+  9,
+  149.5796
+ ],
+ "cgc": {
+  "root": 147.5201,
+  "nodes": 209,
+  "lb": 149.5796,
+  "ub": 149.5796,
+  "exhausted": true,
+  "seconds": 228.1,
+  "fleet_cuts": [
+   [
+    "f2c2[120,240)",
+    3
+   ],
+   [
+    "f2c2[0,120)",
+    2
+   ]
+  ]
+ }
+}

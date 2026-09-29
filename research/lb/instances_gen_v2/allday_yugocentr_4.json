@@ -1,0 +1,26 @@
+{
+ "inst": "allday_yugocentr_4",
+ "dir": "instances_gen_v2",
+ "best_pen": 500,
+ "best_used": 6,
+ "best_km": 166.941,
+ "types": 8,
+ "lb_pen": 470,
+ "lp_pen": 466.66666666666663,
+ "pen_conv": true,
+ "lb_used": 6,
+ "lp_used": 5.6332618924445095,
+ "used_conv": true,
+ "lb_km": 155.7843,
+ "lp_km": 155.7843117114554,
+ "km_conv": true,
+ "km_K": 6,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 6.3,
+ "best_at_finalize": [
+  500,
+  6,
+  166.9413
+ ]
+}

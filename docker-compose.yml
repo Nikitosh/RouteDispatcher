@@ -1,0 +1,25 @@
+# docker compose up                  — планы, события и страница http://localhost:8080 (на кэшах, без OSRM)
+# docker compose --profile osrm up   — плюс свой OSRM для новых адресов (нужны графы в ./osrm, см. README)
+services:
+  lct:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      OSRM_CAR: http://osrm-car:5000
+      OSRM_BIKE: http://osrm-bike:5000
+      OSRM_FOOT: http://osrm-foot:5000
+  osrm-car:
+    image: osrm/osrm-backend
+    profiles: [osrm]
+    command: osrm-routed --algorithm mld --max-table-size 2000 /data/msk.osrm
+    volumes: ["./osrm/car:/data"]
+  osrm-bike:
+    image: osrm/osrm-backend
+    profiles: [osrm]
+    command: osrm-routed --algorithm mld --max-table-size 2000 /data/msk.osrm
+    volumes: ["./osrm/bicycle:/data"]
+  osrm-foot:
+    image: osrm/osrm-backend
+    profiles: [osrm]
+    command: osrm-routed --algorithm mld --max-table-size 2000 /data/msk.osrm
+    volumes: ["./osrm/foot:/data"]

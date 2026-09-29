@@ -1,0 +1,36 @@
+{
+ "inst": "walk_yugocentr_1",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 143.495,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.4999999999999964,
+ "used_conv": true,
+ "lb_km": 143.4953,
+ "lp_km": 140.4516281385263,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 29208,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 227,
+ "pool_lp": 140.4768822660098,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P",
+ "seconds": 60.6,
+ "best_at_finalize": [
+  0,
+  7,
+  143.4954
+ ],
+ "bp": {
+  "nodes": 81,
+  "lb": 143.49539999999996,
+  "ub": 143.49539999999996,
+  "exhausted": true,
+  "seconds": 20.3
+ }
+}

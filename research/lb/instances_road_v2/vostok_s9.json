@@ -1,0 +1,43 @@
+{
+ "inst": "vostok_s9",
+ "dir": "instances_road_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 187.618,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.720279720279713,
+ "used_conv": true,
+ "lb_km": 186.809,
+ "lp_km": 184.10392341500176,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 68725,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 336,
+ "pool_lp": 184.55466247813433,
+ "proven_optimal": true,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1126.8,
+ "best_at_finalize": [
+  0,
+  7,
+  186.8091
+ ],
+ "cgc": {
+  "root": 183.5425,
+  "nodes": 327,
+  "lb": 186.8091,
+  "ub": 186.8091,
+  "exhausted": true,
+  "seconds": 895.1,
+  "fleet_cuts": [
+   [
+    "f1c1[480,600)",
+    2
+   ]
+  ]
+ }
+}

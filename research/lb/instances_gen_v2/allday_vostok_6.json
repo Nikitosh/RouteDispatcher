@@ -1,0 +1,59 @@
+{
+ "inst": "allday_vostok_6",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 196.227,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.387629829048093,
+ "used_conv": true,
+ "lb_km": 193.3131,
+ "lp_km": 191.10090725952008,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 779879,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 423,
+ "pool_lp": 191.61852906683245,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "seconds": 1883.1,
+ "best_at_finalize": [
+  0,
+  7,
+  196.2268
+ ],
+ "cgc": {
+  "root": 191.4106,
+  "nodes": 286,
+  "lb": 193.3132,
+  "ub": 196.2268,
+  "exhausted": false,
+  "seconds": 1622.3,
+  "fleet_cuts": [
+   [
+    "f1c0[480,600)",
+    2
+   ],
+   [
+    "f1c0[120,240)",
+    2
+   ],
+   [
+    "f2c1[240,1e+09)",
+    2
+   ],
+   [
+    "f2c1[0,240)+c34",
+    3
+   ],
+   [
+    "f2c4[120,240)",
+    1
+   ]
+  ]
+ }
+}

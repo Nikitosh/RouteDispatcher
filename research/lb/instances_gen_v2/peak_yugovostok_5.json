@@ -1,0 +1,63 @@
+{
+ "inst": "peak_yugovostok_5",
+ "dir": "instances_gen_v2",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 311.481,
+ "types": 10,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.333333333333331,
+ "used_conv": true,
+ "lb_km": 310.9124,
+ "lp_km": 304.0903806612277,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "partial": true,
+ "seconds": 1673.8,
+ "best_at_finalize": [
+  0,
+  8,
+  311.4809
+ ],
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py)",
+ "cgc": {
+  "root": 303.2503,
+  "nodes": 116,
+  "lb": 310.9125,
+  "ub": 311.4809,
+  "exhausted": false,
+  "seconds": 1628.3,
+  "fleet_cuts": [
+   [
+    "f1c0",
+    2
+   ],
+   [
+    "f1c1[600,1e+09)",
+    5
+   ],
+   [
+    "f1c1[600,1e+09)+c2",
+    7
+   ],
+   [
+    "f2c9[0,120)",
+    1
+   ],
+   [
+    "f1c2[600,1e+09)+c1",
+    7
+   ],
+   [
+    "f2c1[360,1e+09)",
+    1
+   ],
+   [
+    "f2c1[360,1e+09)+c4",
+    3
+   ]
+  ]
+ }
+}

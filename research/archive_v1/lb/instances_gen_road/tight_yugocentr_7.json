@@ -1,0 +1,24 @@
+{
+ "inst": "tight_yugocentr_7",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 5,
+ "best_km": 133.961,
+ "types": 5,
+ "lb_pen": 0,
+ "lb_used": 5,
+ "lp_used": 4.142138639842529,
+ "used_conv": true,
+ "lb_km": 133.9611,
+ "lp_km": 133.9611000000001,
+ "km_conv": true,
+ "km_K": 5,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 5.0,
+ "best_at_finalize": [
+  0,
+  5,
+  133.9611
+ ]
+}

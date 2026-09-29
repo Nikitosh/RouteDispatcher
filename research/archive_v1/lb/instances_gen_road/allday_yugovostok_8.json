@@ -1,0 +1,32 @@
+{
+ "inst": "allday_yugovostok_8",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 414.834,
+ "types": 12,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.140114632315568,
+ "used_conv": true,
+ "lb_km": 401.2913,
+ "lp_km": 361.2683695136231,
+ "km_conv": true,
+ "km_K": 8,
+ "proven_optimal": false,
+ "method": "CG ng10 + enum/MIP + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 38134.4,
+ "best_at_finalize": [
+  0,
+  8,
+  411.4497
+ ],
+ "cgm": {
+  "lb": 401.291352586505,
+  "ub": 411.4497,
+  "nodes": 263,
+  "exhausted": false,
+  "seconds": 7564.0,
+  "old_lb_km": 401.1624
+ }
+}

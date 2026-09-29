@@ -1,0 +1,50 @@
+{
+ "inst": "scarce_yugovostok_2",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 541.249,
+ "types": 11,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.544831921718652,
+ "used_conv": true,
+ "lb_km": 461.711,
+ "lp_km": 449.6567081494964,
+ "km_conv": true,
+ "km_K": 7,
+ "proven_optimal": false,
+ "method": "CG + rounded fleet cuts k(S) + 3SRC + B&P (cgc_master.py) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts) + cgm B&P (cgx engine + cgc fleet cuts)",
+ "seconds": 5192.8,
+ "best_at_finalize": [
+  0,
+  7,
+  541.2491
+ ],
+ "cgc": {
+  "root": 450.5262,
+  "nodes": 41,
+  "lb": 457.4808,
+  "ub": 541.2491,
+  "exhausted": false,
+  "seconds": 424.1,
+  "fleet_cuts": [
+   [
+    "f0c3[240,1e+09)+c02",
+    6
+   ],
+   [
+    "f2c3[600,1e+09)+c124",
+    5
+   ]
+  ]
+ },
+ "cgm": {
+  "lb": 461.7111024716877,
+  "ub": 541.2491,
+  "nodes": 78,
+  "exhausted": false,
+  "seconds": 1209.0,
+  "old_lb_km": 461.218
+ }
+}

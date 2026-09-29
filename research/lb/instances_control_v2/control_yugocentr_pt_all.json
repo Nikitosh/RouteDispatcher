@@ -1,0 +1,34 @@
+{
+ "inst": "control_yugocentr_pt_all",
+ "dir": "instances_control_v2",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 202.37,
+ "types": 1,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.939367464616459,
+ "used_conv": true,
+ "lb_km": 198.3428,
+ "lp_km": 197.06146736036044,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 10799,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 281,
+ "pool_lp": 197.38314635909506,
+ "new_solution": [
+  0,
+  6,
+  198.34289999999996
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 117.5,
+ "best_at_finalize": [
+  0,
+  6,
+  198.3429
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "inst": "scarce_yugovostok_5",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 7,
+ "best_km": 293.853,
+ "types": 9,
+ "lb_pen": 0,
+ "lb_used": 7,
+ "lp_used": 6.134526457760418,
+ "used_conv": true,
+ "lb_km": 293.8526,
+ "lp_km": 287.3586923052497,
+ "km_conv": true,
+ "km_K": 7,
+ "enum_routes": 28251,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 414,
+ "pool_lp": 289.27203662605416,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP + B&P + B&P",
+ "seconds": 81.1,
+ "best_at_finalize": [
+  0,
+  7,
+  293.8527
+ ],
+ "bp": {
+  "nodes": 695,
+  "lb": 293.85269999999997,
+  "ub": 293.85269999999997,
+  "exhausted": true,
+  "seconds": 779.1
+ }
+}

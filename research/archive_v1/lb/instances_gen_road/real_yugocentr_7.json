@@ -1,0 +1,29 @@
+{
+ "inst": "real_yugocentr_7",
+ "dir": "instances_gen_road",
+ "best_pen": 0,
+ "best_used": 6,
+ "best_km": 132.658,
+ "types": 7,
+ "lb_pen": 0,
+ "lb_used": 6,
+ "lp_used": 5.16666666666667,
+ "used_conv": true,
+ "lb_km": 132.6578,
+ "lp_km": 132.2253500000004,
+ "km_conv": true,
+ "km_K": 6,
+ "enum_routes": 479,
+ "enum_complete": true,
+ "pool_status": "optimal",
+ "pool_cuts": 90,
+ "pool_lp": 132.22535000000002,
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 7.1,
+ "best_at_finalize": [
+  0,
+  6,
+  132.6579
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "control_vostok_car_all": {
+  "tag": "prod3_s2/control_vostok_car_all.out",
+  "pen": 0,
+  "used": 7,
+  "km": 181.601
+ },
+ "control_vostok_car_inf": {
+  "tag": "prod3_s3/control_vostok_car_inf.out",
+  "pen": 0,
+  "used": 7,
+  "km": 190.354
+ },
+ "control_vostok_mix1_all": {
+  "tag": "prod3_s3/control_vostok_mix1_all.out",
+  "pen": 0,
+  "used": 7,
+  "km": 169.413
+ },
+ "control_vostok_mix1_inf": {
+  "tag": "prod3_s3/control_vostok_mix1_inf.out",
+  "pen": 0,
+  "used": 7,
+  "km": 185.013
+ },
+ "control_vostok_mix2_all": {
+  "tag": "prod3_s3/control_vostok_mix2_all.out",
+  "pen": 0,
+  "used": 7,
+  "km": 165.71
+ },
+ "control_vostok_mix2_inf": {
+  "tag": "prod3_s3/control_vostok_mix2_inf.out",
+  "pen": 0,
+  "used": 7,
+  "km": 185.786
+ },
+ "control_vostok_pt_all": {
+  "tag": "prod3_s3/control_vostok_pt_all.out",
+  "pen": 0,
+  "used": 8,
+  "km": 152.709
+ },
+ "control_vostok_pt_inf": {
+  "tag": "s60_3s_s3/control_vostok_pt_inf.out",
+  "pen": 0,
+  "used": 8,
+  "km": 167.188
+ },
+ "control_yugocentr_car_all": {
+  "tag": "prod3_s3/control_yugocentr_car_all.out",
+  "pen": 0,
+  "used": 6,
+  "km": 164.389
+ },
+ "control_yugocentr_car_inf": {
+  "tag": "prod3_s3/control_yugocentr_car_inf.out",
+  "pen": 0,
+  "used": 6,
+  "km": 164.389
+ },
+ "control_yugocentr_mix1_all": {
+  "tag": "prod3_s3/control_yugocentr_mix1_all.out",
+  "pen": 0,
+  "used": 6,
+  "km": 157.284
+ },
+ "control_yugocentr_mix1_inf": {
+  "tag": "prod3_s3/control_yugocentr_mix1_inf.out",
+  "pen": 0,
+  "used": 6,
+  "km": 157.284
+ },
+ "control_yugocentr_mix2_all": {
+  "tag": "prod3_s3/control_yugocentr_mix2_all.out",
+  "pen": 0,
+  "used": 6,
+  "km": 160.028
+ },
+ "control_yugocentr_mix2_inf": {
+  "tag": "prod3_s1/control_yugocentr_mix2_inf.out",
+  "pen": 0,
+  "used": 6,
+  "km": 161.262
+ },
+ "control_yugocentr_pt_all": {
+  "tag": "cg/control_yugocentr_pt_all.out",
+  "pen": 0,
+  "used": 6,
+  "km": 198.343
+ },
+ "control_yugocentr_pt_inf": {
+  "tag": "prod3_s2/control_yugocentr_pt_inf.out",
+  "pen": 0,
+  "used": 6,
+  "km": 198.343
+ },
+ "control_yugovostok_car_all": {
+  "tag": "prod3_s2/control_yugovostok_car_all.out",
+  "pen": 0,
+  "used": 9,
+  "km": 391.531
+ },
+ "control_yugovostok_car_inf": {
+  "tag": "prod3_s3/control_yugovostok_car_inf.out",
+  "pen": 0,
+  "used": 9,
+  "km": 435.763
+ },
+ "control_yugovostok_mix1_all": {
+  "tag": "prod3_s3/control_yugovostok_mix1_all.out",
+  "pen": 0,
+  "used": 9,
+  "km": 388.135
+ },
+ "control_yugovostok_mix1_inf": {
+  "tag": "prod3_s3/control_yugovostok_mix1_inf.out",
+  "pen": 0,
+  "used": 10,
+  "km": 349.278
+ },
+ "control_yugovostok_mix2_all": {
+  "tag": "prod3_s3/control_yugovostok_mix2_all.out",
+  "pen": 0,
+  "used": 11,
+  "km": 403.953
+ },
+ "control_yugovostok_mix2_inf": {
+  "tag": "s76_20s/control_yugovostok_mix2_inf.out",
+  "pen": 0,
+  "used": 11,
+  "km": 523.997
+ },
+ "control_yugovostok_pt_all": {
+  "tag": "prod3_s3/control_yugovostok_pt_all.out",
+  "pen": 0,
+  "used": 11,
+  "km": 348.898
+ },
+ "control_yugovostok_pt_inf": {
+  "tag": "prod3_s3/control_yugovostok_pt_inf.out",
+  "pen": 0,
+  "used": 11,
+  "km": 413.019
+ }
+}

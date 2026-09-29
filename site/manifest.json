@@ -1,0 +1,61 @@
+{
+ "districts": [
+  {
+   "name": "Восток",
+   "slug": "vostok",
+   "plan": "data/vostok/plan.json",
+   "events": [
+    {
+     "label": "11:30 — новая заявка: авария",
+     "plan": "data/vostok/event_0.json"
+    },
+    {
+     "label": "13:00 — отмена заявки 74198",
+     "plan": "data/vostok/event_1.json"
+    },
+    {
+     "label": "13:30 — новая заявка: подключение",
+     "plan": "data/vostok/event_2.json"
+    },
+    {
+     "label": "14:00 — Бригада 4 недоступна",
+     "plan": "data/vostok/event_3.json"
+    },
+    {
+     "label": "14:00 — новая заявка: авария",
+     "plan": "data/vostok/event_4.json"
+    }
+   ]
+  },
+  {
+   "name": "Запад",
+   "slug": "zapad",
+   "plan": "data/zapad/plan.json",
+   "events": []
+  },
+  {
+   "name": "Север",
+   "slug": "sever",
+   "plan": "data/sever/plan.json",
+   "events": []
+  },
+  {
+   "name": "Северо-восток",
+   "slug": "severo-vostok",
+   "plan": "data/severo-vostok/plan.json",
+   "events": []
+  },
+  {
+   "name": "Юго-восток",
+   "slug": "yugo-vostok",
+   "plan": "data/yugo-vostok/plan.json",
+   "events": []
+  },
+  {
+   "name": "Югоцентр",
+   "slug": "yugocentr",
+   "plan": "data/yugocentr/plan.json",
+   "events": []
+  }
+ ]
+}

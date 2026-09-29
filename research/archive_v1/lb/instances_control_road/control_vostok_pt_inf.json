@@ -1,0 +1,36 @@
+{
+ "inst": "control_vostok_pt_inf",
+ "dir": "instances_control_road",
+ "best_pen": 0,
+ "best_used": 8,
+ "best_km": 159.756,
+ "types": 4,
+ "lb_pen": 0,
+ "lb_used": 8,
+ "lp_used": 7.191176470588233,
+ "used_conv": true,
+ "lb_km": 155.0772,
+ "lp_km": 154.43724999999984,
+ "km_conv": true,
+ "km_K": 8,
+ "enum_routes": 140040,
+ "enum_complete": true,
+ "pool_status": "timeout",
+ "pool_cuts": 150,
+ "pool_lp": 154.43725,
+ "lb_km_typebranch": 155.0773,
+ "lb_km_typebranch_pool": 155.0773,
+ "new_solution": [
+  0,
+  8,
+  156.88369999999998
+ ],
+ "proven_optimal": true,
+ "method": "CG ng10 + enum/MIP",
+ "seconds": 263.6,
+ "best_at_finalize": [
+  0,
+  8,
+  155.0773
+ ]
+}
