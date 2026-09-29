@@ -7,6 +7,10 @@
 Модель, алгоритм, точные методы и результаты — [docs/SOLUTION.md](docs/SOLUTION.md), допущения и ответы жюри —
 [docs/assumptions.md](docs/assumptions.md).
 
+**Демо без установки:** https://lct-trdelnik.vercel.app — та же страница диспетчера, что собирает `scripts/demo.sh`
+(папка `site/`). Обновить после пересборки: `cd site && vercel deploy --prod` (проект `lct-trdelnik`; если папка
+пересоздана, сначала `vercel link --project lct-trdelnik`).
+
 ## Запуск одной командой
 
 ```
@@ -70,9 +74,12 @@ python -m dispatch serve
 ## Свой OSRM для новых адресов
 
 ```
-osrm/build.sh                           # графы Москвы и юга области, 15–30 минут
+osrm/download.sh                        # готовые графы из релиза GitHub: 1,2 ГБ, распакованные ~3 ГБ
 docker compose --profile osrm up
 ```
+
+`download.sh` качает через `gh`, пока репозиторий приватный (нужен `gh auth login` с доступом к нему), иначе через
+`curl`. Собрать графы самим из OpenStreetMap: `osrm/build.sh` (Docker, ~8 ГБ памяти, 15–30 минут).
 
 Без Compose: `docker run -d --name osrm-car -p 5003:5000 -v $PWD/osrm/car:/data osrm/osrm-backend osrm-routed
 --algorithm mld --max-table-size 2000 /data/msk.osrm`, так же `osrm-bike` (порт 5002, папка `bicycle`) и `osrm-foot`
@@ -90,5 +97,5 @@ docker compose --profile osrm up
 | `docs/` | Решение (`SOLUTION.md`), контракт с решателями (`SOLVER_IO.md`), допущения, вопросы и ответы жюри (`qa.txt`) |
 | `presentation/` | Презентация и скрипты её сборки |
 | `research/` | Эксперименты: все решатели, точные методы, бенчмарки, макеты интерфейса |
-| `osrm/` | Графы OSRM (собираются `osrm/build.sh`) |
+| `osrm/` | Графы OSRM: скачиваются `osrm/download.sh` или собираются `osrm/build.sh` |
 | `scripts/` | `demo.sh` — демо целиком |

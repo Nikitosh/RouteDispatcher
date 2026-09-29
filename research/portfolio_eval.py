@@ -4,7 +4,7 @@ import glob, os, json, subprocess, sys, statistics as st
 from concurrent.futures import ThreadPoolExecutor
 from validate import load_instance, check, parse_output
 name,tl,ns,pen=sys.argv[1],sys.argv[2],int(sys.argv[3]),sys.argv[4]
-PENW={1:100,2:50,3:20}; os.makedirs('tmp_guide',exist_ok=True)
+PENW={1:100,2:50,3:20}; os.makedirs('runs/tmp_guide',exist_ok=True)
 SETS=['instances_control_road','instances_road','instances_gen_road']; line=[f"{name:22}"]; allrows=[]
 def score(I,R):
     c=check(I,R); sv={k for r in R for k in r}

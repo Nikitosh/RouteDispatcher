@@ -269,7 +269,7 @@ def load_pool_solutions(I, d, name, vtype, maxfiles=400):
     """routes from all known solutions of this instance (warm start columns)"""
     import glob
     out = set()
-    fs = glob.glob(os.path.join(HERE, 'results', d, '**', name + '.out'), recursive=True)
+    fs = glob.glob(os.path.join(HERE, 'runs', 'results', d, '**', name + '.out'), recursive=True)
     for f in fs[:maxfiles]:
         try: R, _ = parse_output(open(f).read())
         except Exception: continue
@@ -364,7 +364,7 @@ def main():
             for t in g:
                 if frozenset([t]) not in tgroups: tgroups.append(frozenset([t]))
         if far_t and frozenset(far_t) not in tgroups: tgroups.append(frozenset(far_t))
-        for kf in (os.path.join(HERE, 'results', 'cgc_tmp', f'kcache_{d}_{name}.json'), kfile):
+        for kf in (os.path.join(HERE, 'runs', 'results', 'cgc_tmp', f'kcache_{d}_{name}.json'), kfile):
             if os.path.exists(kf):
                 for kk, v in json.load(open(kf)).items(): kcache[frozenset(map(int, kk.split(',')))] = int(v)
         log(f'fleet: {len(cand)} candidate sets, {len(bsets)} base sets, type groups {[sorted(g) for g in tgroups]}, {len(kcache)} cached k')
@@ -565,7 +565,7 @@ def main():
         return False
 
     def save_sol(R):
-        od = os.path.join(HERE, 'results', d, 'cgpb'); os.makedirs(od, exist_ok=True)
+        od = os.path.join(HERE, 'runs', 'results', d, 'cgpb'); os.makedirs(od, exist_ok=True)
         with open(os.path.join(od, name + '.out'), 'w') as f:
             f.write('SOLVER cgm_bp\n')
             for v, r in enumerate(R): f.write(f"ROUTE {v} {' '.join(map(str, r))}\n")

@@ -219,7 +219,7 @@ def main():
             if frozenset([t]) not in tgroups: tgroups.append(frozenset([t]))
     if far_t and frozenset(far_t) not in tgroups: tgroups.append(frozenset(far_t))
     log(f'type groups for vehicle-level branching: {[sorted(g) for g in tgroups]}, {len(bsets)} base sets')
-    kfile = os.path.join(HERE, 'results', 'cgc_tmp', f'kcache_{d}_{name}.json')
+    kfile = os.path.join(HERE, 'runs', 'results', 'cgc_tmp', f'kcache_{d}_{name}.json')
     kcache = {}
     if os.path.exists(kfile):
         for kk, v in json.load(open(kfile)).items(): kcache[frozenset(map(int, kk.split(',')))] = v
@@ -355,7 +355,7 @@ def main():
         import pickle
         if x is None or len(x) < M.h.getNumCol(): M.h.run(); x = list(M.h.getSolution().col_value)
         pickle.dump(dict(types=types, sol=[(M.cols[j], x[M.hidx[j]]) for j in range(len(M.cols)) if x[M.hidx[j]] > 1e-6], z=z, UB=UB, K=K),
-                    open(os.path.join(HERE, 'results', 'cgc_tmp', f'{name}_lp.pkl'), 'wb'))
+                    open(os.path.join(HERE, 'runs', 'results', 'cgc_tmp', f'{name}_lp.pkl'), 'wb'))
     res = dict(root=rootLB)
     poolLB = -1e18; proven_pool = False
     if a.enum > 0 and z is not None and 1e-6 < UB - z <= a.enum * UB and not a.nobranch:
@@ -366,7 +366,7 @@ def main():
         pr.fl = [(du[f['row']], f['S'], f['ty']) for f in M.fl]
         alpha = [0.0 - mu[t] - lam for t in range(T)]
         te = time.time()
-        routes, comp = pr.enum(UB - zz + 1e-6, 1.0, a.enum_max, os.path.join(HERE, 'results', 'cgc_tmp', f'enum_{os.getpid()}.txt'), alpha, pi, cuts)
+        routes, comp = pr.enum(UB - zz + 1e-6, 1.0, a.enum_max, os.path.join(HERE, 'runs', 'results', 'cgc_tmp', f'enum_{os.getpid()}.txt'), alpha, pi, cuts)
         log(f'ENUM gap {UB - zz:.4f}: routes {len(routes)} complete {comp} ({time.time()-te:.1f}s)')
         if comp:
             P = Pool(I, types, routes, 3, Pbest, K, log=log)
@@ -390,7 +390,7 @@ def main():
         pr.fl = [(du[f['row']], f['S'], f['ty']) for f in M.fl]
         alpha = [0.0 - mu[t] - lam for t in range(T)]
         te = time.time()
-        routes, comp = pr.enum(best[0] - zz + 1e-6, 1.0, a.nenum_max, os.path.join(HERE, 'results', 'cgc_tmp', f'enum_{os.getpid()}.txt'), alpha, pi, cuts)
+        routes, comp = pr.enum(best[0] - zz + 1e-6, 1.0, a.nenum_max, os.path.join(HERE, 'runs', 'results', 'cgc_tmp', f'enum_{os.getpid()}.txt'), alpha, pi, cuts)
         if not comp:
             log(f'   node enum gap {best[0]-zz:.3f}: incomplete ({len(routes)} routes, {time.time()-te:.1f}s)'); return False, -1e18
         P = Pool(I, types, routes, 3, Pbest, K, log=lambda *q: None); P.tlo = list(node['lo']); P.tup = list(node['up'])
@@ -557,7 +557,7 @@ def main():
     log(f'DONE nodes {nodes} root {rootLB:.4f} LB {openb:.4f} UB {best[0]:.4f} exhausted {exhausted}')
     pr.close()
     if best[1] is not None:
-        od = os.path.join(HERE, 'results', d, 'cgc'); os.makedirs(od, exist_ok=True)
+        od = os.path.join(HERE, 'runs', 'results', d, 'cgc'); os.makedirs(od, exist_ok=True)
         with open(os.path.join(od, name + '.out'), 'w') as f:
             f.write('SOLVER cgc\n')
             for v, r in enumerate(best[1]): f.write(f"ROUTE {v} {' '.join(map(str, r))}\n")

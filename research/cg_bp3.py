@@ -156,7 +156,7 @@ def main():
     log(f'B&P done: nodes {nodes}, LB {openb:.4f}, UB {best[0]:.4f}, exhausted {exhausted}')
     pr.close()
     if best[1] is not None:
-        od = os.path.join(HERE, 'results', d, 'cg'); os.makedirs(od, exist_ok=True)
+        od = os.path.join(HERE, 'runs', 'results', d, 'cg'); os.makedirs(od, exist_ok=True)
         with open(os.path.join(od, name + '.out'), 'w') as f:
             f.write('SOLVER cg_bp\n')
             for v, r in enumerate(best[1]): f.write(f"ROUTE {v} {' '.join(map(str, r))}\n")

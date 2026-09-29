@@ -215,7 +215,7 @@ def load_pool_solutions(I, d, name, vtype, maxfiles=400):
     """routes from all known solutions of this instance (warm start columns)"""
     import glob
     out = set()
-    fs = glob.glob(os.path.join(HERE, 'results', d, '**', name + '.out'), recursive=True)
+    fs = glob.glob(os.path.join(HERE, 'runs', 'results', d, '**', name + '.out'), recursive=True)
     for f in fs[:maxfiles]:
         try: R, _ = parse_output(open(f).read())
         except Exception: continue
@@ -354,7 +354,7 @@ def main():
         return False
 
     def save_sol(R):
-        od = os.path.join(HERE, 'results', d, 'cgx'); os.makedirs(od, exist_ok=True)
+        od = os.path.join(HERE, 'runs', 'results', d, 'cgx'); os.makedirs(od, exist_ok=True)
         with open(os.path.join(od, name + '.out'), 'w') as f:
             f.write('SOLVER cgx_bp\n')
             for v, r in enumerate(R): f.write(f"ROUTE {v} {' '.join(map(str, r))}\n")

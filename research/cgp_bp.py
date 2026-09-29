@@ -297,7 +297,7 @@ def main():
     found = []   # improved solutions
 
     def save_solution(R, s):
-        od = os.path.join(HERE, 'results', d, 'cgp'); os.makedirs(od, exist_ok=True)
+        od = os.path.join(HERE, 'runs', 'results', d, 'cgp'); os.makedirs(od, exist_ok=True)
         fn = os.path.join(od, name + '.out')
         with open(fn, 'w') as f:
             f.write('SOLVER cgp_bp\n')

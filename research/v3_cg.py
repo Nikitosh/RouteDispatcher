@@ -14,11 +14,11 @@ def done(p):
 def run(p):
     if done(p): return p, 'уже доказано', 0
     d, n = os.path.basename(os.path.dirname(p)), os.path.basename(p)[:-4]
-    os.makedirs(os.path.join(HERE, 'results', d, mode), exist_ok=True)
+    os.makedirs(os.path.join(HERE, 'runs', 'results', d, mode), exist_ok=True)
     script = 'cg_master.py' if mode == 'cg' else 'cgc_master.py'
     args = [PY, os.path.join(HERE, script), os.path.join(HERE, p), '--tl', str(int(TL * 0.9))]
     t0 = time.time()
-    with open(os.path.join(HERE, 'results', d, mode, n + '.log'), 'w') as f:
+    with open(os.path.join(HERE, 'runs', 'results', d, mode, n + '.log'), 'w') as f:
         pr = subprocess.Popen(args, stdout=f, stderr=subprocess.STDOUT, cwd=HERE, start_new_session=True)
         try:
             pr.wait(timeout=TL); st = f'код {pr.returncode}'

@@ -406,7 +406,7 @@ def main():
                 if solved_all: proven_km = True; res['lb_km'] = round(min(res['lb_km'], UB) if res['lb_km'] > UB else res['lb_km'], 4)
     if newbest:
         R, s = newbest
-        od = a.out or os.path.join(HERE, 'results', d, 'cg'); os.makedirs(od, exist_ok=True)
+        od = a.out or os.path.join(HERE, 'runs', 'results', d, 'cg'); os.makedirs(od, exist_ok=True)
         with open(os.path.join(od, name + '.out'), 'w') as f:
             f.write('SOLVER cg\n')
             for v, r in enumerate(R): f.write(f"ROUTE {v} {' '.join(map(str, r))}\n")

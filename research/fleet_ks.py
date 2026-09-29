@@ -69,7 +69,7 @@ def main():
     if a.mip > 0:   # маршруты всех прошлых решений этой задачи
         import glob
         nold = len(M.cols)
-        for f in glob.glob(os.path.join(HERE, 'results', d, '*', name + '.out')) + glob.glob(os.path.join(HERE, 'results', d, '*', '*', name + '.out')):
+        for f in glob.glob(os.path.join(HERE, 'runs', 'results', d, '*', name + '.out')) + glob.glob(os.path.join(HERE, 'runs', 'results', d, '*', '*', name + '.out')):
             try: R, _ = parse_output(open(f).read())
             except Exception: continue
             for v, r in enumerate(R[:I['V']]):
@@ -129,7 +129,7 @@ def main():
                         sol = [M.cols[j] for j in range(len(M.cols)) if x[M.hidx[j]] > 0.5]
                         R = CM.routes_to_vehicles(types, sol, I['V']); sc = CM.score(I, R); log('  ЦЕЛОЕ РЕШЕНИЕ В УЗЛЕ', sc)
                         if sc and sc[1] <= K - 1:
-                            od = os.path.join(HERE, 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
+                            od = os.path.join(HERE, 'runs', 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
                             with open(os.path.join(od, name + '.out'), 'w') as fo:
                                 fo.write('SOLVER fleet_ks\n' + ''.join(f"ROUTE {v} {' '.join(map(str, r))}\n" for v, r in enumerate(R)))
                             stack = [None]; break
@@ -160,7 +160,7 @@ def main():
                 if res['status'] == 'Infeasible': log(f'RESULT узел {m} закрыт: разбиения на {K - 1} маршрутов нет')
                 elif res['chosen']:
                     R = CM.routes_to_vehicles(types, res['chosen'], I['V']); log('  НОВОЕ РЕШЕНИЕ', CM.score(I, R))
-                    od = os.path.join(HERE, 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
+                    od = os.path.join(HERE, 'runs', 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
                     with open(os.path.join(od, name + '.out'), 'w') as fo:
                         fo.write('SOLVER fleet_ks\n' + ''.join(f"ROUTE {v} {' '.join(map(str, r))}\n" for v, r in enumerate(R)))
             pr.close(); return
@@ -201,7 +201,7 @@ def main():
             log(f'  CP-SAT: {res["status"]}, маршрутов {res["obj"]}, граница по пулу {res["bound"]}')
             if res['chosen']:
                 R = CM.routes_to_vehicles(types, res['chosen'], I['V']); sc = CM.score(I, R); log('  НОВОЕ РЕШЕНИЕ', sc)
-                od = os.path.join(HERE, 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
+                od = os.path.join(HERE, 'runs', 'results', d, 'fleet_ks'); os.makedirs(od, exist_ok=True)
                 with open(os.path.join(od, name + '.out'), 'w') as fo:
                     fo.write('SOLVER fleet_ks\n' + ''.join(f"ROUTE {v} {' '.join(map(str, r))}\n" for v, r in enumerate(R)))
             break

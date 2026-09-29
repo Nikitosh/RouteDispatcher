@@ -5,12 +5,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 insts = sorted(glob.glob(os.path.join(HERE, d, '*.txt')))
 only = os.environ.get('CG_ONLY')
 if only: insts = [p for p in insts if any(o in p for o in only.split(','))]
-os.makedirs(os.path.join(HERE, 'results', d, 'cg'), exist_ok=True)
+os.makedirs(os.path.join(HERE, 'runs', 'results', d, 'cg'), exist_ok=True)
 if os.environ.get('CG_SKIP_DONE'): insts = [p for p in insts if not os.path.exists(os.path.join(HERE, 'lb', d, os.path.basename(p)[:-4] + '.json'))]
 def run(p):
-    name = os.path.basename(p)[:-4]; lf = os.path.join(HERE, 'results', d, 'cg', name + '.log')
+    name = os.path.basename(p)[:-4]; lf = os.path.join(HERE, 'runs', 'results', d, 'cg', name + '.log')
     if os.environ.get('CG_CLAIM'):
-        try: os.close(os.open(os.path.join(HERE, 'results', d, 'cg', name + '.claim'), os.O_CREAT | os.O_EXCL))
+        try: os.close(os.open(os.path.join(HERE, 'runs', 'results', d, 'cg', name + '.claim'), os.O_CREAT | os.O_EXCL))
         except FileExistsError: return name, -1, 'claimed by another worker'
         if os.path.exists(os.path.join(HERE, 'lb', d, name + '.json')): return name, -1, 'done'
     with open(lf, 'w') as f:

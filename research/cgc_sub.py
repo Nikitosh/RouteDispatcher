@@ -5,7 +5,7 @@ import os, sys, math, subprocess, tempfile
 import numpy as np, highspy
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.dirname(os.path.abspath(__file__)); INF = highspy.kHighsInf
-SCR = os.environ.get('CGC_TMP', os.path.join(HERE, 'results', 'cgc_tmp'))
+SCR = os.environ.get('CGC_TMP', os.path.join(HERE, 'runs', 'results', 'cgc_tmp'))
 
 def write_sub(inst_path, S, fn):
     lines = open(inst_path).read().split('\n'); name = lines[0]
