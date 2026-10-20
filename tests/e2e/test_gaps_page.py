@@ -99,7 +99,7 @@ def site(url, tmp_path_factory):
         build_site([str(plan_dir), str(ev_dir), str(turn_dir), str(blocks_dir)], str(out), log=lambda *_: None, scenarios=journeys)
         build_bundle(doc, [], str(out), client=FakeOsrm(), log=lambda *_: None, cache_dir=str(cache))
         man = json.load(open(out / 'manifest.json'))
-        json.dump(dict(man, api=True), open(out / 'manifest.json', 'w'), ensure_ascii=False)
+        json.dump(dict(man, api=True, events=True), open(out / 'manifest.json', 'w'), ensure_ascii=False)
         from werkzeug.serving import make_server
 
         from dispatch.api import create_app

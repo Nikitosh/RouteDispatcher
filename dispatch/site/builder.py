@@ -57,7 +57,7 @@ def _dump(doc, path):
     json.dump(demo_phones(doc), open(path, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 
 
-def build_site(result_dirs, out, api=False, log=print, scenarios=None):
+def build_site(result_dirs, out, api=False, log=print, scenarios=None, event_button=False):
     """scenarios — сценарии страницы по группам: [{slug, title, text, steps: [{slug, title, text, dir, order?, show?}]}],
     dir — папка результата (план или событие), order — открыть карточку заявки, show — блоки панели сверху (через
     запятую: curve, price, deficit, quality, learned, exact, early, coverage). Событие относится к плану, от которого
@@ -130,6 +130,6 @@ def build_site(result_dirs, out, api=False, log=print, scenarios=None):
             steps.append(dict({k: v for k, v in st.items() if k != 'dir'}, d=districts[at[0]]['slug'], ev=at[1]))
         if steps:
             journeys.append(dict(slug=j['slug'], title=j['title'], text=j.get('text', ''), steps=steps))
-    json.dump(dict(districts=districts, api=api, journeys=journeys), open(os.path.join(out, 'manifest.json'), 'w'),
+    json.dump(dict(districts=districts, api=api, events=event_button, journeys=journeys), open(os.path.join(out, 'manifest.json'), 'w'),
               ensure_ascii=False, indent=1)
     return out

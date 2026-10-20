@@ -70,7 +70,7 @@ async function init() {
   // OSM, приглушённая до светло-серой (фильтр в style.css): улицы и их названия читаются, маршруты — главные на карте
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; участники OpenStreetMap'}).addTo(map);
   map.on('click', e => { map.scrollWheelZoom.enable(); if (FORM && (FORM.kind === 'urgent' || FORM.kind === 'order')) { FORM.lat = e.latlng.lat; FORM.lon = e.latlng.lng; FORM.variants = null; renderPanel(); renderMap(); } });
-  if (MAN.api) { $('ev-btn').classList.remove('hidden'); $('ev-btn').onclick = openForm; }
+  if (MAN.api && MAN.events) { $('ev-btn').classList.remove('hidden'); $('ev-btn').onclick = openForm; }
   window.addEventListener('storage', e => { if ((!e.key || e.key.startsWith(FieldStatus.PREFIX)) && D && !FORM && T == null) { renderPanel(); renderGantt(); renderBrigades(); } });
   layer = L.layerGroup().addTo(map);
   hiLayer = L.layerGroup().addTo(map);
@@ -535,26 +535,33 @@ function exactChart(pts) {
 }
 
 function qualityChart(q) {
-  // по числу лучших K: столбики — пробег за день, линия — средний рейтинг на заявке; выбранный K — жёлтым
+  // по числу лучших K: столбик — бригады (по делению на бригаду), над ним — км другим цветом; км всегда меньше одной
+  // бригады, поэтому выше тот вариант, где больше бригад, а при равных — где больше км. Линия — средний рейтинг на заявке
   const all = [...q.curve].sort((a, b) => a.k - b.k);
-  const W = 340, H = 200, L0 = 8, R0 = 8, T0 = 34, B0 = 36, n = all.length, bw = (W - L0 - R0) / n;
-  const kmMax = Math.max(...all.map(p => p.km)), r0 = Math.min(...all.map(p => p.rating)), r1 = Math.max(...all.map(p => p.rating));
-  const base = H - B0, yK = km => base - (base - T0) * .78 * km / kmMax;
-  const yR = r => T0 - 18 + 46 * (r1 > r0 ? (r1 - r) / (r1 - r0) : .5);
-  const cx = i => L0 + bw * i + bw / 2;
+  const W = 340, H = 250, L0 = 8, R0 = 8, B0 = 36, n = all.length, bw = (W - L0 - R0) / n;
+  const kmMax = Math.max(...all.map(p => p.km)) * 1.05, units = p => p.brigades + p.km / kmMax;
+  const uMax = Math.max(...all.map(units)), r0 = Math.min(...all.map(p => p.rating)), r1 = Math.max(...all.map(p => p.rating));
+  const base = H - B0, top = 92, yU = u => base - (base - top) * u / uMax;
+  const yR = r => 22 + 40 * (r1 > r0 ? (r1 - r) / (r1 - r0) : .5);
+  const cx = i => L0 + bw * i + bw / 2, x0 = i => cx(i) - bw * .32, w = bw * .64;
   const line = all.map((p, i) => `${cx(i)},${yR(p.rating)}`).join(' ');
   return `<div class="quality"><div class="ptitle" style="padding:0 0 4px"><span>Цена качества</span><span class="muted">лучшие K из ${q.pool}</span></div>
-    <div class="pnote" style="padding:0 0 4px">Берём на день лучших по рейтингу. Больше выбор — ниже средний рейтинг на заявке; пробег — по плану на этих бригадах.</div>
-    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Цена качества: пробег и рейтинг при разном числе лучших">
+    <div class="pnote" style="padding:0 0 4px">Берём на день лучших по рейтингу. Шире выбор — меньше нужно бригад, но ниже средний рейтинг на заявке.</div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Цена качества: бригады, пробег и рейтинг при разном числе лучших">
     <line x1="${L0}" y1="${base}" x2="${W - R0}" y2="${base}" class="ax"/>
-    ${all.map((p, i) => `<rect x="${cx(i) - bw * .32}" y="${yK(p.km)}" width="${bw * .64}" height="${base - yK(p.km)}" rx="3" class="eb${p.k === q.k ? ' on' : ''}"><title>${p.k === q.pool ? 'все' : 'лучшие ' + p.k}: ${pl(p.brigades, 'бригада', 'бригады', 'бригад')}, ${km1(p.km)} км, ★ ${num2(p.rating)}</title></rect>
-      <text x="${cx(i)}" y="${yK(p.km) + 14}" class="in-t">${Math.round(p.km)}</text>
-      <text x="${cx(i)}" y="${base + 15}" class="ax-t">${p.k === q.pool ? 'все' : p.k}</text>`).join('')}
+    ${all.map((p, i) => { const on = p.k === q.k ? ' on' : '', yb = yU(p.brigades), yk = yU(units(p));
+      const tip = `<title>${p.k === q.pool ? 'все' : 'лучшие ' + p.k}: ${pl(p.brigades, 'бригада', 'бригады', 'бригад')}, ${km1(p.km)} км, ★ ${num2(p.rating)}</title>`;
+      const cuts = [...Array(p.brigades - 1).keys()].map(b => `<line x1="${x0(i)}" x2="${x0(i) + w}" y1="${yU(b + 1)}" y2="${yU(b + 1)}" class="ecut"/>`).join('');
+      return `<rect x="${x0(i)}" y="${yk}" width="${w}" height="${yb - yk}" class="ekm${on}">${tip}</rect>
+      <rect x="${x0(i)}" y="${yb}" width="${w}" height="${base - yb}" class="eb${on}">${tip}</rect>${cuts}
+      <text x="${cx(i)}" y="${base - 6}" class="in-t">${p.brigades}</text>
+      <text x="${cx(i)}" y="${yk - 4}" class="km-t">${Math.round(p.km)}</text>
+      <text x="${cx(i)}" y="${base + 15}" class="ax-t">${p.k === q.pool ? 'все' : p.k}</text>`; }).join('')}
     <polyline points="${line}" class="ql"/>
     ${all.map((p, i) => `<circle cx="${cx(i)}" cy="${yR(p.rating)}" r="${p.k === q.k ? 5.5 : 3.5}" class="qp${p.k === q.k ? ' sel' : ''}"/>
       <text x="${cx(i)}" y="${yR(p.rating) - 8}" class="ql-t">${num2(p.rating)}</text>`).join('')}
-    <text x="${W / 2}" y="${H - 4}" class="ax-t">лучших K · столбики — км за день · линия — ★ на заявке</text></svg>
-    <div class="pnote" style="padding:2px 0 0">Выбрано ${q.k}: меньше лучших не закрывают день${q.proven ? ' (доказано)' : ''}.</div>
+    <text x="${W / 2}" y="${H - 4}" class="ax-t">лучших K · столбик — бригады, сверху — км · линия — ★ на заявке</text></svg>
+    <div class="pnote" style="padding:2px 0 0">Высота: сначала бригады, потом км (км всегда меньше одной бригады). Выбрано ${q.k}: меньше лучших не закрывают день${q.proven ? ' (доказано)' : ''}.</div>
     <details class="qtab"><summary>Таблица</summary><table class="t qt"><tr><th>Лучших</th><th>Бригад</th><th>Пробег</th><th>Рейтинг</th></tr>
     ${all.map(p => `<tr class="${p.k === q.k ? 'on' : ''}"><td>${p.k === q.pool ? 'все ' + p.k : p.k}</td><td>${p.brigades}</td><td class="nw">${km1(p.km)} км</td><td class="nw">★ ${num2(p.rating)}</td></tr>`).join('')}</table></details></div>`;
 }

@@ -98,6 +98,7 @@ def build_parser():
     s.add_argument('dirs', nargs='+')
     s.add_argument('--out', '-o', default='site')
     s.add_argument('--api', action='store_true', help='пакеты данных для сервера (события и правка плана на странице); нужен OSRM')
+    s.add_argument('--events', action='store_true', help='кнопка «Событие» на странице (свои события через сервер; с --api)')
     s.add_argument('--scenarios', help='сценарии страницы по группам (JSON: [{slug, title, text, steps: [{slug, title, text, '
                                        'dir, order?, show?}]}], пример — scripts/scenarios.json)')
     sv = sub.add_parser('serve', help='открыть страницу локально')
@@ -235,7 +236,7 @@ def cmd_replan(a):
 def cmd_site(a):
     from .site.builder import build_site
     scenarios = json.load(open(a.scenarios, encoding='utf-8')) if a.scenarios else None
-    print(f'Страница: {build_site(a.dirs, a.out, api=a.api, scenarios=scenarios)}/index.html (открыть: python -m dispatch serve {a.out})')
+    print(f'Страница: {build_site(a.dirs, a.out, api=a.api, scenarios=scenarios, event_button=a.events)}/index.html (открыть: python -m dispatch serve {a.out})')
     return 0
 
 
