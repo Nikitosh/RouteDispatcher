@@ -3,7 +3,7 @@
 Бригады — состав контрольного дня: навыки — типы заявок, которые бригада реально выполняла; бригадам, работавшим в
 основном в Кашире, Ступино или Домодедово, старт в их городе. Транспорт задаём сами (жюри разрешило): все на общ.
 транспорте, все на машине или смесь (mix1, mix2 — воспроизводимо по имени бригады).
-Заявки — синтетика организаторов плюс колонка «Транспорт»: только машина для настоящей аварии на узле связи
+Заявки — синтетика организаторов с адресами контрольного дня (там есть номер квартиры) плюс колонка «Транспорт»: только машина для настоящей аварии на узле связи
 («Глобальная проблема / Авария»: лестница, сварка оптики) и для подключения с заказом оборудования
 («Подключение / Заказ подключения…»: роутер, приставка, кабель). Остальным — любой транспорт.
 """
@@ -16,6 +16,7 @@ from ..config import DATA_DIR, MODE_NAMES, SKILL, SKILL_NAMES
 from ..files.readers import read_orders
 from ..files.tables import read_table
 from ..geo.geocoder import Geocoder
+from ..model.domain import house_address
 from .sources import organizers_file
 
 FAR_TOWNS = ('Кашира', 'Ступино', 'Домодедово')
@@ -72,13 +73,19 @@ def write_brigades(path, rows):
     wb.save(path)
 
 
-def write_orders(synth_csv, path):
-    """Синтетика организаторов → xlsx с колонкой «Транспорт». Возвращает (заявок, из них «только машина»)."""
+def write_orders(synth_csv, path, control_csv=None):
+    """Синтетика организаторов → xlsx с колонкой «Транспорт». Возвращает (заявок, из них «только машина»).
+    Синтетика и контрольный день совпадают построчно; адрес берём из контрольного дня — там есть номер квартиры."""
     import openpyxl
     from openpyxl.styles import Font
     rows = read_table(synth_csv)
     head = rows[0]
-    bk, hd = head.index('Тип заявки BK'), head.index('Тип заявки HD')
+    bk, hd, addr = head.index('Тип заявки BK'), head.index('Тип заявки HD'), head.index('Адрес')
+    control = []
+    if control_csv:
+        ctl = read_table(control_csv)
+        ca = ctl[0].index('Адрес')
+        control = [r[ca] for r in ctl[1:] if r[0] and not r[0].lower().startswith('адрес')]
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = 'Заявки'
@@ -90,6 +97,8 @@ def write_orders(synth_csv, path):
         if r[0].lower().startswith('адрес'):
             ws.append(r)
             continue
+        if total < len(control) and house_address(control[total]) == r[addr].strip():
+            r = r[:addr] + [control[total]] + r[addr + 1:]
         car = needs_car(r[bk], r[hd])
         ws.append(r + [''] * (len(head) - len(r)) + ['авто' if car else ''])
         total += 1
@@ -108,6 +117,6 @@ def write_all(variant='mix2', out_dir=DEMO_DIR):
         o = os.path.join(out_dir, f'{region} заявки.xlsx')
         rows = roster(region, variant)
         write_brigades(b, rows)
-        total, need = write_orders(organizers_file(region, 'Синтетические'), o)
+        total, need = write_orders(organizers_file(region, 'Синтетические'), o, organizers_file(region, 'Контрольное'))
         done.append((region, b, o, len(rows), total, need))
     return done

@@ -67,3 +67,56 @@ def test_geometry_cache_and_offline(tmp_path):
     assert offline.leg('bike', (55.0, 37.0), (55.2, 37.0)) is None
     assert g.route('foot', [(55.0, 37.0), (55.2, 37.0)]) is None
     assert profile_of('pt') == 'car'
+
+
+def test_store_keeps_pairs_written_by_others(tmp_path):
+    from dispatch.geo.store import JsonStore
+    path = str(tmp_path / 'm.json')
+    first, second = JsonStore(path), JsonStore(path)                 # оба прочитали пустой кэш
+    first.put('a', 1)
+    first.save()
+    second.put('b', 2)
+    second.save()                                                     # не затирает «a» от первого
+    assert JsonStore(path).data == {'a': 1, 'b': 2}
+    second.put('a', 3)
+    second.save()
+    assert JsonStore(path).data == {'a': 3, 'b': 2} and not second.dirty
+
+
+def test_store_gz_round_trip(tmp_path):
+    from dispatch.geo.store import JsonStore
+    path = str(tmp_path / 'm.json.gz')
+    a = JsonStore(path)
+    a.put('k', [1, 2])
+    a.save()
+    b = JsonStore(path)
+    b.put('j', [3])
+    b.save()                                                          # перечитывает сжатый файл и пишет сжатый
+    assert JsonStore(path).data == {'k': [1, 2], 'j': [3]}
+
+
+def test_store_readonly_and_threads(tmp_path):
+    import threading
+
+    from dispatch.geo.store import JsonStore
+    path = str(tmp_path / 'm.json.gz')
+    JsonStore(path).save()
+    ro = JsonStore(path, readonly=True)
+    ro.put('x', 1)
+    ro.save()                                                         # сервер не дописывает пакет
+    assert not (tmp_path / 'm.json.gz').exists() and ro.get('x') == 1
+    stores = [JsonStore(path) for _ in range(8)]
+    for i, s in enumerate(stores):
+        s.put(f'k{i}', i)
+    threads = [threading.Thread(target=s.save) for s in stores]       # свой временный файл у каждого потока
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert JsonStore(path).data and not list(tmp_path.glob('*.tmp'))
+
+
+def test_api_region_does_not_write_bundle(tmp_path):
+    from dispatch.api import Region
+    r = Region(str(tmp_path))
+    assert r.matrices.readonly and r.matrices._store('car').readonly

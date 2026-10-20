@@ -1,6 +1,6 @@
 #!/bin/bash
 # cgc: like cgc_queue.sh, plus EXTRA env var with additional cgc_master.py flags
-cd /Users/nikitosh/Downloads/lct/research
+cd "$(dirname "$0")"
 TL=${TL:-720}
 for x in "$@"; do
   d=${x%%/*}; i=${x##*/}

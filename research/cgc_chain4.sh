@@ -1,7 +1,7 @@
 #!/bin/bash
 # cgc final phase, core 2: after queue 2 -> validation on proven-optimal instances (no write; node enumeration on),
 # then long B&P on s9
-cd /Users/nikitosh/Downloads/lct/research
+cd "$(dirname "$0")"
 while kill -0 7060 2>/dev/null; do sleep 10; done
 for x in instances_road/yugovostok_s5; do
   d=${x%%/*}; i=${x##*/}

@@ -22,17 +22,17 @@ public:
         ls::Solution x(I, s.routes());
         ls_.run(x, cap, clock_, tEnd);
         Solution y(P, x.r);
-        if (y.better(s, P) || (y.penSum(P) == s.penSum(P) && y.used() == s.used() && y.kmTot() <= s.kmTot())) s = y;
+        if (y.better(s, P) || (y.penSum(P) == s.penSum(P) && y.used() == s.used() && y.kmCost() <= s.kmCost())) s = y;
     }
 
     // Отжиг от best до tEnd; best — вход и выход. Температура в единицах среднего ребра, геометрически 5 → 0,05.
     // Возвращает true, если оборван опросом.
     bool run(Solution& best, double tEnd, const PollFn& poll) {
         const int N = P.N;
-        int cap = best.nUn() > 0 ? P.V : best.used();   // не всё обслужено — можно открывать бригады
+        int cap = P.kmCap(best.used(), best.nUn() == 0);   // не всё обслужено — можно открывать бригады
         Solution cur = best;
         const int qmin = min(N, 4), qmax = max(qmin, min((int)(0.3 * N), 30));
-        const double edge = max(1.0, best.kmTot()) / max(1, N - best.nUn());
+        const double edge = max(1.0, best.kmCost()) / max(1, N - best.nUn());
         const double T0 = T_START * edge, Tf = T_END * edge;
         const double t1 = clock_.sec(), span = max(1e-9, tEnd - t1);
         double T = T0, curCost = cur.cost(P), bestCost = best.cost(P);
@@ -64,10 +64,10 @@ public:
             removeSet(P, cur, ruins_.rem.data(), (int)ruins_.rem.size(), pool_, &undo_);
             if (big && rng.uni() < 0.5) {
                 rng.shuffle(pool_.begin(), pool_.end());
-                regret_.run(P, cur, pool_, rng, 2, cap, W_VEHICLE, &undo_);
+                regret_.run(P, cur, pool_, rng, 2, cap, P.wVeh, &undo_);
             } else {
                 sisrSort(P, pool_, rng);
-                greedyInsert(P, cur, pool_, rng, BLINK, cap, W_VEHICLE, &undo_);
+                greedyInsert(P, cur, pool_, rng, BLINK, cap, P.wVeh, &undo_);
             }
             double c = cur.cost(P);
             if (c >= curCost - T * log(rng.uni() + 1e-300)) {

@@ -4,7 +4,7 @@
 // работают два кооператива со своими хранилищами: основной ARKZW на настоящей задаче и ведомый ZAK на копии, где км
 // между кластерами втрое дороже. Ведомый не затягивается в яму основного, а свои решения отдаёт и основному
 // (там они оцениваются по настоящим км и полируются его км-потоками).
-// Использование: plan <задача> [секунды] [сид].
+// Использование: plan <задача> [секунды] [сид] [maxv=K] [wveh=X] [wwait=Y] (docs/SOLVER_IO.md).
 #include "coop/cooperative.hpp"
 
 using namespace dispatch;
@@ -36,7 +36,7 @@ static Routes solve(const Instance& I, double seconds, uint64_t seed) {
     const lns::Problem& P = main.problem();
     lns::Solution best(P, R);
     ls::Solution x(I, best.routes());
-    ls::LocalSearch(I).run(x, best.used(), clock, seconds * POLISH_SHARE);
+    ls::LocalSearch(I).run(x, P.kmCap(best.used(), best.nUn() == 0), clock, seconds * POLISH_SHARE);
     lns::Solution y(P, x.r);
     if (y.better(best, P)) best = y;
     return ls::finalize(I, best.routes());

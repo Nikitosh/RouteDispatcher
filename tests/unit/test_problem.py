@@ -43,9 +43,11 @@ def test_write_instance(tmp_path):
     p.write(str(path))
     lines = path.read_text().splitlines()
     assert lines[:2] == ['тест', '1 2 1']
-    assert lines[2].split() == ['1', '70', '0', '120', '2', str(1 + 3 * 1)]
-    assert lines[3].split() == ['0', '0', str((1 << 1) | (1 << 4))]        # машина: и «любой», и «только машина»
-    assert lines[4].split() == ['0', '3', str(1 << 1)]
+    assert lines[2].split() == ['1', '70', '0', '120', '2', str(1 + 3 * 1), '1', '0']     # подключению нужен роутер
+    # машина: и «любой», и «только машина»; свободна с 0, обед 13:00–15:15 на 45 мин, оборудование без предела; темп у
+    # всех 1 — поля темпа нет
+    assert lines[3].split() == ['0', '0', str((1 << 1) | (1 << 4)), '720', '0.0', '180', '315', '45', '-1', '-1', '-1']
+    assert lines[4].split() == ['0', '3', str(1 << 1), '720', '0.0', '180', '315', '45', '-1', '-1', '-1']
     assert len(lines) == 2 + 1 + 2 + 4 * 2 * 2
 
 
@@ -61,3 +63,54 @@ def test_validator_catches_violations():
     frozen = [[], [1]]
     assert any('выполненная часть' in e for e in check_plan(p, [[], [2]], frozen=frozen).errors)
     assert any('недоступна' in e for e in check_plan(p, [[], [1, 2]], frozen=frozen, removed={1}).errors)
+
+
+def test_shift_bounds_schedule():
+    late = brigade('Поздняя')
+    late.shift = (180, 720)                  # 13:00–22:00
+    early = brigade('Ранняя')
+    early.shift = (0, 540)                   # 10:00–19:00
+    p = line_problem([order(1, 'Ремонт', (0, 120), x=10), order(2, 'Ремонт', (520, 600), x=10)], [late, early])
+    s = p.schedule(0, [1])
+    assert s.feasible and s.lunch == (180, 0) and s.stops[0].arrive == 180 + 45 + 10   # обед с начала смены, потом дорога
+    assert not p.schedule(0, [0]).feasible   # окно до 12:00, а смена с 13:00
+    assert not p.schedule(1, [1]).feasible   # работа закончится после 19:00
+    errs = check_plan(p, [[0], [1]]).errors
+    assert any('позже окна' in e for e in errs) and any('конца смены 10:00–19:00' in e for e in errs)
+
+
+
+def test_speed_scales_service_per_brigade(tmp_path):
+    """Темп бригады: длительность ⌊норматив·темп + 0,5⌋ у неё в расписании, в самом позднем начале и в проверке;
+    в задаче решателя — последнее поле бригады, а конец окна — по самой быстрой."""
+    fast, slow = brigade('Быстрая', x=0), brigade('Медленная', x=0)
+    fast.speed, slow.speed = 0.85, 1.25
+    orders = [order(1, 'Подключение', (0, 600), x=10), order(2, 'Ремонт', (0, 600), x=10), order(3, 'Авария', (600, 720), x=1)]
+    p = line_problem(orders, [fast, slow])
+    assert [p.service(0, k) for k in range(3)] == [60, 26, 68]           # 59,5 → 60; 25,5 → 26; 68
+    assert [p.service(1, k) for k in range(3)] == [88, 38, 100]          # 87,5 → 88; 37,5 → 38
+    s = p.schedule(0, [0, 1])
+    assert [(st.start, st.end) for st in s.stops] == [(10, 70), (70, 96)]
+    s = p.schedule(1, [0, 1])
+    assert [(st.start, st.end) for st in s.stops] == [(10, 98), (98, 136)]
+    assert p.latest(2, 0) == 720 - 68 and p.latest(2, 1) == 720 - 100 and p.latest(2) == 720 - 68
+    # 22:00 − 80 мин аварии по нормативу = 640: быстрая успевает начать в 651, медленная — нет
+    assert p.in_time(0, 2, 651) and not p.in_time(1, 2, 651)
+    assert check_plan(p, [[2], []]).ok
+    path = tmp_path / 'task.txt'
+    p.write(str(path))
+    lines = path.read_text().splitlines()
+    assert lines[4].split()[3] == str(720 - 68)                           # конец окна аварии — по самой быстрой
+    assert lines[5].split()[-1] == '0.85' and lines[6].split()[-1] == '1.25'
+
+
+def test_validator_uses_brigade_speed():
+    b = brigade('Медленная')
+    b.speed = 1.5
+    orders = [order(1, 'Подключение', (0, 0), x=0), order(2, 'Ремонт', (75, 75), x=0)]
+    b.lunch = False
+    p = line_problem(orders, [b])
+    assert not p.schedule(0, [0, 1]).feasible                  # 70·1,5 = 105 мин: к 75 не успевает
+    assert any('позже окна' in e for e in check_plan(p, [[0, 1]]).errors)
+    b.speed = 1.0
+    assert p.schedule(0, [0, 1]).feasible and check_plan(p, [[0, 1]]).ok

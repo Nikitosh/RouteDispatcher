@@ -7,12 +7,16 @@
     research/.venv/bin/python presentation/build/figures_algo.py  # схемы алгоритма → fig/
     .pptx-venv/bin/python presentation/build/build_mandatory.py      # слайды 7–11 шаблона ЛЦТ → out/mandatory.pptx
     .pptx-venv/bin/python presentation/build/build_bee.py            # основная часть → out/main.pptx
-    .pptx-venv/bin/python presentation/build/assemble.py             # → presentation/presentation_trdelnik.pdf
+    .pptx-venv/bin/python presentation/build/assemble.py             # → presentation/presentation_trdelnik.pdf и .pptx
 Шаблон ЛЦТ — 13,33 × 7,5 дюйма, шаблон «Билайна» — 26,67 × 15; страницы ЛЦТ масштабируем ×2.
+Один pptx: основная часть, перед ней обязательные слайды картинками во весь слайд (разные шаблоны и размеры в одном
+файле не совместить); редактируемые обязательные слайды — отдельным файлом рядом.
 """
 import os
+import glob
 import shutil
 import subprocess
+import tempfile
 
 from pypdf import PdfReader, PdfWriter, Transformation
 
@@ -42,3 +46,30 @@ print('saved', os.path.abspath(dst), len(w.pages), 'pages')
 for src, name in [('mandatory.pptx', 'presentation_trdelnik_1_обязательные.pptx'),
                   ('main.pptx', 'presentation_trdelnik_2_основная.pptx')]:
     shutil.copy(os.path.join(OUT, src), os.path.join(HERE, '..', name))
+
+
+def combined_pptx(mandatory_pdf, main_pptx, dst):
+    from pptx import Presentation
+    prs = Presentation(main_pptx)
+    layout = min(prs.slide_layouts, key=lambda l: len(l.placeholders))
+    tmp = tempfile.mkdtemp()
+    subprocess.run(['pdftoppm', '-r', '220', '-png', mandatory_pdf, os.path.join(tmp, 'm')], check=True)
+    pngs = sorted(glob.glob(os.path.join(tmp, 'm-*.png')))
+    for png in pngs:
+        sl = prs.slides.add_slide(layout)
+        for ph in list(sl.placeholders):
+            ph._element.getparent().remove(ph._element)
+        sl.shapes.add_picture(png, 0, 0, prs.slide_width, prs.slide_height)
+    ids = prs.slides._sldIdLst
+    new = list(ids)[-len(pngs):]
+    for el in reversed(new):                       # обязательные — в начало
+        ids.remove(el)
+        ids.insert(0, el)
+    prs.save(dst)
+    shutil.rmtree(tmp, ignore_errors=True)
+    return len(prs.slides)
+
+
+dst_pptx = os.path.join(HERE, '..', 'presentation_trdelnik.pptx')
+n = combined_pptx(os.path.join(OUT, 'mandatory.pdf'), os.path.join(OUT, 'main.pptx'), dst_pptx)
+print('saved', os.path.abspath(dst_pptx), n, 'slides')

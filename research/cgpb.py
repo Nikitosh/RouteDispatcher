@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from validate import load_instance, check, parse_output
 
 HERE = os.path.dirname(os.path.abspath(__file__)); INF = highspy.kHighsInf
-SCR = os.environ.get('CGM_TMP', '/private/tmp/claude-501/-Users-nikitosh-Downloads-lct/d8f727be-c46e-4a0a-ac5e-5e8ed1e794e5/scratchpad/cgm_tmp')
+SCR = os.environ.get('CGM_TMP', 'research/runs/tmp/cgm_tmp')
 os.makedirs(SCR, exist_ok=True); os.environ.setdefault('CGC_TMP', SCR)
 PEN = {1: 100, 2: 50, 3: 20}
 

@@ -18,3 +18,36 @@ research/roads_cache_local/
 presentation/build/out/
 presentation/build/preview/
 research/results/
+# выгрузки домов для python -m dispatch houses (скачиваются сами)
+data/houses/
+# сборка для Vercel (scripts/build_vercel.sh)
+vercel/
+
+# ключи API (Яндекс Расписания и др.)
+.env
+data/transit/
+.coverage
+# сырые данные HERE Traffic4cast и промежуточные суммы — сотни мегабайт; сетка пробок data/traffic/here_grid.npz — в git
+research/traffic/raw/t4c2019_moscow2018/
+research/traffic/raw/t4c_accum.npz
+research/traffic/raw/eval/
+design/
+.ruff_cache/
+# LibreOffice: служебные файлы профиля (шрифты в user/fonts — в git)
+presentation/build/lo_profile/.lock
+presentation/build/lo_profile/cache/
+# неиспользуемые снимки страницы
+presentation/build/shots/lunch_full.png
+presentation/build/shots/shifts_full.png
+presentation/build/shots/compare.png
+presentation/build/shots/explain.png
+presentation/build/shots/v1.png
+presentation/build/shots/v2.png
+presentation/build/shots/v3.png
+presentation/build/shots/v4.png
+presentation/build/shots/v5.png
+presentation/build/shots/v6.png
+presentation/build/shots/v7.png
+presentation/build/shots/v8.png
+presentation/build/shots/v9.png
+presentation/build/shots/v10.png

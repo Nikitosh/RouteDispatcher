@@ -1,6 +1,7 @@
 // Отжиг на быстрых маршрутах (fast_routes.hpp).
 //
-// Суррогатная цель: км + Wv·бригады + Σ wp[k] по заявкам в пуле − β·Σ длина². Слагаемое с β тянет к неравным
+// Суррогатная цель: км + wwait·ожидание аварий + Wv·бригады + Σ wp[k] по заявкам в пуле − β·Σ длина². Бригад не
+// больше maxv: ходы, открывающие лишнюю, отвергаются. Слагаемое с β тянет к неравным
 // маршрутам: короткий потом проще удалить. Вес wp[k] растёт, пока заявка лежит в пуле.
 // Фазы run(): починка (обслужить всё, открывать бригады можно) → сокращение бригад (удалить маршрут и отжигом без
 // открытия бригад вернуть заявки из пула) → км при фиксированном парке. Опции включают оценку снизу по нагрузке,
@@ -33,7 +34,7 @@ inline int workLowerBound(const Data& F) {
         }
         if (shortest < 1e17) total += F.svc[k] + shortest;
     }
-    return (int)ceil(total / SHIFT - 1e-9);
+    return (int)ceil(total / *std::max_element(F.end, F.end + F.V) - 1e-9);
 }
 
 class Annealer {
@@ -43,6 +44,8 @@ public:
     std::function<void()> onAttempt;
     bool aborted = false;
     double bestScore = 1e300;
+    long long bestKey = 1LL << 60;   // «штраф·100 + бригады» лучшего (как Score::fleetKey)
+    double bestCost = 0;             // цель лучшего ниже бригад: км + wwait·ожидание
 
     Annealer(const Data& f, uint64_t seed, AnnealerOptions opt = {}) : F(f), rng(seed), opt_(opt), workBound_(workLowerBound(f)) {}
 
@@ -135,6 +138,8 @@ private:
     double press(int len) const { return -beta * len * len; }
     bool accept(double delta) { return delta <= 0 || rng.uni() < exp(-delta / T); }
     void saveBest() {
+        bestKey = llround(S.poolPen + S.fixedPen) * 100 + S.used;
+        bestCost = S.cost;
         for (int v = 0; v < F.V; v++) {
             bestLen_[v] = S.r[v].len;
             memcpy(bestSeq_[v], S.r[v].seq, sizeof(int) * S.r[v].len);
@@ -165,10 +170,13 @@ private:
     double pieceDelta(const Piece& c, double km) const {
         const Route& R = S.r[c.v];
         int newLen = candidateLen(S, c.i, c.m, c.u, c.j);
-        return km - R.km + Wv * ((newLen > 0) - (R.len > 0)) + press(newLen) - press(R.len);
+        return km - R.cost + Wv * ((newLen > 0) - (R.len > 0)) + press(newLen) - press(R.len);
     }
+    // На сколько изменится число бригад.
+    int opened(const Piece& c) const { return (candidateLen(S, c.i, c.m, c.u, c.j) > 0) - (S.r[c.v].len > 0); }
     // Две разные бригады; сначала проверяется A (обычно сторона вставки, чаще недопустима).
     bool try2(const Piece& A, const Piece& B, double extra) {
+        if (S.used + opened(A) + opened(B) > F.maxUsed) return false;
         double kmA = evalCandidate(F, S, A.v, A.i, A.mid, A.m, A.u, A.j);
         if (kmA < 0) return false;
         double kmB = evalCandidate(F, S, B.v, B.i, B.mid, B.m, B.u, B.j);
@@ -181,6 +189,7 @@ private:
         return true;
     }
     bool try1(const Piece& A, double extra) {
+        if (S.used + opened(A) > F.maxUsed) return false;
         double km = evalCandidate(F, S, A.v, A.i, A.mid, A.m, A.u, A.j);
         if (km < 0) return false;
         if (!accept(pieceDelta(A, km) + extra)) return false;
@@ -204,15 +213,16 @@ private:
         return try1(c, extra);
     }
     int randomRouted() {
+        if (F.N == 0) return -1;
         for (int t = 0; t < 6; t++) {
             int k = rng.randint(F.N);
             if (S.where[k] >= 0) return k;
         }
         return -1;
     }
-    int randomNeighbor(int k) {
+    int randomNeighbor(int k) {          // -1 — соседей нет (в задаче одна заявка)
         const vector<int>& nb = F.neighbors[k];
-        return nb[rng.randint((int)nb.size())];
+        return nb.empty() ? -1 : nb[rng.randint((int)nb.size())];
     }
 
     // ---- ходы ----
@@ -221,7 +231,9 @@ private:
     void relocate(int L) {
         int k = randomRouted();
         if (k < 0) return;
-        int n = randomNeighbor(k), b = S.where[n];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int b = S.where[n];
         if (b < 0) return;
         int a = S.where[k], i = S.pos[k];
         const Route& RA = S.r[a];
@@ -257,14 +269,14 @@ private:
         double kmA = evalCandidate(F, S, a, i, nullptr, 0, a, i + 1);
         if (kmA < 0) return;
         int la = RA.len - 1;
-        double dA = kmA - RA.km + Wv * ((la > 0) - 1) + press(la) - press(RA.len);
+        double dA = kmA - RA.cost + Wv * ((la > 0) - 1) + press(la) - press(RA.len);
         double best = 1e18;
         int bv = -1, bp = -1;
         for (int v = 0; v < F.V; v++) {
             if (v == a || !(F.skillBit[k] & F.mask[v])) continue;
             const Route& R = S.r[v];
-            if (R.len == 0 && !allowOpen) continue;
-            double base = (R.len == 0 ? Wv : 0) + press(R.len + 1) - press(R.len) - R.km;
+            if (R.len == 0 && (!allowOpen || S.used - (la == 0) >= F.maxUsed)) continue;
+            double base = (R.len == 0 ? Wv : 0) + press(R.len + 1) - press(R.len) - R.cost;
             for (int p = 0; p <= R.len; p++) {
                 double km = evalCandidate(F, S, v, p, &k, 1, v, p);
                 if (km < 0) continue;
@@ -285,7 +297,9 @@ private:
     void swapMove() {
         int k = randomRouted();
         if (k < 0) return;
-        int n = randomNeighbor(k), b = S.where[n];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int b = S.where[n];
         if (b < 0) return;
         int j = S.pos[n], r = rng.randint(3);
         if (r == 1 && j + 1 < S.r[b].len) j++;
@@ -306,7 +320,9 @@ private:
     void crossExchange() {
         int k = randomRouted();
         if (k < 0) return;
-        int n = randomNeighbor(k), b = S.where[n], a = S.where[k];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int b = S.where[n], a = S.where[k];
         if (b < 0 || a == b) return;
         int i = S.pos[k], j = S.pos[n] + (int)(rng.next() & 1);
         const Route &RA = S.r[a], &RB = S.r[b];
@@ -320,7 +336,9 @@ private:
     void twoOptStar() {
         int k = randomRouted();
         if (k < 0) return;
-        int n = randomNeighbor(k), b = S.where[n], a = S.where[k];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int b = S.where[n], a = S.where[k];
         if (b < 0 || a == b) return;
         int i = S.pos[k], j = S.pos[n];
         if (rng.next() & 1) try2({a, i + 1, nullptr, 0, b, j}, {b, j, nullptr, 0, a, i + 1}, 0);   // k → n
@@ -330,7 +348,9 @@ private:
     void twoOpt() {
         int k = randomRouted();
         if (k < 0) return;
-        int n = randomNeighbor(k), a = S.where[k];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int a = S.where[k];
         if (S.where[n] != a) return;
         int i = S.pos[k], j = S.pos[n];
         if (i > j) std::swap(i, j);
@@ -363,7 +383,9 @@ private:
     // Заявка из пула вытесняет в пул соседа или случайную заявку его маршрута.
     void poolEject() {
         int k = S.pool[rng.randint(S.np)];
-        int n = randomNeighbor(k), b = S.where[n];
+        int n = randomNeighbor(k);
+        if (n < 0) return;
+        int b = S.where[n];
         if (b < 0) return;
         int j = S.pos[n];
         const Route& R = S.r[b];
@@ -407,7 +429,7 @@ private:
                     Piece c = intraPiece(v, tmp, nl);
                     double km = evalCandidate(F, S, c.v, c.i, c.mid, c.m, c.u, c.j);
                     if (km < 0) continue;
-                    double d = km - R.km + ew - wp[k] + press(nl) - press(R.len) + 1e-3 * rng.uni();
+                    double d = km - R.cost + ew - wp[k] + press(nl) - press(R.len) + 1e-3 * rng.uni();
                     if (d < best) {
                         best = d;
                         bv = v;
@@ -566,7 +588,8 @@ private:
         int ba = -1, bi = -1, be = -1;
         long long tried[MAX_VEHICLES];
         int nTried = 0;
-        const double noise = SPLIT_NOISE * S.km / max(1, S.used);
+        if (S.used >= F.maxUsed) return false;
+        const double noise = SPLIT_NOISE * S.cost / max(1, S.used);
         for (int e = 0; e < F.V; e++) {
             if (S.r[e].len) continue;
             long long key = vehicleClass(F, e);
@@ -578,7 +601,7 @@ private:
                     if (R.need[i] & ~F.mask[e]) continue;
                     double kmE = evalCandidate(F, S, e, 0, nullptr, 0, a, i);
                     if (kmE < 0) continue;
-                    double d = kmE + (i > 0 ? R.ck[i - 1] : 0) - R.km + noise * rng.uni();
+                    double d = kmE + (i > 0 ? R.ck[i - 1] + F.wWait * R.wA[i - 1] : 0) - R.cost + noise * rng.uni();
                     if (d < best) {
                         best = d;
                         ba = a;
@@ -640,7 +663,7 @@ private:
         double total = 0;
         for (int v = 0; v < F.V; v++)
             if (rowOf[v] >= 0) total += cost[rowOf[v]][v];
-        if (total >= INFEASIBLE / 2 || total > S.km - 1e-6) return false;
+        if (total >= INFEASIBLE / 2 || total > S.cost - 1e-6) return false;
         Routes old(n);
         for (int i = 0; i < n; i++) old[i].assign(S.r[rs[i]].seq, S.r[rs[i]].seq + S.r[rs[i]].len);
         for (int v = 0; v < F.V; v++)

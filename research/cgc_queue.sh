@@ -1,6 +1,6 @@
 #!/bin/bash
 # cgc: run cgc_master.py (B&P with fleet cuts) sequentially over "dir/inst" arguments. TL env var = per-instance seconds.
-cd /Users/nikitosh/Downloads/lct/research
+cd "$(dirname "$0")"
 TL=${TL:-720}
 for x in "$@"; do
   d=${x%%/*}; i=${x##*/}

@@ -5,10 +5,11 @@ WORKDIR /app
 COPY solver solver
 RUN make -C solver CXX=clang++
 COPY requirements.txt ./
-RUN pip install --no-cache-dir openpyxl==3.1.5
+RUN pip install --no-cache-dir openpyxl==3.1.5 numpy==2.5.3 flask==3.1.3
 COPY dispatch dispatch
 COPY cache cache
 COPY data/demo data/demo
+COPY data/traffic data/traffic
 COPY scripts scripts
 ENV DISPATCH_CACHE=/app/cache DISPATCH_SOLVER_BIN=/app/solver/bin
 EXPOSE 8080

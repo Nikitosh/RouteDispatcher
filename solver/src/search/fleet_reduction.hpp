@@ -24,7 +24,7 @@ public:
         const int N = P.N;
         const int qmin = min(N, 4), qmax = max(qmin, min((int)(0.3 * N), 30));
         Solution cur = best;
-        int cap = P.V;
+        int cap = P.cap;
         bool elim = best.nUn() == 0;
         auto startAttempt = [&] {
             cur = best;
@@ -62,7 +62,7 @@ public:
                         startAttempt();
                     } else {
                         cur = best;
-                        cap = P.V;
+                        cap = P.cap;
                     }
                     curPen = cur.penSum(P);
                     curAbs = sumAbsence(cur);
@@ -82,7 +82,7 @@ public:
             prevAbsent_.assign(pool_.begin(), pool_.end());
             ruin(cur, ruinOp, qmin + rng.randint(qmax - qmin + 1));
             rng.shuffle(pool_.begin(), pool_.end());
-            regret_.run(P, cur, pool_, rng, regretOp + 1, cap, W_VEHICLE, &undo_, noisy ? NOISE * P.maxD : 0);
+            regret_.run(P, cur, pool_, rng, regretOp + 1, cap, P.wVeh, &undo_, noisy ? NOISE * P.maxD : 0);
             for (int k : pool_) absence_[k] += 1;
             curAbs = 0;
             for (int k : prevAbsent_) curAbs += absence_[k];
@@ -168,13 +168,13 @@ inline Solution construct(const Problem& P, Rng& rng) {
     Solution a;
     a.init(P);
     std::iota(pool.begin(), pool.end(), 0);
-    regret.run(P, a, pool, rng, 2, P.V, W_VEHICLE, nullptr);
+    regret.run(P, a, pool, rng, 2, P.cap, P.wVeh, nullptr);
     Solution b;
     b.init(P);
     pool.resize(P.N);
     std::iota(pool.begin(), pool.end(), 0);
     std::stable_sort(pool.begin(), pool.end(), [&](int x, int y) { return P.b[x] - P.a[x] < P.b[y] - P.a[y]; });
-    greedyInsert(P, b, pool, rng, 0, P.V, W_VEHICLE, nullptr);
+    greedyInsert(P, b, pool, rng, 0, P.cap, P.wVeh, nullptr);
     return a.better(b, P) ? a : b;
 }
 

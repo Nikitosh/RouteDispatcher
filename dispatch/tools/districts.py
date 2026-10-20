@@ -98,7 +98,7 @@ def buildings(names):
     from shapely.geometry import Point, shape
     from shapely.prepared import prep
     polygons = {}
-    for f in json.load(open(os.path.join(OSM, 'admin8.geojson')))['features']:
+    for f in json.load(open(os.path.join(OSM, 'admin8.geojson'), encoding='utf-8'))['features']:
         if f['properties'].get('name') in names:
             polygons[f['properties']['name']] = shape(f['geometry'])
     missing = set(names) - set(polygons)

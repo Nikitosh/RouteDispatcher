@@ -1,7 +1,7 @@
 #!/bin/bash
 # single dispatcher: cgx_queue2.sh <listfile> <logdir> <argsfile>; lines "set inst"; args re-read per instance;
 # keeps at most MAXP cgx_bp.py processes running (CPU budget)
-cd /Users/nikitosh/Downloads/lct/research
+cd "$(dirname "$0")"
 LIST=$1; LD=$2; AF=$3; MAXP=${MAXP:-2}
 mkdir -p $LD
 while read d n; do

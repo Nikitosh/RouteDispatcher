@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Пульс — маршрут инженера</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="BeelineSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="BeelineSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="engineer.css">
+</head>
+<body class="eng">
+<header class="ebar">
+  <a class="logo" href="index.html" title="Пульс: планировщик">
+    <svg class="mk" viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="8" width="22" height="6" rx="3" fill="#141414"/><rect x="12" y="17" width="24" height="6" rx="3" fill="#FFC800"/><rect x="7" y="26" width="16" height="6" rx="3" fill="#141414"/><rect x="26" y="26" width="10" height="6" rx="3" fill="#FFC800"/></svg>
+    <span class="ln">Пульс<small>маршрут инженера · билайн бизнес</small></span>
+  </a>
+  <a class="engbtn" id="to-dispatch" href="index.html" title="План участка для диспетчера" aria-label="Экран диспетчера"><svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="3" width="21" height="14.5" rx="2.5" fill="#141414"/><rect x="3.4" y="4.9" width="17.2" height="10.7" rx="1.2" fill="#FFC800"/><rect x="5.4" y="6.9" width="7.5" height="1.8" rx=".9" fill="#141414"/><rect x="8.2" y="9.5" width="8.6" height="1.8" rx=".9" fill="#141414"/><rect x="6.4" y="12.1" width="5" height="1.8" rx=".9" fill="#141414"/><rect x="13" y="12.1" width="3.4" height="1.8" rx=".9" fill="#141414"/><path d="M8.5 21h7M12 17.5V21" stroke="#141414" stroke-width="1.8" stroke-linecap="round"/></svg><span>Экран диспетчера</span></a>
+</header>
+<main class="ewrap" id="app">
+  <div class="ecol">
+    <section class="card epick" id="pick" aria-label="Выбор бригады">
+      <button class="epick-line" id="pick-toggle" type="button" aria-expanded="true" aria-controls="pick-body"><span id="pick-sum">Бригада</span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="epick-body" id="pick-body">
+        <label><span>Участок</span><select id="district"></select></label>
+        <label><span>Версия плана</span><select id="version"></select></label>
+        <label><span>Бригада</span><select id="brigade"></select></label>
+      </div>
+    </section>
+    <section id="day"></section>
+    <section id="calls"></section>
+    <section id="kit"></section>
+    <section class="card emapcard" id="mapcard"><div id="emap"></div></section>
+  </div>
+  <div class="ecol">
+    <section id="fact"></section>
+    <section id="stops"></section>
+    <section class="etail" id="tail">
+      <button class="btn wide" id="print-btn" type="button" title="Маршрутный лист для печати, A4">Печать маршрутного листа</button>
+      <details class="card demo" id="demo"><summary>Время для показа</summary><div id="demo-body"></div></details>
+    </section>
+  </div>
+</main>
+<div class="nextbar hidden" id="nextbar" role="region" aria-label="Следующее действие"></div>
+<section class="sheet" id="sheet" aria-hidden="true"></section>
+<script src="status.js"></script>
+<script src="engineer.js"></script>
+</body>
+</html>

@@ -1,11 +1,12 @@
 # Решатели продукта: plan — план на день (кооперативный параллельный поиск), baseline — базовый вариант из ТЗ,
-# fleet_bound — нижняя граница числа бригад (генерация столбцов).
+# fleet_bound — нижняя граница числа бригад (генерация столбцов), fleet_proof — дерево составов и перебор маршрутов
+# для доказательства минимума там, где граница ниже плана (research/fleet_proof2.py).
 CXX ?= c++
 # Флаги намеренно не берутся из окружения (CXXFLAGS): сборка должна быть одинаковой везде.
 FLAGS := -std=c++17 -O2 -march=native -Wall -Wextra -Wno-unused-parameter
 HEADERS := $(shell find src -name '*.hpp')
 
-all: bin/plan bin/baseline bin/fleet_bound
+all: bin/plan bin/baseline bin/fleet_bound bin/fleet_proof bin/transit
 
 bin/%: src/%.cpp $(HEADERS)
 	@mkdir -p bin

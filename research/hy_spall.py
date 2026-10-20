@@ -6,7 +6,7 @@ import glob
 import hy_sp
 d = sys.argv[1]; tl = float(sys.argv[2]) if len(sys.argv) > 2 else 20; K = int(sys.argv[3]) if len(sys.argv) > 3 else 30
 slack = sys.argv[4] if len(sys.argv) > 4 else '20'; flt = sys.argv[5] if len(sys.argv) > 5 else ''
-SCR = '/private/tmp/claude-501/-Users-nikitosh-Downloads-lct/d8f727be-c46e-4a0a-ac5e-5e8ed1e794e5/scratchpad/sp'
+SCR = 'research/runs/tmp/sp'
 os.makedirs(SCR, exist_ok=True)
 tot = [0, 0]
 for p in sorted(glob.glob(f'{d}/*.txt')):

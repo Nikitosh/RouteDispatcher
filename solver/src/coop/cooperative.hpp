@@ -155,9 +155,8 @@ private:
     std::atomic<bool> fleetDone_{false};
 
     long long keyOf(const Routes& R) const { return evaluate(I, R).fleetKey(); }
-    static long long keyOf(double scalar) { return (long long)floor(scalar / W_VEHICLE); }
-    // У общего лучшего парк меньше, чем у решения с целью scalar.
-    bool sharedFleetBetter(double scalar) const { return shared_.fleetKey() < keyOf(scalar); }
+    // У общего лучшего парк меньше (или меньше штраф), чем у решения с ключом key.
+    bool sharedFleetBetter(long long key) const { return shared_.fleetKey() < key; }
 
     // ---- км ----
 
@@ -219,7 +218,7 @@ private:
                 if (now - lastMigration > MIGRATE_EVERY * tl_) {
                     lastMigration = now;
                     Routes G;
-                    if (shared_.bestScalar() < a.bestScore - MIGRATE_GAP * fmod(a.bestScore, W_VEHICLE) && shared_.get(G) &&
+                    if (shared_.bestScalar() < a.bestScore - MIGRATE_GAP * a.bestCost && shared_.get(G) &&
                         keyOf(G) == myKey)
                         a.loadBest(G);
                 }
@@ -279,9 +278,11 @@ private:
             Routes init = fast::multiGreedy(F_, rng, tFleet * 0.08, *greedy);
             offer(init);
             double lastPub = 1e300;
+            long long lastKey = 1LL << 60;
             a.poll = [&] {
                 if (fleetDone_) return true;
-                if (a.bestScore < lastPub - W_VEHICLE + 1) {   // публикуется только уменьшение штрафа или парка
+                if (a.bestKey < lastKey) {   // публикуется только уменьшение штрафа или парка
+                    lastKey = a.bestKey;
                     lastPub = a.bestScore;
                     offer(a.bestRoutes());
                 }
@@ -290,10 +291,11 @@ private:
             a.onAttempt = [&] {
                 if (a.bestScore < lastPub - 1e-9) {
                     lastPub = a.bestScore;
+                    lastKey = a.bestKey;
                     offer(a.bestRoutes());
                 }
                 Routes G;
-                if (sharedFleetBetter(a.bestScore) && shared_.get(G) && evaluate(I, G).scalar() < a.bestScore) a.loadBest(G);
+                if (sharedFleetBetter(a.bestKey) && shared_.get(G) && evaluate(I, G).scalar() < a.bestScore) a.loadBest(G);
             };
             offer(a.run(init, tFleet, clock_));
         }
@@ -332,7 +334,7 @@ private:
                 lastPubT = now;
                 offer(a.bestRoutes());
             }
-            return follow && a.inKmPhase() && sharedFleetBetter(a.bestScore);   // км ищут у худшего парка
+            return follow && a.inKmPhase() && sharedFleetBetter(a.bestKey);   // км ищут у худшего парка
         };
         a.onAttempt = [&] {
             if (a.bestScore < lastPub - 1e-9) {
@@ -340,7 +342,7 @@ private:
                 offer(a.bestRoutes());
             }
             Routes G;
-            if (follow && sharedFleetBetter(a.bestScore) && shared_.get(G) && evaluate(I, G).scalar() < a.bestScore) a.loadBest(G);
+            if (follow && sharedFleetBetter(a.bestKey) && shared_.get(G) && evaluate(I, G).scalar() < a.bestScore) a.loadBest(G);
         };
         offer(a.run(init, tl_, clock_));
     }
@@ -403,7 +405,7 @@ private:
                 const double tc = cuts[ci];
                 auto cut = [&](int w) {
                     int i = 0;
-                    while (i < base.len[w] && base.dep[w][i] - P_.svc[base.r[w][i]] < tc) i++;
+                    while (i < base.len[w] && base.dep[w][i] - P_.sv(base.r[w][i], w) < tc) i++;
                     return i;
                 };
                 int i = cut(u), j = cut(v);
@@ -417,7 +419,7 @@ private:
                 pool.clear();
                 lns::collectAbsent(c, pool);
                 rng.shuffle(pool.begin(), pool.end());
-                regret.run(P_, c, pool, rng, 3, K, W_VEHICLE, nullptr);
+                regret.run(P_, c, pool, rng, 3, K, P_.wVeh, nullptr);
                 if (c.nUn()) lns::EjectionRepair(P_, rng, clock_).repair(c, K, tEnd, repairIters);
                 if (c.nUn() || c.used() > K) continue;
                 lns::KmSearch(I, P_, rng, clock_).run(c, clock_.sec() + tPolish, nullptr);

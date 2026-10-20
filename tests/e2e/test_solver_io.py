@@ -15,7 +15,7 @@ pytestmark = pytest.mark.e2e
 if not all(os.path.exists(os.path.join(SOLVER_BIN, b)) for b in ('plan', 'baseline', 'fleet_bound')):
     pytest.skip('решатели не собраны: make -C solver', allow_module_level=True)
 
-PLAN_KEYS = {'solver', 'routes', 'feasible', 'unserved', 'used', 'km', 'ms'}
+PLAN_KEYS = {'solver', 'routes', 'feasible', 'unserved', 'used', 'km', 'wait', 'ms'}
 
 
 @pytest.fixture(scope='module')
@@ -63,3 +63,34 @@ def test_runner_reads_answers(task, tmp_path):
     ours, base, _ = SolverRunner().solve(problem, seconds=0.3, workdir=str(tmp_path))
     assert check_plan(problem, ours.routes).ok and check_plan(problem, base.routes).ok
     assert ours.lower_bound is not None and ours.lower_bound <= sum(1 for r in ours.routes if r)
+
+
+def test_shifts_respected_by_solver(tmp_path):
+    """Смена 13:00–22:00 и 10:00–19:00: решатель отдаёт утреннюю заявку ранней бригаде, вечернюю — поздней."""
+    late, early = brigade('Поздняя'), brigade('Ранняя', start=1, x=40)
+    late.shift, early.shift = (180, 720), (0, 540)
+    orders = [order(1, 'Ремонт', (0, 120), x=2), order(2, 'Ремонт', (520, 600), x=38)]
+    problem = line_problem(orders, [late, early], starts=((0.0, 0.0), (40.0, 0.0)))
+    routes = SolverRunner().plan_only(problem, seconds=0.5, workdir=str(tmp_path))
+    assert routes[1] == [0] and routes[0] == [1], routes
+    assert check_plan(problem, routes).ok
+
+
+@pytest.mark.parametrize('n', [0, 1, 2])
+def test_tiny_tasks_do_not_crash(tmp_path, n):
+    """Остаток дня из одной заявки или пустой участок: решатель не падает (раньше — SIGSEGV при одной заявке)."""
+    p = line_problem([order(i + 1, 'Ремонт', (0, 600), x=10 * (i + 1)) for i in range(n)], [brigade('Б1'), brigade('Б2')])
+    routes = SolverRunner().plan_only(p, 0.3, 1, str(tmp_path))
+    assert sorted(k for r in routes for k in r) == list(range(n)) and check_plan(p, routes).ok
+    out = subprocess.run([os.path.join(SOLVER_BIN, 'baseline'), str(tmp_path / 'task.txt')], capture_output=True, text=True)
+    assert out.returncode == 0 and json.loads(out.stdout)['unserved'] == 0
+
+
+def test_bad_task_line_is_an_error(tmp_path):
+    p = line_problem([order(1, x=10)], [brigade('Б1')])
+    p.write(str(tmp_path / 't.txt'))
+    lines = (tmp_path / 't.txt').read_text().splitlines()
+    lines[2] = '1 30 0 300'                                                   # оборвана: нет приоритета и навыка
+    (tmp_path / 'bad.txt').write_text('\n'.join(lines) + '\n')
+    out = subprocess.run([os.path.join(SOLVER_BIN, 'plan'), str(tmp_path / 'bad.txt'), '0.2', '1'], capture_output=True, text=True)
+    assert out.returncode == 1 and 'строка заявки не разобрана' in out.stderr

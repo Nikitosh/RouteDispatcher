@@ -1,3 +1,7 @@
 openpyxl>=3.1        # чтение и запись xlsx
-shapely>=2           # только для python -m dispatch gen-district
+numpy>=1.26          # сеть общественного транспорта (python -m dispatch transit)
+flask>=3             # сервер страницы с пересчётом (python -m dispatch serve, dispatch/api.py)
+shapely>=2           # только для python -m dispatch gen-district и houses
+osmium>=4            # только для python -m dispatch houses и автобусов области в transit
 pytest>=8            # тесты
+playwright>=1.40     # только для tests/e2e/test_page.py (страница в браузере); без него тест пропускается

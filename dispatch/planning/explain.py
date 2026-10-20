@@ -1,18 +1,18 @@
 """Объяснения для диспетчера.
 
-Причина неназначения проверяется по шагам ТЗ: навык → транспорт → смена → успевает ли бригада из стартовой точки →
-заняты ли подходящие бригады. «Почему эта бригада»: для каждой другой бригады заявка пробуется на лучшее место её
+Причина неназначения проверяется по шагам ТЗ: навык → транспорт → смена → оборудование → успевает ли бригада из
+стартовой точки → заняты ли подходящие бригады (или по времени успевают, но их запас оборудования уже нужен маршруту). «Почему эта бригада»: для каждой другой бригады заявка пробуется на лучшее место её
 маршрута.
 """
 from dataclasses import dataclass, field
 
-from ..config import SKILL_NAMES
+from ..config import EQUIPMENT_GENITIVE, SKILL_NAMES
 from ..formatting import hhmm, km_text
 
 
 @dataclass
 class Reason:
-    code: str        # skill, transport, shift, window, free, busy
+    code: str        # skill, transport, shift, equipment, window, free, busy
     text: str
 
 
@@ -37,6 +37,10 @@ class Explainer:
 
     def who(self, vs):
         return self.names(vs) if len(vs) <= 4 else f'все {len(vs)}'
+
+    def items(self, k):
+        """«роутера», «роутера и ТВ-приставки» — что нужно заявке, в родительном падеже."""
+        return ' и '.join(EQUIPMENT_GENITIVE[i] for i in self.p.orders[k].demand)
 
     def window(self, k):
         w = self.p.orders[k].window
@@ -65,7 +69,11 @@ class Explainer:
         if not suitable:
             return Reason('transport', f'Нет исполнителя с навыком «{skill}» и транспортом «{o.need_text()}»')
         if p.latest(k) < o.earliest:
-            return Reason('shift', f'Работа ({o.service} мин) не помещается в смену до 22:00 при окне {self.window(k)}')
+            svc = min((p.service(v, k) for v in V), default=o.service)     # у самой быстрой бригады
+            return Reason('shift', f'Работа ({svc} мин) не помещается в смену до 22:00 при окне {self.window(k)}')
+        if not any(not p.shortage(v, [k]) for v in suitable):
+            return Reason('equipment', f'У подходящих бригад нет {self.items(k)}')
+        suitable = [v for v in suitable if not p.shortage(v, [k])]
         if not any(p.schedule(v, [k]).feasible for v in suitable):
             first = min(max(p.schedule(v, [k]).stops[0].arrive, o.earliest) for v in suitable)
             return Reason('window', f'Не успеть к окну {self.window(k)}: даже из стартовой точки раньше всех начать можно в {hhmm(first)}')
@@ -78,6 +86,7 @@ class Explainer:
             return r
         p = self.p
         suitable = [v for v in range(len(p.brigades)) if p.can(v, k)]
+        no_stock = []                  # по времени заявка помещается, но запаса оборудования не хватает
         for v in suitable:
             if not p.schedule(v, [k]).feasible:
                 continue
@@ -85,7 +94,20 @@ class Explainer:
                 return Reason('free', f'Могла бы взять свободная бригада {p.brigades[v].name} (план можно улучшить)')
             if self.best_insertion(v, routes[v], k) is not None:
                 return Reason('free', f'Помещается в маршрут бригады {p.brigades[v].name} (план можно улучшить)')
-        return Reason('busy', f'Все подходящие исполнители ({self.who(suitable)}) заняты в окно {self.window(k)}')
+            if p.shortage(v, routes[v] + [k]) and any(p.schedule(v, routes[v][:i] + [k] + routes[v][i:]).on_time
+                                                      for i in range(len(routes[v]) + 1)):
+                no_stock.append(v)
+        if no_stock:
+            return Reason('equipment', f'У подходящих бригад нет {self.items(k)}: успевают {self.who(no_stock)}, '
+                                       f'но их запас уже нужен своим заявкам')
+        o = p.orders[k]                                                  # окно не попадает в смену бригады
+        off = [v for v in suitable if p.brigades[v].shift[0] > p.latest(k, v) + 1e-6
+               or p.brigades[v].shift[1] < o.earliest + p.service(v, k) - 1e-6]
+        on = [v for v in suitable if v not in off]
+        if not on:
+            return Reason('shift', f'Окно {self.window(k)} не попадает в смены подходящих бригад ({self.who(off)})')
+        return Reason('busy', f'Все подходящие исполнители ({self.who(on)}) заняты в окно {self.window(k)}'
+                              + (f'; не на смене в это время: {self.who(off)}' if off else ''))
 
     def greedy_unassigned(self, routes, k):
         """Причина для базового варианта ТЗ: заявки по порядку, каждая в конец маршрута первой подходящей бригады.

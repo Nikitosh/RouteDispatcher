@@ -1,6 +1,6 @@
 #!/bin/bash
 # usage: cgm_queue.sh <listfile> <logdir> <extra args...>   (lines "set inst [tl]"); claim via mkdir
-cd /Users/nikitosh/Downloads/lct/research
+cd "$(dirname "$0")"
 LIST=$1; LD=$2; shift 2
 mkdir -p $LD
 while read d n tl; do

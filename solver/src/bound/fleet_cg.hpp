@@ -14,6 +14,15 @@ namespace dispatch::bound {
 class FleetBound {
 public:
     bool converged = false;   // точный поиск не нашёл отрицательных столбцов: оценка равна оптимуму ЛП
+    // Лучшая лагранжева оценка (без оценки Фарли) и цены, при которых она получена: для отсечения по приведённой
+    // стоимости в доказательстве перебором (fleet_proof.cpp). fixLag — постоянная часть rc, одна для всех типов.
+    double bestLag = -1e18, fixLag = 0;
+    vector<double> uLag;
+    vector<char> skipStart;   // маршруты этих бригад плана не берём в начальный базис (ветка без бригады)
+    // Состав задан точно: маршрутов типа t ровно cnt_t (строки типов — равенства). Тогда число маршрутов n = Σcnt
+    // известно, и L = Σu + π_V·n + Σ_t cnt_t·min rc_t — с любыми знаками цен и rc; L > n — такого состава нет.
+    bool exactTypes = false;
+    vector<double> minRcLag;  // min rc по типам при ценах лучшей оценки
 
     FleetBound(const Problem& p, const VehicleTypes& ty, ColumnPool& pool, HeuristicPricer& hp, ExactPricer& xp)
         : P(p), TY(ty), pool_(pool), hp_(hp), xp_(xp), N(p.N), T(ty.T), rowIdx_(p.N, -1) {}
@@ -24,10 +33,41 @@ public:
         vector<int> basis(m_);
         std::iota(basis.begin(), basis.end(), 0);
         for (int v = 0; v < P.V; v++)
-            if (best.len[v]) basis[rowIdx_[best.r[v][0]]] = toLP(pool_.add(TY.typeOf[v], best.r[v], best.len[v], best.km[v]));
+            if (best.len[v] && !(v < (int)skipStart.size() && skipStart[v]))
+                basis[rowIdx_[best.r[v][0]]] = toLP(pool_.add(TY.typeOf[v], best.r[v], best.len[v], best.km[v]));
         lp_.setBasis(basis);
         loop(stopAt, clock, tEnd);
         return bestL_;
+    }
+
+    // Цены последней ЛП со строками типов (π_t ≤ 0, π_V ≤ 0 — иначе обрезаются до 0) и проверка точным поиском:
+    // L = Σu + Σ_t π_t·cnt_t + π_V·V + Σ_t cnt_t·min(0, min rc_t) — нижняя граница числа маршрутов, а в плане с z ≤ K
+    // у маршрута типа t приведённая стоимость fixT[t] − Σu не больше K − L. false — точный поиск не завершился.
+    bool fullDuals(vector<double>& u, vector<double>& fixT, double& L) {
+        const vector<double>& pi = lp_.pi;
+        u.assign(N, -1e9);
+        fixT.assign(T, 0);
+        const double piV = min(0.0, pi[vehicleRow()]);
+        L = piV * P.V;
+        for (int k = 0; k < N; k++)
+            if (rowIdx_[k] >= 0) {
+                u[k] = pi[rowIdx_[k]];
+                L += u[k];
+            }
+        for (int t = 0; t < T; t++) {
+            const double piT = min(0.0, pi[R_ + t]);
+            fixT[t] = ROUTE_COST - piT - piV;
+            L += piT * TY.cnt[t];
+        }
+        for (int t = 0; t < T; t++) {
+            if (!TY.cnt[t]) continue;
+            bool complete;
+            vector<std::pair<double, vector<int>>> cols;
+            const double m = xp_.minReducedCost(t, u.data(), fixT[t], 4 * LABEL_CAP, complete, cols, 0);
+            if (!complete) return false;
+            L += TY.cnt[t] * min(0.0, m);
+        }
+        return true;
     }
 
 private:
@@ -57,7 +97,7 @@ private:
         vector<char> eq(m_, 1);
         for (int t = 0; t < T; t++) {
             rhs[R_ + t] = TY.cnt[t];
-            eq[R_ + t] = 0;
+            eq[R_ + t] = exactTypes ? 1 : 0;
         }
         rhs[vehicleRow()] = P.V;
         eq[vehicleRow()] = 0;
@@ -121,6 +161,8 @@ private:
         xp_.deadline = tEnd;
         vector<double> center;
         bool needSolve = true;
+        const double t0 = clock.sec(), slice = max(0.5, 0.3 * (tEnd - t0));
+        double lastExact = t0;
         while (clock.sec() < tEnd) {
             if (needSolve) lp_.solve(100000, clock, tEnd);
             needSolve = true;
@@ -150,15 +192,21 @@ private:
             } else {
                 center = smooth;
             }
-            if (added || negLP) {
+            // эвристика ещё находит столбцы — продолжаем, но не дольше slice без точного шага: при многих типах бригад
+            // (у каждой свой дом) она может не иссякнуть до конца времени, а оценка Лагранжа верна при любых ценах
+            if ((added || negLP) && clock.sec() - lastExact < slice) {
                 if (!added && out.empty()) break;
                 continue;
             }
+            lastExact = clock.sec();
             // точный поиск при ценах ЛП: новые столбцы и допустимая оценка
             vector<double> uB = uLP;
-            for (int k = 0; k < N; k++)
-                if (rowIdx_[k] >= 0) uB[k] = max(0.0, uB[k]);
-            double L = pi[vehicleRow()] * P.V, sumU = 0;
+            int nTot = 0;
+            for (int t = 0; t < T; t++) nTot += TY.cnt[t];
+            if (!exactTypes)
+                for (int k = 0; k < N; k++)
+                    if (rowIdx_[k] >= 0) uB[k] = max(0.0, uB[k]);
+            double L = pi[vehicleRow()] * (exactTypes ? nTot : P.V), sumU = 0;
             for (int k = 0; k < N; k++)
                 if (rowIdx_[k] >= 0) {
                     L += uB[k];
@@ -170,6 +218,7 @@ private:
             const double fixB = ROUTE_COST - pi[vehicleRow()];
             vector<double> minRc(T, 0);
             for (int t = 0; t < T; t++) {
+                if (!TY.cnt[t]) continue;
                 vector<std::pair<double, vector<int>>> cols;
                 bool complete;
                 minRc[t] = xp_.minReducedCost(t, uB.data(), fixB, LABEL_CAP, complete, cols, MAX_COLS);
@@ -184,14 +233,24 @@ private:
             vector<int> order(T);
             std::iota(order.begin(), order.end(), 0);
             std::sort(order.begin(), order.end(), [&](int a, int b) { return minRc[a] < minRc[b]; });
-            int left = P.V;
-            for (int t : order) {
-                if (left <= 0 || minRc[t] >= 0) break;
-                int q = min(left, TY.cnt[t]);
-                L += q * minRc[t];
-                left -= q;
+            if (exactTypes) {
+                for (int t = 0; t < T; t++) L += TY.cnt[t] * minRc[t];
+            } else {
+                int left = P.V;
+                for (int t : order) {
+                    if (left <= 0 || minRc[t] >= 0) break;
+                    int q = min(left, TY.cnt[t]);
+                    L += q * minRc[t];
+                    left -= q;
+                }
             }
-            if (theta > 1e-9) L = max(L, ROUTE_COST * sumU / theta);   // Фарли
+            if (L > bestLag) {
+                bestLag = L;
+                uLag = uB;
+                fixLag = fixB;
+                minRcLag = minRc;
+            }
+            if (theta > 1e-9 && !exactTypes) L = max(L, ROUTE_COST * sumU / theta);   // Фарли
             bestL_ = max(bestL_, L);
             if (bestL_ > stopAt) break;
             if (nNew == 0) {

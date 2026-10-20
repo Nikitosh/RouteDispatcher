@@ -1,6 +1,6 @@
 """Маленькие задачи «на прямой» для модульных тестов: точка — число x, время в пути = |Δx| × темп вида транспорта,
 расстояние = |Δx| км. Так расписание легко посчитать в уме."""
-from dispatch.config import MODES, PRIORITY, SERVICE, SKILL, TYPE_NAMES
+from dispatch.config import MODES, PRIORITY, SERVICE, SKILL, TYPE_NAMES, equipment_for
 from dispatch.geo.matrices import TravelMatrices
 from dispatch.model.domain import Brigade, Order
 from dispatch.model.problem import Problem
@@ -12,7 +12,8 @@ BK = {v: k for k, v in TYPE_NAMES.items()}
 def order(oid, kind='Ремонт', window=(0, 120), x=0.0, need=None):
     bk = BK[kind]
     return Order(id=str(oid), bk=bk, type=kind, window=window, service=SERVICE[bk], priority=PRIORITY[bk], skill=SKILL[bk],
-                 district='Тест', address=f'точка {x}', need=frozenset(need) if need else None, lat=float(x), lon=0.0)
+                 district='Тест', address=f'точка {x}', need=frozenset(need) if need else None, lat=float(x), lon=0.0,
+                 equipment=equipment_for(bk))          # в тестах — без опции клиента: подключению всегда роутер
 
 
 def brigade(name, mode='car', skills=(0, 1, 2), start=0, x=0.0):

@@ -11,7 +11,7 @@ from validate import load_instance, check, parse_output
 d, T, seeds, pipes = sys.argv[1], float(sys.argv[2]), sys.argv[3].split(','), sys.argv[4].split(',')
 flt = sys.argv[5] if len(sys.argv) > 5 else ''
 W = int(os.environ.get('WORKERS', 2)); D = os.path.basename(d.rstrip('/'))
-SCR = os.environ.get('HYTMP', '/private/tmp/claude-501/-Users-nikitosh-Downloads-lct/d8f727be-c46e-4a0a-ac5e-5e8ed1e794e5/scratchpad/pipe')
+SCR = os.environ.get('HYTMP', 'research/runs/tmp/pipe')
 os.makedirs(SCR, exist_ok=True)
 def run(cmd, env=None, tl=10):
     e = dict(os.environ); e.update(env or {})

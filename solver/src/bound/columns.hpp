@@ -19,18 +19,27 @@ struct OrderSet {
     bool operator==(const OrderSet& o) const { return w[0] == o.w[0] && w[1] == o.w[1] && w[2] == o.w[2]; }
 };
 
-// Бригады с одинаковыми (старт, вид транспорта, навыки) — один тип; rep — представитель, cnt — сколько их.
+// Бригады с одинаковыми стартом, видом транспорта, навыками, концом смены, началом смены, обедом, запасом
+// оборудования и темпом (длительности работ) — один тип; rep — представитель, cnt — сколько их. Правила маршрута типа — правила бригады rep.
 struct VehicleTypes {
     int T = 0;
     vector<int> start, mode, mask, cnt, rep, typeOf;
     vector<vector<int>> vehicles;
+    vector<char> lunch;    // у типа есть обед
+    vector<char> equip;    // у типа ограничено оборудование (иначе его не нужно считать в метках)
 
     explicit VehicleTypes(const Instance& I) : typeOf(I.V) {
+        auto same = [&](const Vehicle& x, const Vehicle& y) {
+            if (x.start != y.start || x.mode != y.mode || x.mask != y.mask || x.end != y.end || x.speed != y.speed) return false;
+            if (!(x.lunch == y.lunch) || (x.lunch.ld > 0 && x.begin != y.begin)) return false;
+            if (!I.equip) return true;
+            return x.cap[0] == y.cap[0] && x.cap[1] == y.cap[1] && x.capTot == y.capTot;
+        };
         for (int v = 0; v < I.V; v++) {
             const Vehicle& x = I.veh[v];
             int f = -1;
             for (int t = 0; t < T && f < 0; t++)
-                if (start[t] == x.start && mode[t] == x.mode && mask[t] == x.mask) f = t;
+                if (same(I.veh[rep[t]], x)) f = t;
             if (f < 0) {
                 f = T++;
                 start.push_back(x.start);
@@ -39,6 +48,8 @@ struct VehicleTypes {
                 cnt.push_back(0);
                 rep.push_back(v);
                 vehicles.push_back({});
+                lunch.push_back(x.lunch.ld > 0);
+                equip.push_back(I.equip && (x.cap[0] < UNLIMITED || x.cap[1] < UNLIMITED || x.capTot < UNLIMITED));
             }
             cnt[f]++;
             vehicles[f].push_back(v);

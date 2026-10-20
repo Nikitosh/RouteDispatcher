@@ -2,7 +2,7 @@
 routes with reduced cost <= ceil(LP) - LP and solve the partitioning MIP (cgc_sub.kS integer=True); infeasible ->
 k(S) = ceil(LP) + 1.  Usage: cgm_kint.py <inst> [maxsets]  (base cluster unions, largest first)"""
 import sys, os, json, time, math
-os.environ.setdefault('CGC_TMP', '/private/tmp/claude-501/-Users-nikitosh-Downloads-lct/d8f727be-c46e-4a0a-ac5e-5e8ed1e794e5/scratchpad/cgm_tmp')
+os.environ.setdefault('CGC_TMP', 'research/runs/tmp/cgm_tmp')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from validate import load_instance
 from cgc_master import build_cands

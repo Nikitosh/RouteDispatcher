@@ -7,7 +7,7 @@ import hy_sp
 from validate import parse_output
 d, T, sd = sys.argv[1], sys.argv[2], sys.argv[3]; K = int(sys.argv[4]) if len(sys.argv) > 4 else 3
 flt = sys.argv[5] if len(sys.argv) > 5 else ''
-SCR = '/private/tmp/claude-501/-Users-nikitosh-Downloads-lct/d8f727be-c46e-4a0a-ac5e-5e8ed1e794e5/scratchpad/pol'
+SCR = 'research/runs/tmp/pol'
 os.makedirs(SCR, exist_ok=True); W = int(os.environ.get('WORKERS', 2))
 def job(p):
     inst = os.path.basename(p)[:-4]; I = hy_sp.load_instance(p)

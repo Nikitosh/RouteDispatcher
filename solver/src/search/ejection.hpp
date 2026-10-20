@@ -1,7 +1,8 @@
 // Ремонт вставкой с выталкиванием (Nagata, Bräysy 2009): невыполненные заявки лежат в стеке; заявка, которую нельзя
 // вставить без нарушений, вставляется с выталкиванием до 3 заявок одного маршрута — набор с наименьшей суммой
 // счётчиков неудач. Выбор набора — перебор «оставить/выкинуть» по позициям маршрута с отсечением по этой сумме;
-// после вставленной заявки остаток без выкидываний проверяется за O(1) по lat исходного маршрута.
+// после вставленной заявки остаток без выкидываний проверяется за O(1) по порогам хвоста исходного маршрута (с
+// обедом) и сумме оборудования.
 #pragma once
 #include "search/lns.hpp"
 
@@ -39,16 +40,19 @@ private:
     vector<int> fails_, stack_;
     // рабочие массивы перебора
     int seq_[MAX_LEN + 2], len_ = 0, posK_ = 0, kIns_ = -1, M_ = 0;
-    double latS_[MAX_LEN + 2];
+    double latA_[MAX_LEN + 2], latB_[MAX_LEN + 2];   // пороги хвоста исходного маршрута для позиций после вставленной
+    int sufQ_[MAX_LEN + 3];                           // оборудование позиций ≥ i
     const double* Tv_ = nullptr;
+    int vCur_ = 0;                 // бригада, для которой идёт перебор (конец её смены, обед, запас)
     int curE_[MAX_EJECT], bestE_[MAX_EJECT], nBestE_ = 0, bestV_ = -1, bestP_ = -1;
     double bestSum_ = INF;
     long nodes_ = 0;
 
-    // Допустимая вставка с минимальным Δкм; пустую бригаду можно открыть, пока бригад меньше cap.
+    // Допустимая вставка с минимальным приростом цели; пустую бригаду можно открыть, пока бригад меньше cap.
     bool insertFeasible(Solution& s, int k, int cap) {
         int used = s.used(), bv = -1, bp = -1;
         double best = INF;
+        cap = min(cap, P.cap);
         for (int v = 0; v < P.V; v++) {
             if (!P.can(v, k)) continue;
             const int L = s.len[v];
@@ -57,7 +61,7 @@ private:
                 if (p > 0 && s.dep[v][p - 1] > P.b[k]) break;
                 double d = s.insDelta(P, v, p, k);
                 if (d >= INF) continue;
-                d += (L == 0 ? W_VEHICLE : 0) + 1e-6 * rng.uni();
+                d += (L == 0 ? P.wVeh : 0) + 1e-6 * rng.uni();
                 if (d < best) {
                     best = d;
                     bv = v;
@@ -69,27 +73,31 @@ private:
         s.insertAt(P, bv, bp, k);
         return true;
     }
-    // Перебор по позиции i последовательности seq_: сумма счётчиков выкинутых sum, выкинуто cnt.
-    void dfs(int i, double t, int prev, int cnt, double sum) {
+    // Перебор по позиции i последовательности seq_: состояние расписания w в точке prev, оборудование оставленных q,
+    // сумма счётчиков выкинутых sum, выкинуто cnt.
+    void dfs(int i, const Walk& w, int prev, int q, int cnt, double sum) {
         if (++nodes_ > NODE_CAP) return;
+        const Lunch& L = P.lun[vCur_];
+        double wt;
         if (i == len_) {
-            if (sum < bestSum_) record(cnt, sum);
+            if (sum < bestSum_ && P.fits(vCur_, q) && settle(w, L, P.end[vCur_], false, TOL, wt)) record(cnt, sum);
             return;
         }
         int e = seq_[i], ne = P.nd[e];
-        double begin = max(t + Tv_[prev * M_ + ne], P.a[e]);
-        if (begin <= P.b[e] + TOL) {
-            if (i >= posK_ && begin <= latS_[i] + TOL) {   // остаток без выкидываний допустим, дальше только дороже
-                if (sum < bestSum_) record(cnt, sum);
-                return;
-            }
-            dfs(i + 1, begin + P.svc[e], ne, cnt, sum);
+        const double tr = Tv_[prev * M_ + ne];
+        if (i > posK_ && P.fits(vCur_, q + sufQ_[i]) && tailOK(w, L, tr, P.a[e], latA_[i], latB_[i], TOL)) {
+            if (sum < bestSum_) record(cnt, sum);   // остаток без выкидываний допустим, дальше только дороже
+            return;
+        }
+        Walk x = w;
+        if (P.fits(vCur_, q + P.eq[e]) && advance(x, L, tr, P.a[e], P.bv(e, vCur_), P.sv(e, vCur_), P.acc[e], TOL)) {
+            dfs(i + 1, x, ne, q + P.eq[e], cnt, sum);
         } else if (e == kIns_) {
             return;   // вставляемую не выкинуть, а раньше неё время только растёт
         }
         if (e != kIns_ && cnt < MAX_EJECT && sum + fails_[e] < bestSum_) {
             curE_[cnt] = e;
-            dfs(i + 1, t, prev, cnt + 1, sum + fails_[e]);
+            dfs(i + 1, w, prev, q, cnt + 1, sum + fails_[e]);
         }
     }
     void record(int cnt, double sum) {
@@ -110,17 +118,22 @@ private:
         for (int q = 0; q < nv; q++) {
             const int v = order[q], L = s.len[v];
             Tv_ = P.T[v];
+            vCur_ = v;
             for (int p = 0; p <= L; p++) {
                 len_ = 0;
                 for (int j = 0; j < p; j++) seq_[len_++] = s.r[v][j];
                 posK_ = len_;
                 seq_[len_++] = k;
                 for (int j = p; j < L; j++) seq_[len_++] = s.r[v][j];
-                for (int j = p; j < L; j++) latS_[posK_ + 1 + (j - p)] = s.lat[v][j];
-                latS_[posK_] = p < L ? min(P.b[k], s.lat[v][p] - P.svc[k] - Tv_[P.nd[k] * M_ + P.nd[s.r[v][p]]]) : P.b[k];
+                for (int j = p; j < L; j++) {
+                    latA_[posK_ + 1 + (j - p)] = s.latA[v][j];
+                    latB_[posK_ + 1 + (j - p)] = s.lat[v][j];
+                }
+                sufQ_[len_] = 0;
+                for (int j = len_ - 1; j >= 0; j--) sufQ_[j] = sufQ_[j + 1] + P.eq[seq_[j]];
                 kIns_ = k;
                 double before = bestSum_;
-                dfs(0, 0, P.start[v], 0, 0);
+                dfs(0, startWalk(P.begin[v]), P.start[v], 0, 0, 0);
                 if (bestSum_ < before) {
                     bestV_ = v;
                     bestP_ = p;

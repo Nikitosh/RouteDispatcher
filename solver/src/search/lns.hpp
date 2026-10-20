@@ -2,14 +2,16 @@
 // (fleet_reduction.hpp), ремонт выталкиванием (ejection.hpp).
 //
 // Разрушение и восстановление делаются на месте; откат восстанавливает только затронутые маршруты. Вставка
-// проверяется за O(1) по времени окончания (dep) и самому позднему началу хвоста (lat), позиции позже конца окна
-// заявки отсекаются.
+// проверяется за O(1) по состоянию расписания перед позицией (dep, depB — конец работы, пока обед впереди и после
+// обеда) и самому позднему началу хвоста (lat, latA); позиции позже конца окна заявки отсекаются. Оборудование —
+// по сумме маршрута. Цена ожидания аварий меняется, только если вставляется авария или в маршруте есть авария
+// (без обеда — дальше по маршруту): тогда хвост пересчитывается проходом.
 #pragma once
 #include "core/problem.hpp"
 
 namespace dispatch::lns {
 
-constexpr int MAX_VEHICLES = 16, MAX_LEN = 176, MAX_ORDERS = 176;
+constexpr int MAX_VEHICLES = 32, MAX_LEN = 176, MAX_ORDERS = 176;   // маски бригад — uint32_t
 constexpr double INF = 1e18;
 
 // Данные задачи в плоских массивах; «общее» расстояние между заявками gd (среднее по видам транспорта бригад,
@@ -20,14 +22,35 @@ struct Problem {
     const double* T[MAX_VEHICLES];
     const double* D[MAX_VEHICLES];
     int start[MAX_VEHICLES], mask[MAX_VEHICLES], mode[MAX_VEHICLES];
-    double a[MAX_ORDERS], b[MAX_ORDERS], svc[MAX_ORDERS], pen[MAX_ORDERS];
-    int nd[MAX_ORDERS], skill[MAX_ORDERS], canMask[MAX_ORDERS], nCan[MAX_ORDERS];
+    double end[MAX_VEHICLES], maxEnd = 0;   // конец смены бригады и самый поздний среди них
+    double a[MAX_ORDERS], b[MAX_ORDERS], pen[MAX_ORDERS];   // b — самое позднее начало среди всех бригад
+    double ob[MAX_ORDERS];                   // конец окна из задачи
+    double svc[MAX_ORDERS];                  // самая короткая длительность среди бригад — для эвристик
+    double svcV[MAX_VEHICLES][MAX_ORDERS];   // длительность у бригады (Instance::svc)
+    int nd[MAX_ORDERS], skill[MAX_ORDERS], nCan[MAX_ORDERS];
+    uint32_t canMask[MAX_ORDERS];
     double farv[MAX_ORDERS];        // км от ближайшего старта подходящей бригады
+    Lunch lun[MAX_VEHICLES];
+    double begin[MAX_VEHICLES];     // с какого момента бригада свободна в стартовой точке
+    int eq[MAX_ORDERS];             // нужное оборудование (упаковано)
+    bool acc[MAX_ORDERS];           // авария: ожидание начала стоит wWait за минуту
+    double wVeh, wWait;
+    int cap;                        // предел числа бригад: min(V, maxv)
+    bool equip, wait;               // есть ограничения оборудования; есть аварии и цена их ожидания
     vector<float> gd;
     vector<vector<int>> nbr;        // все остальные заявки по возрастанию gd
     double maxD = 1;
+    // Самое позднее начало заявки k у бригады v: окно и конец её смены.
+    double bv(int k, int v) const { return min(ob[k], end[v] - svcV[v][k]); }
+    double sv(int k, int v) const { return svcV[v][k]; }
+    bool fits(int v, int q) const { return !equip || I.veh[v].fits(q); }
+    // Предел бригад км-поиска: пока что-то не обслужено или бригада дешева (wveh меньше стандартной) — cap, иначе
+    // текущий парк.
+    int kmCap(int used, bool allServed) const { return allServed && wVeh >= W_VEHICLE ? used : cap; }
 
-    explicit Problem(const Instance& in) : I(in), N(in.N), V(in.V), S(in.S), M(in.M) {
+    explicit Problem(const Instance& in)
+        : I(in), N(in.N), V(in.V), S(in.S), M(in.M), wVeh(in.wVeh), wWait(in.wWait), cap(min(in.V, in.maxUsed)), equip(in.equip),
+          wait(in.waits()) {
         if (N > MAX_ORDERS - 2 || V > MAX_VEHICLES) {
             fprintf(stderr, "задача больше предела lns::Problem (%d заявок, %d бригад)\n", MAX_ORDERS - 2, MAX_VEHICLES);
             exit(1);
@@ -36,13 +59,25 @@ struct Problem {
             mode[v] = I.veh[v].mode;
             start[v] = I.veh[v].start;
             mask[v] = I.veh[v].mask;
+            end[v] = I.veh[v].end;
+            maxEnd = max(maxEnd, end[v]);
             T[v] = I.T[mode[v]].data();
             D[v] = I.D[mode[v]].data();
+            lun[v] = I.veh[v].lunch;
+            begin[v] = I.veh[v].begin;
         }
         for (int k = 0; k < N; k++) {
+            eq[k] = I.ord[k].eq;
+            acc[k] = I.acc(k);
             a[k] = I.ord[k].a;
-            svc[k] = I.ord[k].svc;
-            b[k] = min(I.ord[k].b, SHIFT - svc[k]);
+            ob[k] = I.ord[k].b;
+            svc[k] = 1e18;
+            b[k] = -1e18;
+            for (int v = 0; v < V; v++) {
+                svcV[v][k] = I.svc(k, v);
+                svc[k] = min(svc[k], svcV[v][k]);
+                b[k] = max(b[k], min(ob[k], end[v] - svcV[v][k]));
+            }
             pen[k] = I.penalty(k);
             nd[k] = S + k;
             skill[k] = I.ord[k].skill;
@@ -51,7 +86,7 @@ struct Problem {
             farv[k] = 1e9;
             for (int v = 0; v < V; v++)
                 if (I.can(v, k)) {
-                    canMask[k] |= 1 << v;
+                    canMask[k] |= 1u << v;
                     nCan[k]++;
                     farv[k] = min(farv[k], I.d(v, start[v], nd[k]));
                 }
@@ -85,7 +120,16 @@ struct Solution {
     int V = 0, N = 0;
     int len[MAX_VEHICLES];
     int r[MAX_VEHICLES][MAX_LEN];
-    double dep[MAX_VEHICLES][MAX_LEN], lat[MAX_VEHICLES][MAX_LEN], km[MAX_VEHICLES];
+    // По позициям: dep, depB — конец работы, пока обед впереди (путь A) и после обеда (путь B, INF_TIME — нельзя);
+    // lat, latF, latA — самое позднее начало с учётом хвоста, если обед был / будет после последней работы / где-то в
+    // хвосте; wA, wB — минуты ожидания аварий путей A и B до позиции включительно; qs — оборудование до позиции
+    // включительно; nAcc[i] — аварий на позициях ≥ i.
+    double dep[MAX_VEHICLES][MAX_LEN], depB[MAX_VEHICLES][MAX_LEN];
+    double lat[MAX_VEHICLES][MAX_LEN], latF[MAX_VEHICLES][MAX_LEN], latA[MAX_VEHICLES][MAX_LEN];
+    double wA[MAX_VEHICLES][MAX_LEN], wB[MAX_VEHICLES][MAX_LEN];
+    int qs[MAX_VEHICLES][MAX_LEN], nAcc[MAX_VEHICLES][MAX_LEN + 1];
+    double km[MAX_VEHICLES], wc[MAX_VEHICLES];   // пробег и цена ожидания аварий (wWait · минуты)
+    int qTot[MAX_VEHICLES];
     int rt[MAX_ORDERS];     // маршрут заявки; < 0 — не обслуживается
 
     Solution() = default;
@@ -102,7 +146,9 @@ struct Solution {
         N = P.N;
         for (int v = 0; v < V; v++) {
             len[v] = 0;
-            km[v] = 0;
+            km[v] = wc[v] = 0;
+            qTot[v] = 0;
+            nAcc[v][0] = 0;
         }
         for (int k = 0; k < N; k++) rt[k] = -1;
     }
@@ -130,6 +176,12 @@ struct Solution {
         for (int v = 0; v < V; v++) s += km[v];
         return s;
     }
+    // Км и цена ожидания аварий — всё, что в цели ниже бригад.
+    double kmCost() const {
+        double s = 0;
+        for (int v = 0; v < V; v++) s += km[v] + wc[v];
+        return s;
+    }
     double penSum(const Problem& P) const {
         double p = 0;
         for (int k = 0; k < N; k++)
@@ -141,73 +193,184 @@ struct Solution {
         for (int k = 0; k < N; k++) c += rt[k] < 0;
         return c;
     }
-    double cost(const Problem& P) const { return penSum(P) * W_UNSERVED + used() * W_VEHICLE + kmTot(); }
-    // Лексикографически: штраф, бригады, км.
+    double cost(const Problem& P) const { return penSum(P) * W_UNSERVED + used() * P.wVeh + kmCost(); }
+    // Сначала штраф, затем бригады·wVeh + км + ожидание (при стандартной цене бригады — лексикографически).
     bool better(const Solution& o, const Problem& P) const {
         double p = penSum(P), q = o.penSum(P);
         if (fabs(p - q) > 1e-9) return p < q;
-        int x = used(), y = o.used();
-        if (x != y) return x < y;
-        return kmTot() < o.kmTot() - 1e-9;
+        return used() * P.wVeh + kmCost() < o.used() * P.wVeh + o.kmCost() - 1e-9;
     }
 
-    // Пересчитать расписание маршрута v; недопустимые заявки выпадают (в out).
+    // Состояние расписания перед позицией p маршрута v; prev — точка, где бригада. Без обеда depB и wB не ведутся,
+    // без штрафа ожидания — wA, без оборудования — qs, nAcc.
+    Walk before(const Problem& P, int v, int p, int& prev) const {
+        if (p == 0) {
+            prev = P.start[v];
+            return startWalk(P.begin[v]);
+        }
+        Walk w;
+        w.t = w.free = dep[v][p - 1];
+        if (P.lun[v].ld > 0) {
+            w.tB = depB[v][p - 1];
+            w.wB = wB[v][p - 1];
+        }
+        if (P.wait) w.wA = wA[v][p - 1];
+        prev = P.nd[r[v][p - 1]];
+        return w;
+    }
+
+    // Пересчитать расписание маршрута v; недопустимые заявки выпадают (в out). Если обеду нет места, выпадает первая
+    // работа, которая кончается позже начала окна обеда.
     void rebuild(const Problem& P, int v, vector<int>* out = nullptr) {
-        const int L = len[v];
         int* R = r[v];
         const double* T = P.T[v];
         const double* D = P.D[v];
         const int M = P.M;
-        double t = 0, dist = 0;
-        int prev = P.start[v], w = 0;
-        for (int i = 0; i < L; i++) {
-            int k = R[i], n = P.nd[k];
-            double begin = max(t + T[prev * M + n], P.a[k]);
-            if (!P.can(v, k) || begin > P.b[k] + TOL) {
-                rt[k] = -1;
-                if (out) out->push_back(k);
-                continue;
+        const Lunch& L = P.lun[v];
+        const bool lunch = L.ld > 0;
+        int w;
+        for (;;) {
+            const int len0 = len[v];
+            Walk s = startWalk(P.begin[v]);
+            double dist = 0;
+            int prev = P.start[v], q = 0;
+            w = 0;
+            for (int i = 0; i < len0; i++) {
+                int k = R[i], n = P.nd[k];
+                Walk x = s;
+                if (!P.can(v, k) || !P.fits(v, q + P.eq[k]) ||
+                    !advance(x, L, T[prev * M + n], P.a[k], P.bv(k, v), P.sv(k, v), P.acc[k], TOL)) {
+                    rt[k] = -1;
+                    if (out) out->push_back(k);
+                    continue;
+                }
+                s = x;
+                q += P.eq[k];
+                dist += D[prev * M + n];
+                prev = n;
+                R[w] = k;
+                dep[v][w] = s.t;
+                if (lunch) {
+                    depB[v][w] = s.tB;
+                    wB[v][w] = s.wB;
+                }
+                if (P.wait) wA[v][w] = s.wA;
+                if (P.equip) qs[v][w] = q;
+                rt[k] = v;
+                w++;
             }
-            t = begin + P.svc[k];
-            dist += D[prev * M + n];
-            prev = n;
-            R[w] = k;
-            dep[v][w] = t;
-            rt[k] = v;
-            w++;
+            len[v] = w;
+            double wt;
+            if (settle(s, L, P.end[v], w == 0, TOL, wt)) {
+                km[v] = dist;
+                wc[v] = P.wWait * wt;
+                qTot[v] = q;
+                break;
+            }
+            int i = 0;
+            while (i + 1 < w && dep[v][i] <= L.la) i++;
+            rt[R[i]] = -1;
+            if (out) out->push_back(R[i]);
+            memmove(R + i, R + i + 1, (w - i - 1) * sizeof(int));
+            len[v] = w - 1;
         }
-        len[v] = w;
-        km[v] = dist;
+        if (P.wait) {
+            nAcc[v][w] = 0;
+            for (int i = w - 1; i >= 0; i--) nAcc[v][i] = nAcc[v][i + 1] + P.acc[R[i]];
+        }
+        if (!lunch) {
+            for (int i = w - 1; i >= 0; i--) {
+                int k = R[i];
+                double latest = P.bv(k, v);
+                if (i + 1 < w) latest = min(latest, lat[v][i + 1] - P.sv(k, v) - T[P.nd[k] * M + P.nd[R[i + 1]]]);
+                lat[v][i] = latest;
+            }
+            return;
+        }
         for (int i = w - 1; i >= 0; i--) {
             int k = R[i];
-            double latest = P.b[k];
-            if (i + 1 < w) latest = min(latest, lat[v][i + 1] - P.svc[k] - T[P.nd[k] * M + P.nd[R[i + 1]]]);
-            lat[v][i] = latest;
+            if (i + 1 < w) {
+                int x = R[i + 1];
+                tailLatest(L, P.bv(k, v), P.sv(k, v), P.end[v], false, T[P.nd[k] * M + P.nd[x]], P.a[x], lat[v][i + 1], latF[v][i + 1],
+                           latA[v][i + 1], lat[v][i], latF[v][i], latA[v][i]);
+            } else {
+                tailLatest(L, P.bv(k, v), P.sv(k, v), P.end[v], true, 0, 0, 0, 0, 0, lat[v][i], latF[v][i], latA[v][i]);
+            }
         }
     }
-    // Прирост км при вставке k в маршрут v на позицию p; INF, если нельзя.
-    double insDelta(const Problem& P, int v, int p, int k) const {
-        int prev;
-        double t;
-        if (p == 0) {
-            t = 0;
-            prev = P.start[v];
-        } else {
-            t = dep[v][p - 1];
-            prev = P.nd[r[v][p - 1]];
+    // Минуты ожидания аварий маршрута v, если перед позицией p состояние w (бригада в точке prev), а дальше — хвост
+    // маршрута с позиции p.
+    // Проход идёт, пока в хвосте есть аварии; без обеда он кончается и там, где расписание сошлось с прежним.
+    double waitFrom(const Problem& P, int v, int p, Walk w, int prev) const {
+        const Lunch& L = P.lun[v];
+        const int n0 = len[v];
+        if (L.ld <= 0) {
+            double t = w.t, wa = w.wA;
+            for (int i = p; i < n0 && nAcc[v][i] > 0; i++) {
+                int x = r[v][i], n = P.nd[x];
+                double s = max(t + P.t(v, prev, n), P.a[x]);
+                if (s + P.sv(x, v) == dep[v][i]) return wa + wA[v][n0 - 1] - (i ? wA[v][i - 1] : 0.0);
+                if (P.acc[x]) wa += s - P.a[x];
+                t = s + P.sv(x, v);
+                prev = n;
+            }
+            return wa;
         }
+        double wt;
+        for (int i = p; i < n0; i++) {
+            int x = r[v][i], n = P.nd[x];
+            const double tr = P.t(v, prev, n);
+            if (nAcc[v][i] == 0) {   // дальше аварий нет: важно только, по какому пути пойдёт расписание
+                wt = quietTailWait(w, takesPathA(w, L, tr, P.a[x], latF[v][i], TOL));
+                if (wt >= 0) return wt;
+            }
+            advance(w, L, tr, P.a[x], P.bv(x, v), P.sv(x, v), P.acc[x], TOL);
+            prev = n;
+        }
+        settle(w, L, P.end[v], false, TOL, wt);
+        return wt;
+    }
+    // Прирост цели ниже бригад (км, ожидание аварий) при вставке k в маршрут v на позицию p; INF, если нельзя.
+    __attribute__((always_inline)) double insDelta(const Problem& P, int v, int p, int k) const {
         const int nk = P.nd[k], M = P.M;
         const double* T = P.T[v];
         const double* D = P.D[v];
-        double begin = max(t + T[prev * M + nk], P.a[k]);
-        if (begin > P.b[k] + TOL) return INF;
-        double end = begin + P.svc[k], dd = D[prev * M + nk];
-        if (p < len[v]) {
-            int nx = P.nd[r[v][p]];
-            if (end + T[nk * M + nx] > lat[v][p] + TOL) return INF;
-            dd += D[nk * M + nx] - D[prev * M + nx];
+        const int prev = p ? P.nd[r[v][p - 1]] : P.start[v];
+        const double tr = T[prev * M + nk], begin = max((p ? dep[v][p - 1] : 0) + tr, P.a[k]);
+        if (begin > P.bv(k, v) + TOL) return INF;              // без обеда не успевает — с обедом тем более
+        if (P.equip && !P.fits(v, qTot[v] + P.eq[k])) return INF;
+        double dd = D[prev * M + nk];
+        const int nx = p < len[v] ? P.nd[r[v][p]] : -1;
+        const bool lunch = P.lun[v].ld > 0;
+        if (!lunch) {
+            if (nx >= 0 && begin + P.sv(k, v) + T[nk * M + nx] > lat[v][p] + TOL) return INF;
+        } else if (!(nx >= 0 ? max(begin + P.sv(k, v) + T[nk * M + nx], P.a[r[v][p]]) <= latA[v][p] + TOL   // обед — дальше
+                         : max(begin + P.sv(k, v), P.lun[v].la) <= P.lun[v].lb + LUNCH_TOL &&
+                               max(begin + P.sv(k, v), P.lun[v].la) + P.lun[v].ld <= P.end[v] + TOL) &&
+                   !lunchFits(P, v, p, k, tr)) {
+            return INF;
         }
+        if (nx >= 0) dd += D[nk * M + nx] - D[prev * M + nx];
+        if (P.wait && (P.acc[k] || nAcc[v][lunch ? 0 : p] > 0)) dd += waitDelta(P, v, p, k, tr);
         return dd;
+    }
+    // Вставка k на позицию p маршрута v бригадой с обедом допустима (без обеда путь A уже успевает).
+    __attribute__((noinline)) bool lunchFits(const Problem& P, int v, int p, int k, double tr) const {
+        const Lunch& L = P.lun[v];
+        int at;
+        Walk w = before(P, v, p, at);
+        advance(w, L, tr, P.a[k], P.bv(k, v), P.sv(k, v), P.acc[k], TOL);
+        double wt;
+        if (p == len[v]) return settle(w, L, P.end[v], false, TOL, wt);
+        int x = r[v][p];
+        return tailOK(w, L, P.t(v, P.nd[k], P.nd[x]), P.a[x], latA[v][p], lat[v][p], TOL);
+    }
+    // Прирост цены ожидания аварий при вставке k на позицию p маршрута v.
+    __attribute__((noinline)) double waitDelta(const Problem& P, int v, int p, int k, double tr) const {
+        int at;
+        Walk w = before(P, v, p, at);
+        advance(w, P.lun[v], tr, P.a[k], P.bv(k, v), P.sv(k, v), P.acc[k], TOL);
+        return P.wWait * waitFrom(P, v, p, w, P.nd[k]) - wc[v];
     }
     void insertAt(const Problem& P, int v, int p, int k) {
         memmove(r[v] + p + 1, r[v] + p, (len[v] - p) * sizeof(int));
@@ -234,9 +397,18 @@ private:
         for (int v = 0; v < V; v++) {
             int L = len[v] = o.len[v];
             km[v] = o.km[v];
+            wc[v] = o.wc[v];
+            qTot[v] = o.qTot[v];
             memcpy(r[v], o.r[v], L * sizeof(int));
             memcpy(dep[v], o.dep[v], L * sizeof(double));
+            memcpy(depB[v], o.depB[v], L * sizeof(double));
             memcpy(lat[v], o.lat[v], L * sizeof(double));
+            memcpy(latF[v], o.latF[v], L * sizeof(double));
+            memcpy(latA[v], o.latA[v], L * sizeof(double));
+            memcpy(wA[v], o.wA[v], L * sizeof(double));
+            memcpy(wB[v], o.wB[v], L * sizeof(double));
+            memcpy(qs[v], o.qs[v], L * sizeof(int));
+            memcpy(nAcc[v], o.nAcc[v], (L + 1) * sizeof(int));
         }
         memcpy(rt, o.rt, N * sizeof(int));
     }
